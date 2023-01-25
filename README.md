@@ -1,0 +1,5 @@
+# <p>  <b>AI Powered Photoswitchable Screen, Version 2 </b> </p>
+<img src="https://github.com/gkanfer/AI-PS/raw/master/logoAIPS.png" width="250" title="cellpose" alt="cellpose" align="right" vspace = "10">
+
+
+This project developed an AI Powered Photoswitchable Genetic CRISPR Screen, Version 2. A parametric object detection platform was developed, utilising Numpy, scikit-image, and scipy to accurately detect and segment single cells from microscopy images. Neural network models such as U-net and cGAN were used for segmentation, and a PyMC3 library was used to apply a Bayes' Logistic Model for the detection of subcellular phenotypes. Differential sgRNA abundance analysis was implemented using several Bayesian inference strategies. The program was published online using Plotly-Dash, allowing users to interact with and visualize the results.
