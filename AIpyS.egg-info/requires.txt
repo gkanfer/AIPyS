@@ -1,0 +1,10 @@
+pymc3
+matplotlib
+pandas
+scikit-image
+matplotlib
+scikit-learn
+plotly_express
+seaborn
+cellpose
+scipy

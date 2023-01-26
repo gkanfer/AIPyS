@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/AIPyS/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MANIFEST.in" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AIPyS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AIPyS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/setup.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tempsetup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/AIPS_cellpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/AIPS_file_display.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_file_display.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/AIPS_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/AIPS_granularity.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_granularity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/AIPS_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/AIPS_module_old.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_module_old.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Baysian_deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Baysian_deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Baysian_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Baysian_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Dash_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Dash_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/Display_composit.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Display_composit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/controls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/controls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/display_and_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/display_and_xml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/layout_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/layout_function.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2KprvIRmd1piSr5MY9uSHRghRCH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="" />
+      <created>1674682618149</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674682618149</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>
