@@ -44,10 +44,10 @@ from skimage import measure, restoration,morphology
 RANDOM_SEED = 8927
 np.random.seed(RANDOM_SEED)
 
-from utils import AIPS_module as ai
-from utils import AIPS_functions as af
-from utils import AIPS_granularity as ag
-from utils.AIPS_cellpose import granularityMesure_cellpose
+from AIPyS import AIPS_module as ai
+from AIPyS import AIPS_functions as af
+from AIPyS import AIPS_granularity as ag
+from AIPyS.AIPS_cellpose import granularityMesure_cellpose
 
 
 

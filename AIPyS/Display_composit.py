@@ -6,7 +6,7 @@ import matplotlib as mpl
 import plotly.express as px
 from skimage import io, filters, measure, color, img_as_ubyte
 
-from utils import display_and_xml as dx
+from AIPyS import display_and_xml as dx
 
 
 def image_with_contour(img, active_labels, data_table, active_columns, color_column):

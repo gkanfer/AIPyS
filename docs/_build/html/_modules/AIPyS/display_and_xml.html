@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIPyS.display_and_xml &mdash; AIPyS  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">AIPyS.display_and_xml</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for AIPyS.display_and_xml</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">tifffile</span> <span class="k">as</span> <span class="nn">tfi</span>
+<span class="kn">import</span> <span class="nn">skimage.measure</span> <span class="k">as</span> <span class="nn">sme</span>
+<span class="kn">import</span> <span class="nn">matplotlib.image</span> <span class="k">as</span> <span class="nn">mpimg</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageEnhance</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span><span class="n">ImageFont</span>
+<span class="c1"># from PIL import fromarray</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">asarray</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">io</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_otsu</span><span class="p">,</span> <span class="n">threshold_local</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">convex_hull_image</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">ndimage</span> <span class="k">as</span> <span class="n">ndi</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_opening</span><span class="p">,</span> <span class="n">binary_erosion</span><span class="p">,</span> <span class="n">binary_dilation</span>
+<span class="kn">from</span> <span class="nn">skimage.morphology</span> <span class="kn">import</span> <span class="n">disk</span><span class="p">,</span> <span class="n">remove_small_objects</span>
+<span class="kn">import</span> <span class="nn">skimage.morphology</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span>
+<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">rank</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">,</span> <span class="n">sobel</span>
+<span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">img_as_ubyte</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">data</span><span class="p">,</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">regionprops_table</span>
+<span class="kn">from</span> <span class="nn">skimage.measure</span> <span class="kn">import</span> <span class="n">perimeter</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
+<span class="kn">from</span> <span class="nn">skimage.exposure</span> <span class="kn">import</span> <span class="n">rescale_intensity</span><span class="p">,</span> <span class="n">histogram</span>
+<span class="kn">from</span> <span class="nn">skimage.feature</span> <span class="kn">import</span> <span class="n">peak_local_max</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_fill_holes</span>
+<span class="kn">from</span> <span class="nn">skimage.viewer</span> <span class="kn">import</span> <span class="n">ImageViewer</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">img_as_float</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">xml.etree.ElementTree</span> <span class="k">as</span> <span class="nn">xml</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<div class="viewcode-block" id="display_image_label"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.display_image_label">[docs]</a><span class="k">def</span> <span class="nf">display_image_label</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">lable_draw</span><span class="p">,</span> <span class="n">font_select</span><span class="p">,</span><span class="n">font_size</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    ch: 16 bit input image</span>
+<span class="sd">    mask: mask for labale</span>
+<span class="sd">    lable_draw: &#39;label&#39; or &#39;area&#39;</span>
+<span class="sd">    font_select: copy font to the working directory (&quot;DejaVuSans.ttf&quot; eg)</span>
+<span class="sd">    font_size: 4 is nice size</span>
+
+<span class="sd">    return:</span>
+<span class="sd">    info_table: table of objects measure</span>
+<span class="sd">    PIL_image: 16 bit mask rgb of the labeled image</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="c1"># count number of objects in nuc[&#39;sort_mask&#39;]</span>
+    <span class="n">info_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">measure</span><span class="o">.</span><span class="n">regionprops_table</span><span class="p">(</span>
+            <span class="n">mask</span><span class="p">,</span>
+            <span class="n">intensity_image</span><span class="o">=</span><span class="n">ch</span><span class="p">,</span>
+            <span class="n">properties</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;centroid&#39;</span><span class="p">],</span>
+        <span class="p">))</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+    <span class="n">PIL_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">(</span><span class="n">mask</span><span class="p">))</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+    <span class="c1">#Label ROI by centroid and index</span>
+    <span class="n">info_table</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">info_table</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="c1">#round</span>
+    <span class="n">info_table</span> <span class="o">=</span> <span class="n">info_table</span><span class="o">.</span><span class="n">round</span><span class="p">({</span><span class="s1">&#39;centroid-0&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;centroid-1&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+    <span class="n">info_table</span> <span class="o">=</span> <span class="n">info_table</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">draw</span> <span class="o">=</span> <span class="n">ImageDraw</span><span class="o">.</span><span class="n">Draw</span><span class="p">(</span><span class="n">PIL_image</span><span class="p">)</span>
+    <span class="c1"># use a bitmap font</span>
+    <span class="n">font</span> <span class="o">=</span> <span class="n">ImageFont</span><span class="o">.</span><span class="n">truetype</span><span class="p">(</span><span class="n">font_select</span><span class="p">,</span> <span class="n">font_size</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lable_draw</span><span class="o">==</span><span class="s1">&#39;label&#39;</span><span class="p">:</span>
+        <span class="n">sel_lable</span><span class="o">=</span><span class="mi">3</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">sel_lable</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info_table</span><span class="p">)):</span>
+        <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">info_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">),</span> <span class="n">info_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)),</span><span class="nb">str</span><span class="p">(</span><span class="n">info_table</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">sel_lable</span><span class="p">]),</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">info_table</span><span class="p">,</span> <span class="n">PIL_image</span></div>
+
+<div class="viewcode-block" id="outline_seg"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.outline_seg">[docs]</a><span class="k">def</span> <span class="nf">outline_seg</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">index</span><span class="p">):</span>
+    <span class="n">seg_mask_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mask</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="n">seg_mask_temp</span><span class="p">[</span><span class="n">mask</span> <span class="o">==</span> <span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+    <span class="n">seg_mask_eros_9</span> <span class="o">=</span> <span class="n">binary_erosion</span><span class="p">(</span><span class="n">seg_mask_temp</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">seg_mask_eros_3</span> <span class="o">=</span> <span class="n">binary_erosion</span><span class="p">(</span><span class="n">seg_mask_temp</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">framed_mask</span> <span class="o">=</span> <span class="n">seg_mask_eros_3</span> <span class="o">-</span> <span class="n">seg_mask_eros_9</span>
+    <span class="k">return</span> <span class="n">framed_mask</span></div>
+
+<div class="viewcode-block" id="sum_seg"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.sum_seg">[docs]</a><span class="k">def</span> <span class="nf">sum_seg</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span><span class="n">mask</span><span class="p">):</span>
+    <span class="n">update_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mask</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">update_mask</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">update_mask</span> <span class="o">=</span> <span class="n">update_mask</span> <span class="o">+</span> <span class="n">item</span>
+    <span class="k">return</span> <span class="n">update_mask</span></div>
+
+
+<div class="viewcode-block" id="binary_frame_mask"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.binary_frame_mask">[docs]</a><span class="k">def</span> <span class="nf">binary_frame_mask</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">table</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create a mask for NIS-elements to photo-activate for multiple point</span>
+<span class="sd">    :parameter</span>
+<span class="sd">    ch - input image</span>
+<span class="sd">    mask - input mask (RGB) 32integer</span>
+<span class="sd">    :return</span>
+<span class="sd">    framed_mask (RGB)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">table</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">info_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="n">measure</span><span class="o">.</span><span class="n">regionprops_table</span><span class="p">(</span>
+                <span class="n">mask</span><span class="p">,</span>
+                <span class="n">intensity_image</span><span class="o">=</span><span class="n">ch</span><span class="p">,</span>
+                <span class="n">properties</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;centroid&#39;</span><span class="p">],</span>
+            <span class="p">))</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">info_table</span><span class="o">=</span><span class="n">table</span>
+    <span class="n">info_table</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">info_table</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">framed_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mask</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">info_table</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">info_table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+            <span class="n">framed_mask</span> <span class="o">=</span> <span class="n">framed_mask</span> <span class="o">+</span> <span class="n">outline_seg</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">framed_mask</span> <span class="o">=</span> <span class="n">outline_seg</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">info_table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">framed_mask</span></div>
+
+<div class="viewcode-block" id="binary_frame_mask_single_point"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.binary_frame_mask_single_point">[docs]</a><span class="k">def</span> <span class="nf">binary_frame_mask_single_point</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="n">table</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create a mask for NIS-elements to photo-activate for single point</span>
+<span class="sd">    :parameter</span>
+<span class="sd">    mask - input mask (RGB)</span>
+<span class="sd">    :return</span>
+<span class="sd">    framed_mask (RGB)</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">seg_mask_eros_9</span> <span class="o">=</span> <span class="n">binary_erosion</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">seg_mask_eros_3</span> <span class="o">=</span> <span class="n">binary_erosion</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">seg_frame</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seg_mask_eros_9</span> <span class="o">+</span> <span class="n">seg_mask_eros_3</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">seg_mask_eros_3</span><span class="p">)</span>
+    <span class="n">framed_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">seg_frame</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">seg_mask_eros_3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">framed_mask</span></div>
+
+
+
+
+<div class="viewcode-block" id="Centroid_map"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.Centroid_map">[docs]</a><span class="k">def</span> <span class="nf">Centroid_map</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">mat</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Returns center of mask map after dilation</span>
+<span class="sd">        :parameter</span>
+<span class="sd">        ch - Grayscale input image</span>
+<span class="sd">        mask -</span>
+<span class="sd">        mat - matrix for the dilation operation</span>
+<span class="sd">        :return</span>
+<span class="sd">        table - centroid table</span>
+<span class="sd">        center_map -</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">measure</span><span class="o">.</span><span class="n">regionprops_table</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span>
+                            <span class="n">intensity_image</span><span class="o">=</span> <span class="n">ch</span><span class="p">,</span>
+                            <span class="n">properties</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;centroid_weighted&#39;</span><span class="p">,])</span>
+                         <span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+    <span class="n">center_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mask</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">table</span>
+    <span class="n">centroid_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;centroid_weighted-0&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+    <span class="n">centroid_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="s1">&#39;centroid_weighted-1&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+    <span class="n">center_map</span><span class="p">[</span><span class="n">centroid_0</span><span class="p">,</span> <span class="n">centroid_1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">center_map</span> <span class="o">=</span> <span class="n">binary_dilation</span><span class="p">(</span><span class="n">center_map</span><span class="p">,</span> <span class="n">structure</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">mat</span><span class="p">,</span> <span class="n">mat</span><span class="p">)))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">table</span><span class="p">,</span> <span class="n">center_map</span></div>
+
+
+<div class="viewcode-block" id="seq"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.seq">[docs]</a><span class="k">def</span> <span class="nf">seq</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">len_provided</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="p">(</span><span class="n">length_out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">by_provided</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="p">(</span><span class="n">by</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">by_provided</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="ow">not</span> <span class="n">len_provided</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;At least by or n_points must be provided&#39;</span><span class="p">)</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="n">eps</span> <span class="o">=</span> <span class="nb">pow</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">by_provided</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">by</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;by must be non-zero.&#39;</span><span class="p">)</span>
+        <span class="c1"># Switch direction in case in start and end seems to have been switched (use sign of by to decide this behaviour)</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span> <span class="ow">and</span> <span class="n">by</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">start</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">end</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">e</span>
+        <span class="k">elif</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="n">end</span> <span class="ow">and</span> <span class="n">by</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">end</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">start</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">e</span>
+        <span class="n">absby</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">absby</span> <span class="o">-</span> <span class="n">width</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+            <span class="n">length_out</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="n">absby</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># by is too great, we assume by is actually length_out</span>
+            <span class="n">length_out</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">by</span><span class="p">)</span>
+            <span class="n">by</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="p">(</span><span class="n">by</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">length_out</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">length_out</span><span class="p">)</span>
+        <span class="n">by</span> <span class="o">=</span> <span class="n">width</span> <span class="o">/</span> <span class="p">(</span><span class="n">length_out</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">start</span><span class="p">)]</span> <span class="o">*</span> <span class="n">length_out</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">length_out</span><span class="p">):</span>
+        <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">by</span> <span class="o">*</span> <span class="n">i</span>
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">by</span> <span class="o">*</span> <span class="n">length_out</span> <span class="o">-</span> <span class="n">end</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span></div>
+
+<div class="viewcode-block" id="evaluate_image_output"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.evaluate_image_output">[docs]</a><span class="k">def</span> <span class="nf">evaluate_image_output</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+    <span class="n">mask_eval</span> <span class="o">=</span> <span class="n">mask</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">mask_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">mask_eval</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mask_eval</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask_eval</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">mask_eval</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span>
+    <span class="k">return</span> <span class="n">mask</span></div>
+
+<div class="viewcode-block" id="test_image"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.test_image">[docs]</a><span class="k">def</span> <span class="nf">test_image</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    test whether the mask generated is empty</span>
+<span class="sd">    :parameter</span>
+<span class="sd">    arr - np array</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">values</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">counts</span></div>
+
+<div class="viewcode-block" id="unique_rand"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.display_and_xml.unique_rand">[docs]</a><span class="k">def</span> <span class="nf">unique_rand</span><span class="p">(</span><span class="n">inicial</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    :parameter</span>
+<span class="sd">    :return</span>
+<span class="sd">    :Example</span>
+<span class="sd">    data = unique_rand(1, 60, 6)</span>
+<span class="sd">    print(data)</span>
+<span class="sd">    #######################################################</span>
+<span class="sd">            prints something like</span>
+<span class="sd">            [34, 45, 2, 36, 25, 32]</span>
+<span class="sd">    #######################################################</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="p">:</span>
+        <span class="n">number</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="n">inicial</span><span class="p">,</span> <span class="n">limit</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">data</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

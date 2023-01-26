@@ -44,14 +44,6 @@ AIPyS.AIPS\_module module
    :undoc-members:
    :show-inheritance:
 
-AIPyS.AIPS\_module\_old module
-------------------------------
-
-.. automodule:: AIPyS.AIPS_module_old
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 AIPyS.Baysian\_deploy module
 ----------------------------
 
@@ -68,14 +60,6 @@ AIPyS.Baysian\_training module
    :undoc-members:
    :show-inheritance:
 
-AIPyS.Dash\_functions module
-----------------------------
-
-.. automodule:: AIPyS.Dash_functions
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 AIPyS.Display\_composit module
 ------------------------------
 
@@ -84,26 +68,10 @@ AIPyS.Display\_composit module
    :undoc-members:
    :show-inheritance:
 
-AIPyS.controls module
----------------------
-
-.. automodule:: AIPyS.controls
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 AIPyS.display\_and\_xml module
 ------------------------------
 
 .. automodule:: AIPyS.display_and_xml
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-AIPyS.layout\_function module
------------------------------
-
-.. automodule:: AIPyS.layout_function
    :members:
    :undoc-members:
    :show-inheritance:

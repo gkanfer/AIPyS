@@ -12,7 +12,7 @@ from scipy.ndimage.morphology import binary_fill_holes
 import skimage
 from skimage.transform import rescale, resize, downscale_local_mean
 from PIL import Image, ImageEnhance, ImageDraw,ImageFont
-from utils.display_and_xml import evaluate_image_output,test_image
+from AIPyS.display_and_xml import evaluate_image_output,test_image
 
 
 

@@ -25,7 +25,7 @@ import base64
 from datetime import datetime
 import timeit
 import glob
-from utils.AIPS_module import Segmentation
+from AIPyS.AIPS_module import Segmentation
 from random import randint
 
 class GRANULARITY():

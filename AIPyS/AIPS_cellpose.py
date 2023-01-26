@@ -20,9 +20,9 @@ from skimage import measure, restoration,morphology
 
 import seaborn as sns
 
-from utils import AIPS_granularity as ag
-from utils import AIPS_file_display as afd
-from utils import AIPS_cellpose as AC
+from AIPyS import AIPS_granularity as ag
+from AIPyS import AIPS_file_display as afd
+from AIPyS import AIPS_cellpose as AC
 
 def granularityMesure_cellpose(file,path,classLabel,outPath, clean = None, outputTableName = None,):
     '''

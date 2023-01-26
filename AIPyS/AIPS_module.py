@@ -11,8 +11,8 @@ import pandas as pd
 from scipy.ndimage.morphology import binary_fill_holes
 import skimage
 from skimage.transform import rescale, resize, downscale_local_mean
-from utils.display_and_xml import evaluate_image_output,test_image
-from utils.AIPS_functions import rgbTograyscale
+from AIPyS.display_and_xml import evaluate_image_output,test_image
+from AIPyS.AIPS_functions import rgbTograyscale
 
 class AIPS():
     '''

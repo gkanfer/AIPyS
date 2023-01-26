@@ -20,8 +20,8 @@ from scipy.ndimage.morphology import binary_fill_holes
 import base64
 from datetime import datetime
 import re
-from utils.display_and_xml import unique_rand
-from utils import display_and_xml as dx
+from AIPyS.display_and_xml import unique_rand
+from AIPyS import display_and_xml as dx
 
 
 def image_to_8bits(input):
