@@ -2,82 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/AIPyS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AIPyS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_file_display.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_file_display.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_granularity.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_granularity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_module.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_module_old.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/Baysian_deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Baysian_deploy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/Baysian_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Baysian_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/Dash_functions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/Display_composit.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Display_composit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/controls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/layout_function.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/AIPyS.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Makefile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Tempsetup.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/AIPyS.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Tempsetup.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/modules.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/.buildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/AIPyS.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/Tempsetup.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/AIPyS.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Tempsetup.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/modules.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/basic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/badge_only.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/Roboto-Slab-Bold.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/Roboto-Slab-Bold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/Roboto-Slab-Regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/Roboto-Slab-Regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-bold-italic.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-bold-italic.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-bold.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-bold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-normal-italic.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-normal-italic.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-normal.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/fonts/lato-normal.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/doctools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/documentation_options.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/file.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/jquery-3.5.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/badge_only.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/html5shiv-printshiv.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/html5shiv.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/theme.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/language_data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/minus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/plus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/pygments.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/searchtools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/underscore-1.13.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/underscore.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/modules.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/make.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

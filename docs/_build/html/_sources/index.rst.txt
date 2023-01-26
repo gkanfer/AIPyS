@@ -12,6 +12,11 @@ Welcome to AIPyS's documentation!
 
    Modules
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Segmentation:
+
+   cellpose
 
 Indices and tables
 ==================
