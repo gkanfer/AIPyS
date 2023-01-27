@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/AIPyS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AIPyS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Classification.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Classification.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Segmentation.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Segmentation.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Classification.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/Classification.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/Classification.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Classification.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Classification.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/Classification.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
