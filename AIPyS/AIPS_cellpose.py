@@ -93,6 +93,7 @@ def granularityMesure_cellpose(file,path,classLabel,outPath, clean = None, outpu
 class AIPS_cellpose:
     def __init__(self, Image_name=None, path=None, image = None, mask = None, table = None, model_type = None, channels = None, clean = None ):
         '''
+        Cellpose algorithm
         :param Image_name: str
         :param path: str
         :param image: inputimage for segmantion

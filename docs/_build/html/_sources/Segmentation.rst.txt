@@ -1,9 +1,6 @@
 Segmentation
 =============
 
-Submodules
-----------
-
 AIPyS.AIPS\_cellpose module
 ---------------------------
 ..  automodule::  AIPyS.AIPS_cellpose

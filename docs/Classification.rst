@@ -1,25 +1,33 @@
 Classification
 =============
 
-Submodules
-----------
-
-AIPyS.AIPS\_AIPS_granularity
+granularity
 ---------------------------
 ..  automodule:: AIPyS.AIPS_granularity
     :members:
     :undoc-members:
     :show-inheritance:
 
-AIPyS.Baysian\_deploy module
+deploy module
 ----------------------------
 ..  automodule:: AIPyS.Baysian_deploy
     :members:
     :undoc-members:
     :show-inheritance:
-AIPyS.Baysian\_training module
+
+training module
 ------------------------------
 ..  automodule:: AIPyS.Baysian_training
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+..  automodule:: AIPyS.model_builder
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+..  automodule:: AIPyS.model_evaluation_utils
     :members:
     :undoc-members:
     :show-inheritance:
