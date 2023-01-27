@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Segmentation &mdash; AIPyS  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Classification" href="Classification.html" />
+    <link rel="prev" title="Contents" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#submodules">1.1. Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-AIPyS.AIPS_cellpose">1.2. AIPyS.AIPS_cellpose module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-AIPyS.AIPS_module">1.3. AIPyS.AIPS_module module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-AIPyS.AIPS_functions">1.4. AIPyS.AIPS_functions module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Classification.html">2. Classification</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Segmentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Segmentation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="segmentation">
+<h1><span class="section-number">1. </span>Segmentation<a class="headerlink" href="#segmentation" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2><span class="section-number">1.1. </span>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-AIPyS.AIPS_cellpose">
+<span id="aipys-aips-cellpose-module"></span><h2><span class="section-number">1.2. </span>AIPyS.AIPS_cellpose module<a class="headerlink" href="#module-AIPyS.AIPS_cellpose" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_cellpose.</span></span><span class="sig-name descname"><span class="pre">AIPS_cellpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Image_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.call_bin">
+<span class="sig-name descname"><span class="pre">call_bin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table_sel_cor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_blank</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.call_bin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.call_bin" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameter</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>table_sel_cor: pandas table contain the center coordinates
+threshold: thershold for predict phenotype (e.g. 0.5)
+img_blank: blank image in the shape of the input image
+:return: binary image of the called masks, table_sel</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_image_load">
+<span class="sig-name descname"><span class="pre">cellpose_image_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.cellpose_image_load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_image_load" title="Permalink to this definition"></a></dt>
+<dd><p>:parameter
+Image: File name (tif format) - should be greyscale
+path: path to the file
+:return
+grayscale_image_container: dictionary of np array</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_segmantation">
+<span class="sig-name descname"><span class="pre">cellpose_segmantation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.cellpose_segmantation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_segmantation" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.display_image_prediction">
+<span class="sig-name descname"><span class="pre">display_image_prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prediction_table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_select</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DejaVuSans.ttf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">windows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lable_draw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'predict'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">round_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.display_image_prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.display_image_prediction" title="Permalink to this definition"></a></dt>
+<dd><p>ch: 16 bit input image
+mask: mask for labale
+lable_draw: ‘predict’ or ‘area’
+font_select: copy font to the working directory (“DejaVuSans.ttf” eg)
+font_size: 4 is nice size
+round_n: integer how many number after decimel</p>
+<p>return:
+info_table: table of objects measure
+PIL_image: 16 bit mask rgb of the labeled image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.keepObject">
+<span class="sig-name descname"><span class="pre">keepObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.keepObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.keepObject" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>table</strong> – keep all the object which are predicted above the threshold</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ROI image mask of selected objects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.measure_properties">
+<span class="sig-name descname"><span class="pre">measure_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.measure_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.measure_properties" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.removeObjects">
+<span class="sig-name descname"><span class="pre">removeObjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objectList</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.removeObjects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.removeObjects" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameter</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p>objectList: list of objects to remove
+:return:
+update mask and table</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method">
+<span class="sig-name descname"><span class="pre">stackObjects_cellpose_ebimage_parametrs_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_pixel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resize_pixel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method" title="Permalink to this definition"></a></dt>
+<dd><p>fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask
+:param extract_pixel: size of extraction acording to mask (e.g. 50 pixel)
+:param resize_pixel: resize for preforming tf prediction (e.g. 150 pixel)
+:param img_label: the mask value for stack
+:return: center image with out background</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.granularityMesure_cellpose">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_cellpose.</span></span><span class="sig-name descname"><span class="pre">granularityMesure_cellpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classLabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outPath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputTableName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_cellpose.html#granularityMesure_cellpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.granularityMesure_cellpose" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>function description:</dt><dd><ol class="arabic simple">
+<li><p>cell segmented using cellpose</p></li>
+<li><p>clean data based on cell area detected</p></li>
+<li><p>granularity measure</p></li>
+</ol>
+</dd>
+<dt>output:</dt><dd><ol class="arabic simple">
+<li><p>Segmented image composition with area label</p></li>
+<li><p>Area histogram plot</p></li>
+<li><p>Segmented image composition after removal of small objects</p></li>
+<li><p>plot of Mean intensity over opening operation (granularity spectrum)</p></li>
+</ol>
+</dd>
+</dl>
+<p>:parameter
+clean: int, remove object bellow the selected area size
+classLabel: int, assign label
+file: str
+path: str
+outPath: str
+outputTableName: str, e.g. “outputTableNorm.csv”</p>
+<p>Note: required single channel tif</p>
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.AIPS_module">
+<span id="aipys-aips-module-module"></span><h2><span class="section-number">1.3. </span>AIPyS.AIPS_module module<a class="headerlink" href="#module-AIPyS.AIPS_module" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.AIPS_module.AIPS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_module.</span></span><span class="sig-name descname"><span class="pre">AIPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Image_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputImg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_module.html#AIPS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_module.AIPS" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Initiate the AIPS object</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_module.AIPS.imageMatrix">
+<span class="sig-name descname"><span class="pre">imageMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_module.html#AIPS.imageMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_module.AIPS.imageMatrix" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.AIPS_module.Segmentation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_module.</span></span><span class="sig-name descname"><span class="pre">Segmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Image_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ch_</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmv_object_nuc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_module.html#Segmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_module.Segmentation" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AIPyS.AIPS_module.AIPS" title="AIPyS.AIPS_module.AIPS"><code class="xref py py-class docutils literal notranslate"><span class="pre">AIPyS.AIPS_module.AIPS</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_module.Segmentation.cytosolSegmentation">
+<span class="sig-name descname"><span class="pre">cytosolSegmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch2_</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_size_cyto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_cyto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_ther</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmv_object_cyto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmv_object_cyto_small</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_borders</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_module.html#Segmentation.cytosolSegmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_module.Segmentation.cytosolSegmentation" title="Permalink to this definition"></a></dt>
+<dd><p>ch: Input image (tifffile image object)
+ch2: Input image (tifffile image object)
+sort_mask: RGB segmented image output first channel for mask (eg nucleus)
+sort_mask_bin: Binary
+block_size_cyto: Detect local edges 1-99 odd
+offset_cyto: Detect local edges 0.001-0.9 odd
+global_ther: Percentile
+rmv_object_cyto:  percentile of cells to remove, 0.01-0.99
+rmv_object_cyto_small:  percentile of cells to remove, 0.01-0.99
+remove_border: boolean -  object on border of image to be removed
+:return:
+nmask2: local threshold binary map (eg nucleus)
+nmask4: local threshold binary map post opening (eg nucleus)
+sort_mask: RGB segmented image output first channel for mask (eg nucleus)
+cell_mask_2: local threshold binary map (eg cytoplasm)
+combine: global threshold binary map (eg cytoplasm)
+sort_mask_syn: RGB segmented image output first channel for mask (eg nucleus) sync
+mask_unfiltered: Mask before filtering object size
+cseg_mask: RGB segmented image output first channel for mask (eg nucleus)
+cseg_mask_bin: Binary mask
+test: Area table seed
+info_table: Area table cytosol synchronize
+table_unfiltered: Table before remove large and small objects</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_module.Segmentation.seedSegmentation">
+<span class="sig-name descname"><span class="pre">seedSegmentation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_module.html#Segmentation.seedSegmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_module.Segmentation.seedSegmentation" title="Permalink to this definition"></a></dt>
+<dd><p><a href="#id1"><span class="problematic" id="id2">ch_</span></a>: Channel selected
+block_size: Detect local edges 1-99 odd
+offset: Detect local edges 0.001-0.9 odd
+rmv_object_nuc: percentile of cells to remove, 0.01-0.99
+clean: opening operation, matrix size must be odd
+:return:
+nmask2: local threshold binary map (eg nucleus)
+nmask4: local threshold binary map post opening (eg nucleus)
+sort_mask: RGB segmented image output first channel for mask (eg nucleus)
+sort_mask_bin: Binary</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.AIPS_functions">
+<span id="aipys-aips-functions-module"></span><h2><span class="section-number">1.4. </span>AIPyS.AIPS_functions module<a class="headerlink" href="#module-AIPyS.AIPS_functions" title="Permalink to this headline"></a></h2>
+<p>Function for AIPS DASH</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.XML_creat">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">XML_creat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmv_object_nuc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">block_size_cyto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_cyto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_ther</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmv_object_cyto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rmv_object_cyto_small</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#XML_creat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.XML_creat" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.gray_scale_3ch">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">gray_scale_3ch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gs_image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#gray_scale_3ch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.gray_scale_3ch" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.image_to_8bits">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">image_to_8bits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#image_to_8bits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.image_to_8bits" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.plot_composite_image">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">plot_composite_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#plot_composite_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.plot_composite_image" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> – input 3 channel grayscale image</p></li>
+<li><p><strong>mask</strong> – mask</p></li>
+<li><p><strong>fig_title</strong> – title</p></li>
+<li><p><strong>alpha</strong> – transprancy for blending</p></li>
+<li><p><strong>img_shape</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.px_pil_figure">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">px_pil_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fig_title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wh</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#px_pil_figure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.px_pil_figure" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> – image input - 3 channel 8 bit image
+bit:1 np.unit16 or 2 np.unit8
+fig_title: title for display on dash
+wh: width and hight in pixels</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>encoded_image (e_img)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.remove_gradiant_label_border">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">remove_gradiant_label_border</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#remove_gradiant_label_border"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.remove_gradiant_label_border" title="Permalink to this definition"></a></dt>
+<dd><p>mask from rescale return with border gradiant which is for the borders
+:return mask no borders</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.rgbTograyscale">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">rgbTograyscale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#rgbTograyscale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.rgbTograyscale" title="Permalink to this definition"></a></dt>
+<dd><p>create a 3 channel grayscale from np format (W,H,C)
+:parameter
+input_gs_image: 8 bit
+:return
+3 channel stack file 8bit image</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.rgb_file_gray_scale">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">rgb_file_gray_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_gs_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#rgb_file_gray_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.rgb_file_gray_scale" title="Permalink to this definition"></a></dt>
+<dd><p>create a 3 channel rgb image from 16bit input image
+optional bin countor image from ROI image
+:parameter
+input_gs_image: 16bit nparray
+mask: 32int roi image
+channel: 0,1,2 (rgb)
+:return
+3 channel stack file 8bit image</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.save_pil_to_directory">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">save_pil_to_directory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'temp'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">merge_mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#save_pil_to_directory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.save_pil_to_directory" title="Permalink to this definition"></a></dt>
+<dd><p>Save image composite with ROI
+:param img: image input</p>
+<blockquote>
+<div><p>bit:1 np.unit16 or 2 np.unit8
+merge_mask: ROI - ROI + 3ch greyscale input OR  -BIN -  bin + 3ch greyscale
+channel: for display Bin merge  with rgb input</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>encoded_image (e_img)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.seq">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">seq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">by</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#seq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.seq" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="AIPyS.AIPS_functions.show_image_adjust">
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_functions.</span></span><span class="sig-name descname"><span class="pre">show_image_adjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">low_prec</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up_prec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/AIPS_functions.html#show_image_adjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_functions.show_image_adjust" title="Permalink to this definition"></a></dt>
+<dd><p>image= np array 2d
+low/up precentile border of the image</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Contents" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Classification.html" class="btn btn-neutral float-right" title="2. Classification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

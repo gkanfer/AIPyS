@@ -87,7 +87,7 @@
 <span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_file_display</span> <span class="k">as</span> <span class="n">afd</span>
 <span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_cellpose</span> <span class="k">as</span> <span class="n">AC</span>
 
-<div class="viewcode-block" id="granularityMesure_cellpose"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.granularityMesure_cellpose">[docs]</a><span class="k">def</span> <span class="nf">granularityMesure_cellpose</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">classLabel</span><span class="p">,</span><span class="n">outPath</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outputTableName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,):</span>
+<div class="viewcode-block" id="granularityMesure_cellpose"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.granularityMesure_cellpose">[docs]</a><span class="k">def</span> <span class="nf">granularityMesure_cellpose</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">classLabel</span><span class="p">,</span><span class="n">outPath</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outputTableName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    function description:</span>
 <span class="sd">        1) cell segmented using cellpose</span>
@@ -153,7 +153,7 @@
 
 
 
-<div class="viewcode-block" id="AIPS_cellpose"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose">[docs]</a><span class="k">class</span> <span class="nc">AIPS_cellpose</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">AIPS_cellpose</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Image_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">model_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">channels</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        :param Image_name: str</span>
@@ -180,7 +180,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">clean</span> <span class="o">=</span> <span class="n">clean</span>
 
 
-<div class="viewcode-block" id="AIPS_cellpose.cellpose_image_load"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_image_load">[docs]</a>    <span class="k">def</span> <span class="nf">cellpose_image_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">cellpose_image_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;:parameter</span>
 <span class="sd">        Image: File name (tif format) - should be greyscale</span>
 <span class="sd">        path: path to the file</span>
@@ -188,9 +188,9 @@
 <span class="sd">        grayscale_image_container: dictionary of np array</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Image_name</span><span class="p">))</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span>
 
-<div class="viewcode-block" id="AIPS_cellpose.cellpose_segmantation"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_segmantation">[docs]</a>    <span class="k">def</span> <span class="nf">cellpose_segmantation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">cellpose_segmantation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span><span class="p">):</span>
         <span class="n">use_GPU</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">use_gpu</span><span class="p">()</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Cellpose</span><span class="p">(</span><span class="n">gpu</span><span class="o">=</span><span class="n">use_GPU</span><span class="p">,</span> <span class="n">model_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">flows</span><span class="p">,</span> <span class="n">styles</span><span class="p">,</span> <span class="n">diams</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">image_input</span><span class="p">,</span> <span class="n">diameter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flow_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span>
@@ -205,9 +205,9 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">mesg</span><span class="p">)</span>
             <span class="n">objectidx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">clean</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">removeObjects</span><span class="p">(</span><span class="n">objectList</span><span class="o">=</span><span class="n">objectidx</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span>
 
-<div class="viewcode-block" id="AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method">[docs]</a>    <span class="k">def</span> <span class="nf">stackObjects_cellpose_ebimage_parametrs_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span> <span class="p">,</span><span class="n">extract_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">,</span> <span class="n">img_label</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">stackObjects_cellpose_ebimage_parametrs_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span> <span class="p">,</span><span class="n">extract_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">,</span> <span class="n">img_label</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask</span>
 <span class="sd">        :param extract_pixel: size of extraction acording to mask (e.g. 50 pixel)</span>
@@ -236,9 +236,9 @@
             <span class="n">masked_image</span> <span class="o">=</span> <span class="n">img</span> <span class="o">*</span> <span class="n">mask_bin</span>
             <span class="n">stack_img</span> <span class="o">=</span> <span class="n">masked_image</span><span class="p">[</span><span class="n">x_start</span><span class="p">:</span><span class="n">x_end</span><span class="p">,</span> <span class="n">y_start</span><span class="p">:</span><span class="n">y_end</span><span class="p">]</span>
             <span class="n">stack_img</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">stack_img</span><span class="p">,</span> <span class="p">(</span><span class="n">resize_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">),</span> <span class="n">anti_aliasing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">stack_img</span><span class="p">,</span> <span class="n">mask_value</span></div>
+            <span class="k">return</span> <span class="n">stack_img</span><span class="p">,</span> <span class="n">mask_value</span>
 
-<div class="viewcode-block" id="AIPS_cellpose.measure_properties"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.measure_properties">[docs]</a>    <span class="k">def</span> <span class="nf">measure_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_image</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">measure_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_image</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">sd_intensity</span><span class="p">(</span><span class="n">regionmask</span><span class="p">,</span> <span class="n">intensity_image</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">intensity_image</span><span class="p">[</span><span class="n">regionmask</span><span class="p">])</span>
 
@@ -275,9 +275,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">intensity_image</span><span class="o">=</span><span class="n">input_image</span><span class="p">,</span> <span class="n">properties</span><span class="o">=</span><span class="n">prop_names</span><span class="p">,</span>
             <span class="n">extra_properties</span><span class="o">=</span><span class="p">(</span><span class="n">sd_intensity</span><span class="p">,</span> <span class="n">skew_intensity</span><span class="p">,</span> <span class="n">pixelcount</span><span class="p">,</span> <span class="n">mean_int</span><span class="p">)</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">table_prop</span></div>
+        <span class="k">return</span> <span class="n">table_prop</span>
 
-<div class="viewcode-block" id="AIPS_cellpose.display_image_prediction"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.display_image_prediction">[docs]</a>    <span class="k">def</span> <span class="nf">display_image_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">img</span> <span class="p">,</span><span class="n">prediction_table</span><span class="p">,</span> <span class="n">font_select</span> <span class="o">=</span> <span class="s2">&quot;DejaVuSans.ttf&quot;</span><span class="p">,</span> <span class="n">font_size</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lable_draw</span> <span class="o">=</span> <span class="s1">&#39;predict&#39;</span><span class="p">,</span><span class="n">round_n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">display_image_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">img</span> <span class="p">,</span><span class="n">prediction_table</span><span class="p">,</span> <span class="n">font_select</span> <span class="o">=</span> <span class="s2">&quot;DejaVuSans.ttf&quot;</span><span class="p">,</span> <span class="n">font_size</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lable_draw</span> <span class="o">=</span> <span class="s1">&#39;predict&#39;</span><span class="p">,</span><span class="n">round_n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        ch: 16 bit input image</span>
 <span class="sd">        mask: mask for labale</span>
@@ -311,9 +311,9 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">info_table</span><span class="p">)):</span>
             <span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">((</span><span class="n">info_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;centroid-1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">),</span> <span class="n">info_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="s1">&#39;centroid-0&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)),</span>
                       <span class="nb">str</span><span class="p">(</span><span class="n">info_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">lable</span><span class="p">]),</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">info_table</span><span class="p">,</span> <span class="n">PIL_image</span></div>
+        <span class="k">return</span> <span class="n">info_table</span><span class="p">,</span> <span class="n">PIL_image</span>
 
-<div class="viewcode-block" id="AIPS_cellpose.call_bin"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.call_bin">[docs]</a>    <span class="k">def</span> <span class="nf">call_bin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">table_sel_cor</span><span class="p">,</span> <span class="n">threshold</span> <span class="p">,</span><span class="n">img_blank</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">call_bin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">table_sel_cor</span><span class="p">,</span> <span class="n">threshold</span> <span class="p">,</span><span class="n">img_blank</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        :parameter:</span>
 <span class="sd">        table_sel_cor: pandas table contain the center coordinates</span>
@@ -326,9 +326,9 @@
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">table_na_rmv_trgt</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">label</span><span class="p">,[</span><span class="s2">&quot;centroid-0&quot;</span><span class="p">,</span> <span class="s2">&quot;centroid-1&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">disk</span><span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="mi">10</span><span class="p">)</span>
             <span class="n">img_blank</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">img_blank</span><span class="p">,</span> <span class="n">table_na_rmv_trgt</span></div>
+        <span class="k">return</span> <span class="n">img_blank</span><span class="p">,</span> <span class="n">table_na_rmv_trgt</span>
 
-<div class="viewcode-block" id="AIPS_cellpose.removeObjects"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.removeObjects">[docs]</a>    <span class="k">def</span> <span class="nf">removeObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objectList</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">removeObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objectList</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        :parameter:</span>
 <span class="sd">        objectList: list of objects to remove</span>
@@ -349,9 +349,9 @@
             <span class="k">for</span> <span class="nb">object</span> <span class="ow">in</span> <span class="n">objectList</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="o">==</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">objectList</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span>
 
-<div class="viewcode-block" id="AIPS_cellpose.keepObject"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_cellpose.AIPS_cellpose.keepObject">[docs]</a>    <span class="k">def</span> <span class="nf">keepObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">keepObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        :param table: keep all the object which are predicted above the threshold</span>
 <span class="sd">        :return: ROI image mask of selected objects</span>
@@ -359,7 +359,7 @@
         <span class="n">nmask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
             <span class="n">nmask</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="o">==</span> <span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">label</span>
-        <span class="k">return</span> <span class="n">nmask</span></div></div>
+        <span class="k">return</span> <span class="n">nmask</span>
 
 
 

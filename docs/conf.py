@@ -12,16 +12,8 @@
 #
 import os
 import sys
+
 sys.path.insert(0, os.path.abspath('..'))
-import AIPyS.AIPS_cellpose
-import AIPyS.AIPS_module
-import AIPyS.AIPS_functions
-import AIPyS.AIPS_file_display
-import AIPyS.AIPS_granularity
-import AIPyS.Baysian_deploy
-import AIPyS.Baysian_training
-import AIPyS.display_and_xml
-import AIPyS.Display_composit
 
 # -- Project information -----------------------------------------------------
 
@@ -35,7 +27,9 @@ author = 'Gil Kanfer, PhD'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc','sphinx.ext.autosummary','sphinx.ext.napoleon','sphinx.ext.viewcode']
+extensions = ['sphinx.ext.autodoc','sphinx.ext.viewcode','sphinx.ext.napoleon']
+
+numpydoc_show_class_members = False
 
 # # Add any paths that contain templates here, relative to this directory.
 # templates_path = ['_templates']

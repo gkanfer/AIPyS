@@ -87,16 +87,16 @@
 <span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">display_and_xml</span> <span class="k">as</span> <span class="n">dx</span>
 
 
-<div class="viewcode-block" id="image_to_8bits"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.image_to_8bits">[docs]</a><span class="k">def</span> <span class="nf">image_to_8bits</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">image_to_8bits</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="n">imType</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="s1">&#39;uint8&#39;</span> <span class="ow">in</span> <span class="n">imType</span><span class="p">):</span>
         <span class="nb">input</span> <span class="o">=</span> <span class="n">img_as_ubyte</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="nb">input</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
         <span class="nb">input</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="nb">input</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="nb">input</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">img</span> <span class="o">=</span> <span class="nb">input</span>
-    <span class="k">return</span> <span class="n">img</span></div>
+    <span class="k">return</span> <span class="n">img</span>
 
-<div class="viewcode-block" id="show_image_adjust"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.show_image_adjust">[docs]</a><span class="k">def</span> <span class="nf">show_image_adjust</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">low_prec</span><span class="p">,</span> <span class="n">up_prec</span><span class="p">):</span>
+<div class="viewcode-block" id="show_image_adjust"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_functions.show_image_adjust">[docs]</a><span class="k">def</span> <span class="nf">show_image_adjust</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">low_prec</span><span class="p">,</span> <span class="n">up_prec</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    image= np array 2d</span>
 <span class="sd">    low/up precentile border of the image</span>
@@ -108,7 +108,7 @@
     <span class="c1"># PIL_scaled_ch1.show()</span>
     <span class="c1"># return PIL_scaled_ch1</span>
 
-<div class="viewcode-block" id="px_pil_figure"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.px_pil_figure">[docs]</a><span class="k">def</span> <span class="nf">px_pil_figure</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">bit</span><span class="p">,</span><span class="n">mask_name</span><span class="p">,</span><span class="n">fig_title</span><span class="p">,</span><span class="n">wh</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<div class="viewcode-block" id="px_pil_figure"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_functions.px_pil_figure">[docs]</a><span class="k">def</span> <span class="nf">px_pil_figure</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">bit</span><span class="p">,</span><span class="n">mask_name</span><span class="p">,</span><span class="n">fig_title</span><span class="p">,</span><span class="n">wh</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    :param img: image input - 3 channel 8 bit image</span>
 <span class="sd">             bit:1 np.unit16 or 2 np.unit8</span>
@@ -136,7 +136,7 @@
     <span class="k">return</span> <span class="n">fig_ch</span></div>
 
 
-<div class="viewcode-block" id="XML_creat"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.XML_creat">[docs]</a><span class="k">def</span> <span class="nf">XML_creat</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">block_size</span><span class="p">,</span><span class="n">offset</span><span class="p">,</span><span class="n">rmv_object_nuc</span><span class="p">,</span><span class="n">block_size_cyto</span><span class="p">,</span><span class="n">offset_cyto</span><span class="p">,</span><span class="n">global_ther</span><span class="p">,</span><span class="n">rmv_object_cyto</span><span class="p">,</span><span class="n">rmv_object_cyto_small</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">XML_creat</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="n">block_size</span><span class="p">,</span><span class="n">offset</span><span class="p">,</span><span class="n">rmv_object_nuc</span><span class="p">,</span><span class="n">block_size_cyto</span><span class="p">,</span><span class="n">offset_cyto</span><span class="p">,</span><span class="n">global_ther</span><span class="p">,</span><span class="n">rmv_object_cyto</span><span class="p">,</span><span class="n">rmv_object_cyto_small</span><span class="p">):</span>
     <span class="n">root</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;Segment&quot;</span><span class="p">)</span>
     <span class="n">cl</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;segment&quot;</span><span class="p">)</span> <span class="c1">#chiled</span>
     <span class="n">root</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cl</span><span class="p">)</span>
@@ -158,9 +158,9 @@
     <span class="n">rmv_object_cyto_small_</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;rmv_object_cyto_small&quot;</span>
     <span class="n">tree</span> <span class="o">=</span> <span class="n">xml</span><span class="o">.</span><span class="n">ElementTree</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span><span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></div>
+        <span class="n">tree</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
-<div class="viewcode-block" id="seq"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.seq">[docs]</a><span class="k">def</span> <span class="nf">seq</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">seq</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">by</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length_out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="n">len_provided</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="p">(</span><span class="n">length_out</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
     <span class="n">by_provided</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="p">(</span><span class="n">by</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="k">else</span> <span class="kc">False</span>
     <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">by_provided</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="ow">not</span> <span class="n">len_provided</span><span class="p">):</span>
@@ -194,9 +194,9 @@
         <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">by</span> <span class="o">*</span> <span class="n">i</span>
     <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">by</span> <span class="o">*</span> <span class="n">length_out</span> <span class="o">-</span> <span class="n">end</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">:</span>
         <span class="n">out</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">out</span></div>
+    <span class="k">return</span> <span class="n">out</span>
 
-<div class="viewcode-block" id="rgb_file_gray_scale"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.rgb_file_gray_scale">[docs]</a><span class="k">def</span> <span class="nf">rgb_file_gray_scale</span><span class="p">(</span><span class="n">input_gs_image</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">channel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="rgb_file_gray_scale"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_functions.rgb_file_gray_scale">[docs]</a><span class="k">def</span> <span class="nf">rgb_file_gray_scale</span><span class="p">(</span><span class="n">input_gs_image</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">channel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39; create a 3 channel rgb image from 16bit input image</span>
 <span class="sd">        optional bin countor image from ROI image</span>
 <span class="sd">        :parameter</span>
@@ -221,7 +221,7 @@
             <span class="n">rgb_input_img</span><span class="p">[</span><span class="n">bin_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">255</span>
     <span class="k">return</span> <span class="n">rgb_input_img</span></div>
 
-<div class="viewcode-block" id="rgbTograyscale"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.rgbTograyscale">[docs]</a><span class="k">def</span> <span class="nf">rgbTograyscale</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
+<div class="viewcode-block" id="rgbTograyscale"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_functions.rgbTograyscale">[docs]</a><span class="k">def</span> <span class="nf">rgbTograyscale</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        create a 3 channel grayscale from np format (W,H,C)</span>
 <span class="sd">        :parameter</span>
@@ -235,16 +235,16 @@
     <span class="k">return</span> <span class="n">rgb_input_img</span></div>
 
 
-<div class="viewcode-block" id="gray_scale_3ch"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.gray_scale_3ch">[docs]</a><span class="k">def</span> <span class="nf">gray_scale_3ch</span><span class="p">(</span><span class="n">input_gs_image</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">gray_scale_3ch</span><span class="p">(</span><span class="n">input_gs_image</span><span class="p">):</span>
     <span class="n">input_gs_image</span> <span class="o">=</span> <span class="p">(</span><span class="n">input_gs_image</span> <span class="o">/</span> <span class="n">input_gs_image</span><span class="o">.</span><span class="n">max</span><span class="p">())</span> <span class="o">*</span> <span class="mi">255</span>
     <span class="n">ch2_u8</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="n">input_gs_image</span><span class="p">)</span>
     <span class="n">rgb_input_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ch2_u8</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">ch2_u8</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
     <span class="n">rgb_input_img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch2_u8</span>
     <span class="n">rgb_input_img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch2_u8</span>
     <span class="n">rgb_input_img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch2_u8</span>
-    <span class="k">return</span> <span class="n">rgb_input_img</span></div>
+    <span class="k">return</span> <span class="n">rgb_input_img</span>
 
-<div class="viewcode-block" id="plot_composite_image"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.plot_composite_image">[docs]</a><span class="k">def</span> <span class="nf">plot_composite_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">fig_title</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+<div class="viewcode-block" id="plot_composite_image"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_functions.plot_composite_image">[docs]</a><span class="k">def</span> <span class="nf">plot_composite_image</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">fig_title</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
     <span class="c1"># apply colors to mask</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    :param img: input 3 channel grayscale image</span>
@@ -270,7 +270,7 @@
     <span class="n">fig_ch</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">title_x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fig_ch</span></div>
 
-<div class="viewcode-block" id="save_pil_to_directory"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.save_pil_to_directory">[docs]</a><span class="k">def</span> <span class="nf">save_pil_to_directory</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">bit</span><span class="p">,</span><span class="n">mask_name</span><span class="p">,</span><span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;temp&#39;</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">merge_mask</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">channel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="save_pil_to_directory"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_functions.save_pil_to_directory">[docs]</a><span class="k">def</span> <span class="nf">save_pil_to_directory</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">bit</span><span class="p">,</span><span class="n">mask_name</span><span class="p">,</span><span class="n">output_dir</span> <span class="o">=</span> <span class="s1">&#39;temp&#39;</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">merge_mask</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span><span class="n">channel</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Save image composite with ROI</span>
 <span class="sd">    :param img: image input</span>
@@ -320,7 +320,7 @@
     <span class="n">e_img</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;temp&#39;</span><span class="p">,</span> <span class="n">filename1</span> <span class="o">+</span> <span class="s2">&quot;.png&quot;</span><span class="p">),</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
     <span class="k">return</span> <span class="n">e_img</span></div>
 
-<div class="viewcode-block" id="remove_gradiant_label_border"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_functions.remove_gradiant_label_border">[docs]</a><span class="k">def</span> <span class="nf">remove_gradiant_label_border</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
+<div class="viewcode-block" id="remove_gradiant_label_border"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_functions.remove_gradiant_label_border">[docs]</a><span class="k">def</span> <span class="nf">remove_gradiant_label_border</span><span class="p">(</span><span class="n">mask</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    mask from rescale return with border gradiant which is for the borders</span>
 <span class="sd">    :return mask no borders</span>
