@@ -80,18 +80,10 @@
 <dt class="sig sig-object py" id="AIPyS.AIPS_module.AIPS">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_module.</span></span><span class="sig-name descname"><span class="pre">AIPS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Image_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputImg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_module.html#AIPS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_module.AIPS" title="Permalink to this definition"></a></dt>
 <dd><p>Initiate the AIPS object
-:param Image_name: (str)
-:param path: (str)</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="AIPyS.AIPS_module.AIPS.imageMatrix">
-<span class="sig-name descname"><span class="pre">imageMatrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_module.html#AIPS.imageMatrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_module.AIPS.imageMatrix" title="Permalink to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return image</dt>
-<dd class="field-odd"><p>object , 8 or 64 bit</p>
-</dd>
-</dl>
-</dd></dl>
-
+:param Image_name:
+:type Image_name: (str)
+:param path:
+:type path: (str)</p>
 </dd></dl>
 
 <dl class="py class">
@@ -104,25 +96,34 @@
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ch</strong> – img,  Input image (tifffile image object)</p></li>
-<li><p><strong>ch2</strong> – img, Input image (tifffile image object)</p></li>
-<li><p><strong>sort_mask</strong> – img, RGB segmented image output first channel for mask (eg nucleus)</p></li>
-<li><p><strong>sort_mask_bin</strong> – img, Binary</p></li>
-<li><p><strong>block_size_cyto</strong> – int, Detect local edges 1-99 odd</p></li>
-<li><p><strong>offset_cyto</strong> – float, Detect local edges 0.001-0.9 odd</p></li>
-<li><p><strong>global_ther</strong> – float, Percentile</p></li>
-<li><p><strong>rmv_object_cyto</strong> – float, percentile of cells to remove, 0.01-0.99</p></li>
-<li><p><strong>rmv_object_cyto_small</strong> – float, percentile of cells to remove, 0.01-0.99</p></li>
-<li><p><strong>remove_border</strong> – boolean, binary, object on border of image to be removed</p></li>
+<li><p><strong>ch</strong> (<em>img</em>) – Input image (tifffile image object)</p></li>
+<li><p><strong>ch2</strong> (<em>img</em>) – Input image (tifffile image object)</p></li>
+<li><p><strong>sort_mask</strong> (<em>img</em>) – RGB segmented image output first channel for mask (eg nucleus)</p></li>
+<li><p><strong>img</strong> (<em>sort_mask_bin</em>) – Binary</p></li>
+<li><p><strong>block_size_cyto</strong> (<em>int</em>) – Detect local edges 1-99 odd</p></li>
+<li><p><strong>offset_cyto</strong> (<em>float</em>) – Detect local edges 0.001-0.9 odd</p></li>
+<li><p><strong>global_ther</strong> (<em>float</em>) – Percentile</p></li>
+<li><p><strong>rmv_object_cyto</strong> (<em>float</em>) – percentile of cells to remove, 0.01-0.99</p></li>
+<li><p><strong>rmv_object_cyto_small</strong> (<em>float</em>) – percentile of cells to remove, 0.01-0.99</p></li>
+<li><p><strong>remove_border</strong> (<em>bool</em>) – binary, object on border of image to be removed</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>img, local threshold binary map (eg nucleus)
-nmask4: img, local threshold binary map post opening (eg nucleus)
-sort_mask: img, RGB segmented image output first channel for mask (eg nucleus)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>nmask2</p>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nmask2</strong> (<em>img</em>) – local threshold binary map (eg nucleus)</p></li>
+<li><p><strong>nmask4</strong> (<em>img</em>) – local threshold binary map post opening (eg nucleus)</p></li>
+<li><p><strong>sort_mask</strong> (<em>img</em>) – RGB segmented image output first channel for mask (eg nucleus)</p></li>
+<li><p><strong>cell_mask_2</strong> (<em>img</em>) – local threshold binary map (eg cytoplasm)</p></li>
+<li><p><strong>combine</strong> (<em>img</em>) – global threshold binary map (eg cytoplasm)</p></li>
+<li><p><strong>sort_mask_syn</strong> (<em>img</em>) – RGB segmented image output first channel for mask (eg nucleus) sync</p></li>
+<li><p><strong>mask_unfiltered</strong> (<em>img</em>) – Mask before filtering object size</p></li>
+<li><p><strong>cseg_mask</strong> (<em>img</em>) – RGB segmented image output first channel for mask (eg nucleus)</p></li>
+<li><p><strong>cseg_mask_bin</strong> (<em>img</em>) – Binary mask</p></li>
+<li><p><strong>test</strong> (<em>data_frame</em>) – Area table seed</p></li>
+<li><p><strong>info_table</strong> (<em>data_frame</em>) – Area table cytosol synchronize</p></li>
+<li><p><strong>table_unfiltered</strong> (<em>data_frame</em>) – Table before remove large and small objects</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>
@@ -133,24 +134,21 @@ sort_mask: img, RGB segmented image output first channel for mask (eg nucleus)</
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ch_</strong><strong>(</strong><strong>int</strong><strong>)</strong> – Channel selected</p></li>
-<li><p><strong>block_size</strong><strong>(</strong><strong>float</strong><strong>)</strong> – Detect local edges 1-99 odd</p></li>
-<li><p><strong>offset</strong><strong>(</strong><strong>float</strong><strong>)</strong> – Detect local edges 0.001-0.9 odd</p></li>
-<li><p><strong>rmv_object_nuc</strong><strong>(</strong><strong>float</strong><strong>)</strong> – percentile of cells to remove, 0.01-0.99</p></li>
-<li><p><strong>clean</strong><strong>(</strong><strong>int</strong><strong>)</strong> – opening operation, matrix size must be odd</p></li>
+<li><p><strong>ch</strong> (<em>int</em>) – Channel selected</p></li>
+<li><p><strong>block_size</strong> (<em>float</em>) – Detect local edges 1-99 odd</p></li>
+<li><p><strong>offset</strong> (<em>float</em>) – Detect local edges 0.001-0.9 odd</p></li>
+<li><p><strong>rmv_object_nuc</strong> (<em>float</em>) – percentile of cells to remove, 0.01-0.99</p></li>
+<li><p><strong>clean</strong> (<em>int</em>) – opening operation, matrix size must be odd</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return nmask2 (float)</dt>
-<dd class="field-even"><p>local threshold binary map (eg nucleus)</p>
-</dd>
-<dt class="field-odd">Return nmask4 (float)</dt>
-<dd class="field-odd"><p>local threshold binary map post opening (eg nucleus)</p>
-</dd>
-<dt class="field-even">Return sort_mask (img)</dt>
-<dd class="field-even"><p>RGB segmented image output first channel for mask (eg nucleus)</p>
-</dd>
-<dt class="field-odd">Return sort_mask_bin (img)</dt>
-<dd class="field-odd"><p>Binary</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>nmask2</strong> (<em>float</em>) – local threshold binary map (eg nucleus)</p></li>
+<li><p><strong>nmask4</strong> (<em>float</em>) – local threshold binary map post opening (eg nucleus)</p></li>
+<li><p><strong>sort_mask</strong> (<em>img</em>) – RGB segmented image output first channel for mask (eg nucleus)</p></li>
+<li><p><strong>sort_mask_bin</strong> (<em>img</em>) – Binary</p></li>
+</ul>
+</p>
 </dd>
 </dl>
 </dd></dl>

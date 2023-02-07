@@ -17,90 +17,29 @@ from AIPyS import AIPS_granularity as ag
 from AIPyS import AIPS_file_display as afd
 from AIPyS import AIPS_cellpose as AC
 
-def granularityMesure_cellpose(file,path,classLabel,outPath, clean = None, outputTableName = None,):
-    '''
-    function description:
-        1) cell segmented using cellpose
-        2) clean data based on cell area detected
-        3) granularity measure
-    output:
-        1) Segmented image composition with area label
-        2) Area histogram plot
-        3) Segmented image composition after removal of small objects
-        4) plot of Mean intensity over opening operation (granularity spectrum)
-    :parameter
-    clean: int, remove object bellow the selected area size
-    classLabel: int, assign label
-    file: str
-    path: str
-    outPath: str
-    outputTableName: str, e.g. "outputTableNorm.csv"
-
-
-    Note: required single channel tif
-    '''
-    AIPS_pose_object = AC.AIPS_cellpose(Image_name=file, path=path, model_type="cyto", channels=[0, 0])
-    img = AIPS_pose_object.cellpose_image_load()
-    mask, table = AIPS_pose_object.cellpose_segmantation(image_input=img)
-    compsite = afd.Compsite_display(input_image=img, mask_roi=mask)
-    compsiteImage  = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24,  intensity=2,label_draw = 'area')
-    compsiteImage.save(os.path.join(outPath,"merge.png"), "PNG")
-    if clean:
-        objectidx = table.loc[table['area'] < clean,:].index.tolist()
-        mask, table = AIPS_pose_object.removeObjects(objectList=objectidx)
-        compsite = afd.Compsite_display(input_image=img, mask_roi=mask)
-        compsiteImage = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24, intensity=2,label_draw='area')
-        compsiteImage.save(os.path.join(outPath,"mergeClean.png"), "PNG")
-    gran = ag.GRANULARITY(image=img, mask=mask)
-    granData = gran.loopLabelimage(start_kernel=2, end_karnel=7, kernel_size=7)
-    granOriginal, _ = gran.featuresTable(features=['label', 'centroid'])
-    granData["classLabel"] = classLabel
-    if outputTableName is None:
-        granData.to_csv(os.path.join(outPath,'granularity.csv'))
-    else:
-        granData.to_csv(os.path.join(outPath, outputTableName))
-    Intensity, Kernel = ag.MERGE().meanIntensity(granData, group=classLabel)
-    df = pd.DataFrame({"kernel":Kernel,"Signal intensity (ratio)":Intensity})
-    from matplotlib.backends.backend_pdf import PdfPages
-    def generate_plots():
-        def hist():
-            fig, ax = plt.subplots()
-            sns.histplot(data=table, x='area', kde=True, color=sns.color_palette("Set2")[1], binwidth=50).set(title = 'Cell area distribution')
-            return ax
-        def line():
-            fig, ax = plt.subplots()
-            sns.lineplot(data=df, x="kernel", y="Signal intensity (ratio)").set(title='Granularity spectrum plot')
-            return ax
-        plot1 = hist()
-        plot2 = line()
-        return (plot1, plot2)
-
-    def plots2pdf(plots, fname):
-        with PdfPages(fname) as pp:
-            for plot in plots:
-                pp.savefig(plot.figure)
-    plots2pdf(generate_plots(), os.path.join(outPath,'outPlots.pdf'))
-
-
-
 class AIPS_cellpose:
+    """
+    Cellpose algorithm
+
+    Parameters
+    ----------
+    Image_name: str
+    path: str
+    image: img
+       input image for segmentation
+    model_type: str
+       'cyto' or model_type='nuclei'
+    clean: int
+       remove object bellow the selected area size
+    channels: list
+        channels = [0,0] # IF YOU HAVE GRAYSCALE
+        channels = [2,3] # IF YOU HAVE G=cytoplasm and B=nucleus
+        channels = [2,1] # IF YOU HAVE G=cytoplasm and R=nucleus
+        or if you have different types of channels in each image
+        channels = [[2,3], [0,0], [0,0]]
+        channels = [1,1]
+    """
     def __init__(self, Image_name=None, path=None, image = None, mask = None, table = None, model_type = None, channels = None, clean = None ):
-        '''
-        Cellpose algorithm
-        :param: Image_name (str)
-        :param: path (str)
-        :param: image (img) input image for segmentation
-        :param: model_type (str) 'cyto' or model_type='nuclei'
-        :param: clean (int), remove object bellow the selected area size
-        :param: channels: # channels = [0,0] # IF YOU HAVE GRAYSCALE
-                    channels = [2,3] # IF YOU HAVE G=cytoplasm and B=nucleus
-                    channels = [2,1] # IF YOU HAVE G=cytoplasm and R=nucleus
-
-                    or if you have different types of channels in each image
-                    channels = [[2,3], [0,0], [0,0]]
-                    channels = [1,1]
-
-        '''
         self.Image_name = Image_name
         self.path = path
         self.image = image
@@ -113,9 +52,14 @@ class AIPS_cellpose:
 
     def cellpose_image_load(self):
         '''
-        :param: Image (img), File name (tif format) - should be greyscale
-        :param: path (str), path to the file
-        :return: grayscale_image_container (dict), dictionary of np array
+        Parameters
+        ----------
+        Image: img
+            File name (tif format) - should be greyscale
+        path: str
+            path to the file
+        grayscale_image_container: dict
+            dictionary of np array
         '''
         self.image = skimage.io.imread(os.path.join(self.path,self.Image_name))
         return self.image
@@ -139,11 +83,19 @@ class AIPS_cellpose:
 
     def stackObjects_cellpose_ebimage_parametrs_method(self, image_input ,extract_pixel, resize_pixel, img_label):
         '''
-        fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask
-        :param: extract_pixel (int) size of extraction acording to mask (e.g. 50 pixel)
-        :param: resize_pixel (int) resize for preforming tf prediction (e.g. 150 pixel)
-        :param: img_label (int) the mask value for stack
-        :return: center image with out background (img)
+        function similar to the EBimage stackObjectsta, return a crop size based on center of measured mask.
+
+        Parameters
+        ----------
+        extract_pixel: int
+            size of extraction according to mask (e.g. 50 pixel)
+        resize_pixel: int
+            resize for preforming tf prediction (e.g. 150 pixel)
+        img_label: int
+            the mask value for stack
+        Returns
+        -------
+        center image with out background (img)
         '''
         img = image_input
         mask= self.mask
@@ -209,14 +161,27 @@ class AIPS_cellpose:
 
     def display_image_prediction(self,img ,prediction_table, font_select = "DejaVuSans.ttf", font_size = 4, windows=False, lable_draw = 'predict',round_n = 2):
         '''
-        :param: ch (img), 16 bit input image
-        :param: mask (img), mask for labale
-        :param: lable_draw (str), 'predict' or 'area'
-        :param: font_select (str), copy font to the working directory ("DejaVuSans.ttf" eg)
-        :param: font_size (int), 4 is nice size
-        :param: round_n (int), integer how many number after decimel
-        :return: info_table (data frame), table of objects measure
-        :return: PIL_image (img), 16 bit mask rgb of the labeled image
+        Parameters
+        ----------
+        ch: img
+            16 bit input image
+        mask: img
+            mask for labale
+        lable_draw: str
+            'predict' or 'area'
+        font_select: str
+            copy font to the working directory ("DejaVuSans.ttf" eg)
+        font_size: int
+            e.g. 4 is nice size
+        round_n: int
+            integer how many number after decimal
+
+        Returns
+        -------
+        info_table: data frame
+            table of objects measure
+        PIL_image: img
+            16 bit mask rgb of the labeled image
         '''
         # count number of objects in nuc['sort_mask']
         img_gs = img_as_ubyte(img)
@@ -243,10 +208,18 @@ class AIPS_cellpose:
 
     def call_bin(self,table_sel_cor, threshold ,img_blank):
         '''
-        :param: table_sel_cor (data frame), pandas table contain the center coordinates
-        :param: threshold (float), thershold for predict phenotype (e.g. 0.5)
-        :param: img_blank (img), blank image in the shape of the input image
-        :return: binary image of the called masks, table_sel
+        Parameters
+        ----------
+        table_sel_cor: data frame
+            pandas table contain the center coordinates
+        threshold: float
+            threshold for predict phenotype (e.g. 0.5)
+        img_blank: img
+            blank image in the shape of the input image
+
+        Returns
+        -------
+        binary image of the called masks, table_sel
         '''
         table_na_rmv_trgt = table_sel_cor.loc[table_sel_cor['predict'] > threshold, :]
         for label in table_na_rmv_trgt.index.values:
@@ -257,8 +230,14 @@ class AIPS_cellpose:
 
     def removeObjects(self,objectList):
         '''
-        :param: objectList (list), list of objects to remove
-        :return: update mask and table
+        Parameters
+        ----------
+        objectList: list
+            list of objects to remove
+
+        Returns
+        -------
+        update mask and table
         '''
         if objectList is None:
             raise ValueError("Object list is missing")
@@ -278,8 +257,14 @@ class AIPS_cellpose:
 
     def keepObject(self, table):
         '''
-        :param table (data frame), keep all the object which are predicted above the threshold
-        :return: (img), ROI image mask of selected objects
+        Parameters
+        ----------
+        table: data frame
+            keep all the object which are predicted above the threshold
+
+        Returns
+        -------
+        ROI image mask of selected objects
         '''
         nmask = np.zeros_like(self.mask)
         for label in table.index.values:
@@ -288,7 +273,74 @@ class AIPS_cellpose:
 
 
 
+def granularityMesure_cellpose(file,path,classLabel,outPath, clean = None, outputTableName = None,):
+    '''
+    function description:
+        1) cell segmented using cellpose
+        2) clean data based on cell area detected
+        3) granularity measure
+    output:
+        1) Segmented image composition with area label
+        2) Area histogram plot
+        3) Segmented image composition after removal of small objects
+        4) plot of Mean intensity over opening operation (granularity spectrum)
+    Parameters
+    ----------
+    clean: int
+        remove object bellow the selected area size
+    classLabel: int
+        assign label
+    file: str
+    path: str
+    outPath: str
+    outputTableName: str
+        e.g. "outputTableNorm.csv"
 
+    Notes
+    -----
+    required single channel tif
+    '''
+    AIPS_pose_object = AC.AIPS_cellpose(Image_name=file, path=path, model_type="cyto", channels=[0, 0])
+    img = AIPS_pose_object.cellpose_image_load()
+    mask, table = AIPS_pose_object.cellpose_segmantation(image_input=img)
+    compsite = afd.Compsite_display(input_image=img, mask_roi=mask)
+    compsiteImage  = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24,  intensity=2,label_draw = 'area')
+    compsiteImage.save(os.path.join(outPath,"merge.png"), "PNG")
+    if clean:
+        objectidx = table.loc[table['area'] < clean,:].index.tolist()
+        mask, table = AIPS_pose_object.removeObjects(objectList=objectidx)
+        compsite = afd.Compsite_display(input_image=img, mask_roi=mask)
+        compsiteImage = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24, intensity=2,label_draw='area')
+        compsiteImage.save(os.path.join(outPath,"mergeClean.png"), "PNG")
+    gran = ag.GRANULARITY(image=img, mask=mask)
+    granData = gran.loopLabelimage(start_kernel=2, end_karnel=7, kernel_size=7)
+    granOriginal, _ = gran.featuresTable(features=['label', 'centroid'])
+    granData["classLabel"] = classLabel
+    if outputTableName is None:
+        granData.to_csv(os.path.join(outPath,'granularity.csv'))
+    else:
+        granData.to_csv(os.path.join(outPath, outputTableName))
+    Intensity, Kernel = ag.MERGE().meanIntensity(granData, group=classLabel)
+    df = pd.DataFrame({"kernel":Kernel,"Signal intensity (ratio)":Intensity})
+    from matplotlib.backends.backend_pdf import PdfPages
+    def generate_plots():
+        def hist():
+            fig, ax = plt.subplots()
+            sns.histplot(data=table, x='area', kde=True, color=sns.color_palette("Set2")[1], binwidth=50).set(title = 'Cell area distribution')
+            return ax
+        def line():
+            fig, ax = plt.subplots()
+            sns.lineplot(data=df, x="kernel", y="Signal intensity (ratio)").set(title='Granularity spectrum plot')
+            return ax
+        plot1 = hist()
+        plot2 = line()
+        return (plot1, plot2)
+
+    def plots2pdf(plots, fname):
+        with PdfPages(fname) as pp:
+            for plot in plots:
+                pp.savefig(plot.figure)
+    plots2pdf(generate_plots(), os.path.join(outPath,'outPlots.pdf'))
 
 
 
