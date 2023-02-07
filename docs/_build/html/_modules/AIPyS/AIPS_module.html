@@ -34,8 +34,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/classification/index.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/deployment/index.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/simulation/index.html">2. Simulation</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -65,21 +70,20 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_local</span>
 <span class="kn">from</span> <span class="nn">skimage.util</span> <span class="kn">import</span> <span class="n">img_as_ubyte</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_opening</span><span class="p">,</span><span class="n">binary_erosion</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_opening</span>
 <span class="kn">import</span> <span class="nn">skimage.morphology</span> <span class="k">as</span> <span class="nn">sm</span>
 <span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
 <span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_fill_holes</span>
-<span class="kn">import</span> <span class="nn">skimage</span>
-<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">resize</span><span class="p">,</span> <span class="n">downscale_local_mean</span>
-<span class="kn">from</span> <span class="nn">AIPyS.display_and_xml</span> <span class="kn">import</span> <span class="n">evaluate_image_output</span><span class="p">,</span><span class="n">test_image</span>
 <span class="kn">from</span> <span class="nn">AIPyS.AIPS_functions</span> <span class="kn">import</span> <span class="n">rgbTograyscale</span>
 
-<div class="viewcode-block" id="AIPS"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_module.AIPS">[docs]</a><span class="k">class</span> <span class="nc">AIPS</span><span class="p">():</span>
+<div class="viewcode-block" id="AIPS"><a class="viewcode-back" href="../../manual/segmentation/Parameter.html#AIPyS.AIPS_module.AIPS">[docs]</a><span class="k">class</span> <span class="nc">AIPS</span><span class="p">():</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Initiate the AIPS object</span>
+<span class="sd">    :param Image_name: (str)</span>
+<span class="sd">    :param path: (str)</span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Image_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">inputImg</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Image_name</span> <span class="o">=</span> <span class="n">Image_name</span>
@@ -97,10 +101,16 @@
                 <span class="nb">input</span> <span class="o">=</span> <span class="n">rgbTograyscale</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">inputImg</span> <span class="o">=</span> <span class="nb">input</span>
 
-    <span class="k">def</span> <span class="nf">imageMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputImg</span></div>
+<div class="viewcode-block" id="AIPS.imageMatrix"><a class="viewcode-back" href="../../manual/segmentation/Parameter.html#AIPyS.AIPS_module.AIPS.imageMatrix">[docs]</a>    <span class="k">def</span> <span class="nf">imageMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        :return image: object , 8 or 64 bit</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputImg</span></div></div>
 
-<div class="viewcode-block" id="Segmentation"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_module.Segmentation">[docs]</a><span class="k">class</span> <span class="nc">Segmentation</span><span class="p">(</span><span class="n">AIPS</span><span class="p">):</span>
+<div class="viewcode-block" id="Segmentation"><a class="viewcode-back" href="../../manual/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation">[docs]</a><span class="k">class</span> <span class="nc">Segmentation</span><span class="p">(</span><span class="n">AIPS</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Parametric object segmentation</span>
+<span class="sd">    &#39;&#39;&#39;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Image_name</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">ch_</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">rmv_object_nuc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">block_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">seed_out</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">out_target</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">Image_name</span><span class="p">,</span><span class="n">path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ch_</span> <span class="o">=</span> <span class="n">ch_</span>
@@ -110,18 +120,18 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">clean</span> <span class="o">=</span> <span class="n">clean</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">seed_out</span> <span class="o">=</span> <span class="n">seed_out</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">out_target</span> <span class="o">=</span> <span class="n">out_target</span>
-<div class="viewcode-block" id="Segmentation.seedSegmentation"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_module.Segmentation.seedSegmentation">[docs]</a>    <span class="k">def</span> <span class="nf">seedSegmentation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Segmentation.seedSegmentation"><a class="viewcode-back" href="../../manual/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation.seedSegmentation">[docs]</a>    <span class="k">def</span> <span class="nf">seedSegmentation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        ch_: Channel selected</span>
-<span class="sd">        block_size: Detect local edges 1-99 odd</span>
-<span class="sd">        offset: Detect local edges 0.001-0.9 odd</span>
-<span class="sd">        rmv_object_nuc: percentile of cells to remove, 0.01-0.99</span>
-<span class="sd">        clean: opening operation, matrix size must be odd</span>
-<span class="sd">        :return:</span>
-<span class="sd">        nmask2: local threshold binary map (eg nucleus)</span>
-<span class="sd">        nmask4: local threshold binary map post opening (eg nucleus)</span>
-<span class="sd">        sort_mask: RGB segmented image output first channel for mask (eg nucleus)</span>
-<span class="sd">        sort_mask_bin: Binary</span>
+<span class="sd">        :param ch_(int): Channel selected</span>
+<span class="sd">        :param block_size(float): Detect local edges 1-99 odd</span>
+<span class="sd">        :param offset(float): Detect local edges 0.001-0.9 odd</span>
+<span class="sd">        :param rmv_object_nuc(float): percentile of cells to remove, 0.01-0.99</span>
+<span class="sd">        :param clean(int): opening operation, matrix size must be odd</span>
+
+<span class="sd">        :return nmask2 (float): local threshold binary map (eg nucleus)</span>
+<span class="sd">        :return nmask4 (float): local threshold binary map post opening (eg nucleus)</span>
+<span class="sd">        :return sort_mask (img): RGB segmented image output first channel for mask (eg nucleus)</span>
+<span class="sd">        :return sort_mask_bin (img): Binary</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1">#</span>
         <span class="n">ch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inputImg</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ch_</span><span class="p">]</span>
@@ -165,32 +175,24 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">seed_out</span> <span class="o">=</span> <span class="n">out</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_out</span></div>
 
-<div class="viewcode-block" id="Segmentation.cytosolSegmentation"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_module.Segmentation.cytosolSegmentation">[docs]</a>    <span class="k">def</span> <span class="nf">cytosolSegmentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch2_</span><span class="p">,</span><span class="n">block_size_cyto</span><span class="p">,</span><span class="n">offset_cyto</span><span class="p">,</span><span class="n">global_ther</span><span class="p">,</span><span class="n">rmv_object_cyto</span><span class="p">,</span><span class="n">rmv_object_cyto_small</span><span class="p">,</span><span class="n">remove_borders</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        ch: Input image (tifffile image object)</span>
-<span class="sd">        ch2: Input image (tifffile image object)</span>
-<span class="sd">        sort_mask: RGB segmented image output first channel for mask (eg nucleus)</span>
-<span class="sd">        sort_mask_bin: Binary</span>
-<span class="sd">        block_size_cyto: Detect local edges 1-99 odd</span>
-<span class="sd">        offset_cyto: Detect local edges 0.001-0.9 odd</span>
-<span class="sd">        global_ther: Percentile</span>
-<span class="sd">        rmv_object_cyto:  percentile of cells to remove, 0.01-0.99</span>
-<span class="sd">        rmv_object_cyto_small:  percentile of cells to remove, 0.01-0.99</span>
-<span class="sd">        remove_border: boolean -  object on border of image to be removed</span>
-<span class="sd">        :return:</span>
-<span class="sd">        nmask2: local threshold binary map (eg nucleus)</span>
-<span class="sd">        nmask4: local threshold binary map post opening (eg nucleus)</span>
-<span class="sd">        sort_mask: RGB segmented image output first channel for mask (eg nucleus)</span>
-<span class="sd">        cell_mask_2: local threshold binary map (eg cytoplasm)</span>
-<span class="sd">        combine: global threshold binary map (eg cytoplasm)</span>
-<span class="sd">        sort_mask_syn: RGB segmented image output first channel for mask (eg nucleus) sync</span>
-<span class="sd">        mask_unfiltered: Mask before filtering object size</span>
-<span class="sd">        cseg_mask: RGB segmented image output first channel for mask (eg nucleus)</span>
-<span class="sd">        cseg_mask_bin: Binary mask</span>
-<span class="sd">        test: Area table seed</span>
-<span class="sd">        info_table: Area table cytosol synchronize</span>
-<span class="sd">        table_unfiltered: Table before remove large and small objects</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<div class="viewcode-block" id="Segmentation.cytosolSegmentation"><a class="viewcode-back" href="../../manual/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation.cytosolSegmentation">[docs]</a>    <span class="k">def</span> <span class="nf">cytosolSegmentation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ch2_</span><span class="p">,</span><span class="n">block_size_cyto</span><span class="p">,</span><span class="n">offset_cyto</span><span class="p">,</span><span class="n">global_ther</span><span class="p">,</span><span class="n">rmv_object_cyto</span><span class="p">,</span><span class="n">rmv_object_cyto_small</span><span class="p">,</span><span class="n">remove_borders</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+<span class="sd">            ch: img,  Input image (tifffile image object)</span>
+<span class="sd">            ch2: img, Input image (tifffile image object)</span>
+<span class="sd">            sort_mask: img, RGB segmented image output first channel for mask (eg nucleus)</span>
+<span class="sd">            sort_mask_bin: img, Binary</span>
+<span class="sd">            block_size_cyto: int, Detect local edges 1-99 odd</span>
+<span class="sd">            offset_cyto: float, Detect local edges 0.001-0.9 odd</span>
+<span class="sd">            global_ther: float, Percentile</span>
+<span class="sd">            rmv_object_cyto: float, percentile of cells to remove, 0.01-0.99</span>
+<span class="sd">            rmv_object_cyto_small: float, percentile of cells to remove, 0.01-0.99</span>
+<span class="sd">            remove_border: boolean, binary, object on border of image to be removed</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            nmask2: img, local threshold binary map (eg nucleus)</span>
+<span class="sd">            nmask4: img, local threshold binary map post opening (eg nucleus)</span>
+<span class="sd">            sort_mask: img, RGB segmented image output first channel for mask (eg nucleus)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># load matrix from seedSegmentation module</span>
         <span class="n">sort_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_out</span><span class="p">[</span><span class="s1">&#39;sort_mask&#39;</span><span class="p">]</span>
         <span class="n">sort_mask_bin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed_out</span><span class="p">[</span><span class="s1">&#39;sort_mask_bin&#39;</span><span class="p">]</span>

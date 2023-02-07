@@ -1,0 +1,17 @@
+AIPyS - AI Powered Photoswitchable Genetic CRISPR Screen, Version 2
+
+========
+Contents
+========
+
+.. toctree::
+    :maxdepth: 2
+    :numbered:
+
+    manual/segmentation/index
+    manual/classification/index
+    manual/deployment/index
+    manual/simulation/index
+
+* :ref:`genindex`
+

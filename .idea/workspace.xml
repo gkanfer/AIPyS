@@ -2,7 +2,159 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.buildinfo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/environment.pickle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/classification/CNN.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/classification/Granularity.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/classification/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/deployment/Deploy_gran.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/deployment/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/segmentation/Cellpose.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/segmentation/Parameter.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/segmentation/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/simulation/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.doctrees/manual/simulation/simulation.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AIPyS/CNN_deploy.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_modules/AIPyS/AIPS_cellpose.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_modules/AIPyS/AIPS_granularity.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_modules/AIPyS/AIPS_module.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_modules/AIPyS/AIPS_simulate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_modules/AIPyS/Baysian_deploy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_modules/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/classification/CNN.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/classification/Granularity.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/classification/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/deployment/Deploy_gran.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/deployment/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/segmentation/Cellpose.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/segmentation/Parameter.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/segmentation/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/simulation/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_sources/manual/simulation/simulation.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/basic.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/badge_only.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/Roboto-Slab-Bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/Roboto-Slab-Bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/Roboto-Slab-Regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/Roboto-Slab-Regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-bold-italic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-bold-italic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-bold.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-bold.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-normal-italic.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-normal-italic.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-normal.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/fonts/lato-normal.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/css/theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/doctools.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/documentation_options.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/file.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/jquery-3.5.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/js/badge_only.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/js/html5shiv-printshiv.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/js/html5shiv.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/js/theme.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/language_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/minus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/plus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/pygments.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/searchtools.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/underscore-1.13.1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/_static/underscore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/classification/CNN.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/classification/Granularity.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/classification/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/deployment/Deploy_gran.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/deployment/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/segmentation/Cellpose.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/segmentation/Parameter.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/segmentation/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/simulation/index.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/manual/simulation/simulation.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/AIPS_simulate.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/classification/CNN.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/classification/Granularity.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/classification/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/deployment/Deploy_gran.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/deployment/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/segmentation/Cellpose.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/segmentation/Parameter.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/segmentation/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/simulation/index.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/manual/simulation/simulation.rst.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/classification/CNN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/classification/Granularity.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/classification/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/deployment/Deploy_gran.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/deployment/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/segmentation/Cellpose.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/segmentation/Parameter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/segmentation/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/simulation/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/manual/simulation/simulation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/classification/CNN.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/classification/Granularity.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/classification/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/deployment/Deploy_CNN.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/deployment/Deploy_gran.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/deployment/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/segmentation/Cellpose.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/segmentation/Parameter.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/segmentation/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/simulation/index.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/manual/simulation/simulation.rst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/genindex.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/classification/CNN.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/classification/Granularity.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/classification/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/deployment/Deploy_gran.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/deployment/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/segmentation/Cellpose.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/segmentation/Parameter.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/segmentation/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/simulation/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manual/simulation/simulation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/objects.inv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/py-modindex.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/AIPyS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/AIPyS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_granularity.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_granularity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_module.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_module.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/Baysian_deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Baysian_deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/model_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/model_builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Classification.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Segmentation.rst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Classification.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/Classification.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/Classification.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Classification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/AIPS_cellpose.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/AIPS_cellpose.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/AIPS_granularity.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/AIPS_granularity.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/AIPS_module.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/AIPS_module.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/Baysian_deploy.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/Baysian_deploy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Classification.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/Classification.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

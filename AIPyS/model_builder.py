@@ -1,15 +1,6 @@
 import tensorflow as tf
-from tensorflow.keras.applications.vgg16 import VGG16
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.vgg16 import preprocess_input, decode_predictions
-import numpy as np
 from tqdm import tqdm
-import glob
 import numpy as np
-import os
-import shutil
-import glob
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import pickle
 
@@ -19,6 +10,9 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, i
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from tensorflow.keras.models import Sequential
 from tensorflow.keras import optimizers
+
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 from keras.applications import vgg16
 from keras.models import Model
@@ -32,9 +26,8 @@ from tensorflow.keras import optimizers
 
 import glob
 import numpy as np
-import matplotlib.pyplot as plt
+
 from keras.preprocessing.image import load_img, img_to_array, array_to_img
-from keras.models import load_model
 import os
 
 class model_builder():

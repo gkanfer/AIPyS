@@ -34,8 +34,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/classification/index.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/deployment/index.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/simulation/index.html">2. Simulation</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -61,15 +66,10 @@
            <div itemprop="articleBody">
              
   <h1>Source code for AIPyS.Baysian_deploy</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
-<span class="c1"># from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array, array_to_img</span>
-<span class="c1"># from tensorflow.keras.models import load_model</span>
-<span class="c1"># import matplotlib.pyplot as plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">tifffile</span> <span class="k">as</span> <span class="nn">tfi</span>
-<span class="kn">import</span> <span class="nn">random</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">measure</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">img_as_ubyte</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">img_as_ubyte</span>
 <span class="kn">import</span> <span class="nn">string</span>
 <span class="kn">import</span> <span class="nn">random</span>
 
@@ -78,21 +78,20 @@
 <span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_file_display</span> <span class="k">as</span> <span class="n">afd</span>
 
 
-<div class="viewcode-block" id="id_generator"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.Baysian_deploy.id_generator">[docs]</a><span class="k">def</span> <span class="nf">id_generator</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">chars</span><span class="o">=</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span><span class="p">):</span>
+<div class="viewcode-block" id="id_generator"><a class="viewcode-back" href="../../manual/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.id_generator">[docs]</a><span class="k">def</span> <span class="nf">id_generator</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">chars</span><span class="o">=</span><span class="n">string</span><span class="o">.</span><span class="n">ascii_uppercase</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span><span class="p">):</span>
     <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">chars</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="BayesianGranularityDeploy"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.Baysian_deploy.BayesianGranularityDeploy">[docs]</a><span class="k">def</span> <span class="nf">BayesianGranularityDeploy</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">kernel_size</span><span class="p">,</span><span class="n">trace_a</span><span class="p">,</span><span class="n">trace_b</span><span class="p">,</span><span class="n">thold</span><span class="p">,</span><span class="n">pathOut</span><span class="p">,</span><span class="n">clean</span><span class="p">,</span><span class="n">saveMerge</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="viewcode-block" id="BayesianGranularityDeploy"><a class="viewcode-back" href="../../manual/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.BayesianGranularityDeploy">[docs]</a><span class="k">def</span> <span class="nf">BayesianGranularityDeploy</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">kernel_size</span><span class="p">,</span><span class="n">trace_a</span><span class="p">,</span><span class="n">trace_b</span><span class="p">,</span><span class="n">thold</span><span class="p">,</span><span class="n">pathOut</span><span class="p">,</span><span class="n">clean</span><span class="p">,</span><span class="n">saveMerge</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    on the fly cell call function for activating cells</span>
-
-<span class="sd">    :param file: str, single channel target image</span>
-<span class="sd">    :param path: str</span>
-<span class="sd">    :param kernel_size: int,</span>
-<span class="sd">    :param trace_a: int,</span>
-<span class="sd">    :param trace_b: int</span>
-<span class="sd">    :param thold: int, probability threshold for calling cells</span>
-<span class="sd">    :param pathOut: str</span>
-<span class="sd">    :param clean: int, remove object bellow the selected area size</span>
+<span class="sd">    :param: file: str, single channel target image</span>
+<span class="sd">    :param: path: str</span>
+<span class="sd">    :param: kernel_size: int,</span>
+<span class="sd">    :param: trace_a: int,</span>
+<span class="sd">    :param: trace_b: int</span>
+<span class="sd">    :param: thold: int, probability threshold for calling cells</span>
+<span class="sd">    :param: pathOut: str</span>
+<span class="sd">    :param: clean: int, remove object bellow the selected area size</span>
 <span class="sd">    :param saveMerge: boolean</span>
 <span class="sd">    :return: binary mask for activating the called cell</span>
 <span class="sd">    &#39;&#39;&#39;</span>
@@ -149,7 +148,7 @@
 
 
 
-<div class="viewcode-block" id="BayesianGranularityDeployTest"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.Baysian_deploy.BayesianGranularityDeployTest">[docs]</a><span class="k">def</span> <span class="nf">BayesianGranularityDeployTest</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">kernel_size</span><span class="p">,</span><span class="n">trace_a</span><span class="p">,</span><span class="n">trace_b</span><span class="p">,</span><span class="n">thold</span><span class="p">,</span><span class="n">pathOut</span><span class="p">,</span> <span class="n">clean</span> <span class="p">):</span>
+<div class="viewcode-block" id="BayesianGranularityDeployTest"><a class="viewcode-back" href="../../manual/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.BayesianGranularityDeployTest">[docs]</a><span class="k">def</span> <span class="nf">BayesianGranularityDeployTest</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">kernel_size</span><span class="p">,</span><span class="n">trace_a</span><span class="p">,</span><span class="n">trace_b</span><span class="p">,</span><span class="n">thold</span><span class="p">,</span><span class="n">pathOut</span><span class="p">,</span> <span class="n">clean</span> <span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    on the fly cell call function for activating cells</span>
 

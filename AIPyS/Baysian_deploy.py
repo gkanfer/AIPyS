@@ -1,12 +1,7 @@
-import time, os, sys
-# from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array, array_to_img
-# from tensorflow.keras.models import load_model
-# import matplotlib.pyplot as plt
-import matplotlib.pyplot as plt
+import os
 import numpy as np
 import tifffile as tfi
-import random
-from skimage import io, filters, measure, color, img_as_ubyte
+from skimage import img_as_ubyte
 import string
 import random
 
@@ -21,15 +16,14 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 def BayesianGranularityDeploy(file,path,kernel_size,trace_a,trace_b,thold,pathOut,clean,saveMerge=False):
     '''
     on the fly cell call function for activating cells
-
-    :param file: str, single channel target image
-    :param path: str
-    :param kernel_size: int,
-    :param trace_a: int,
-    :param trace_b: int
-    :param thold: int, probability threshold for calling cells
-    :param pathOut: str
-    :param clean: int, remove object bellow the selected area size
+    :param: file: str, single channel target image
+    :param: path: str
+    :param: kernel_size: int,
+    :param: trace_a: int,
+    :param: trace_b: int
+    :param: thold: int, probability threshold for calling cells
+    :param: pathOut: str
+    :param: clean: int, remove object bellow the selected area size
     :param saveMerge: boolean
     :return: binary mask for activating the called cell
     '''

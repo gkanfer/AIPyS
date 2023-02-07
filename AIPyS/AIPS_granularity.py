@@ -1,31 +1,7 @@
-import matplotlib.pyplot as plt
-import tifffile as tfi
 import numpy as np
-from PIL import Image
-import plotly.express as px
-from skimage.filters import threshold_local
-from scipy.ndimage.morphology import binary_opening
-from sklearn import preprocessing
-
-from skimage import io, filters, measure, color, img_as_ubyte
-import skimage.morphology as sm
-from skimage.segmentation import watershed
-from skimage import measure
-from skimage.exposure import rescale_intensity
-from skimage import measure, restoration,morphology
-from skimage.transform import rescale, resize, downscale_local_mean
-from skimage.draw import disk
-
-from tqdm import tqdm
-
-import os
+from skimage import measure, morphology
+from skimage.transform import resize
 import pandas as pd
-from scipy.ndimage.morphology import binary_fill_holes
-import base64
-from datetime import datetime
-import timeit
-import glob
-from AIPyS.AIPS_module import Segmentation
 from random import randint
 
 class GRANULARITY():
@@ -38,10 +14,10 @@ class GRANULARITY():
 
     def measure_properties(self, input_image, input_mask, prop_names):
         '''
-        input_image: 8 bit greyscale image
-        mask: 32bit mask
-        prop_names: features array
-        return: skit image property table propriety table
+        :param: input_image (img), 8 bit greyscale image
+        :param: mask (img) 32bit mask
+        :param: prop_names (list), features array
+        :return: skit image property table propriety table
         '''
 
         def sd_intensity(regionmask, intensity_image):
@@ -63,7 +39,7 @@ class GRANULARITY():
 
     def featuresTable(self,features =["label"]):
         '''
-        :param features: could be a list or tuple
+        :param: features (list), could be a list or tuple
         :return: skit image property table and pandas DF of image intensity at the smallest kernel
         '''
         prop_names = (
@@ -97,7 +73,7 @@ class GRANULARITY():
 
     def openingOperation(self,kernel):
         '''
-        :param kernel: size of filter kernel
+        :param: kernel (int), size of filter kernel
         :return: opening operation image
         '''
         selem = morphology.disk(kernel, dtype=bool)
@@ -107,13 +83,12 @@ class GRANULARITY():
 
     def loopLabelimage(self,start_kernel = 2 , end_karnel = 80, kernel_size=20 , fetureLabel = ["label"], deploy = False ):
         '''
-        :param start_kernel: smallest kernel size
-        :param end_karnel: largest kernel size
-        :param kernel_size: number of opening operation to apply
-        :param fetureLabel: list of features measure per cell (beside intensity), e.g. ["label","centroid",
+        :param start_kernel (int), smallest kernel size
+        :param end_karnel (int), largest kernel size
+        :param kernel_size (int), number of opening operation to apply
+        :param fetureLabel (list), list of features measure per cell (beside intensity), e.g. ["label","centroid",
             "area"] default ["label"]
         :return: dataframe of image intensity per segmented cell per image
-
         '''
         # returns column wise table
         tableInit, tableColumn = self.featuresTable(features =fetureLabel)
@@ -150,10 +125,10 @@ class GRANULARITY():
     def stackTOobjects(self, extract_pixel, resize_pixel, img_label):
         '''
         fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask
-        :param extract_pixel: size of extraction acording to mask (e.g. 50 pixel)
-        :param resize_pixel: resize for preforming tf prediction (e.g. 150 pixel)
-        :param img_label: the mask value for stack
-        :return: center image with out background
+        :param: extract_pixel (int), size of extraction acording to mask (e.g. 50 pixel)
+        :param: resize_pixel (int), resize for preforming tf prediction (e.g. 150 pixel)
+        :param: img_label (img), the mask value for stack
+        :return: (img), center image with out background
         '''
         img = self.image
         mask = self.mask
@@ -180,13 +155,12 @@ class GRANULARITY():
 class MERGE:
     '''
     merge granularity table
-
-    This function is workin with the glob function where the complete path is given
+    This function is working with the glob function where the complete path is given
     '''
     @staticmethod
     def replaceLabel(arr):
         '''
-        :param arr: pandas series
+        :param: arr (list), pandas series
         :return: replace label values with unique values
         '''
         uniqueLabel = np.unique(arr)
@@ -198,7 +172,7 @@ class MERGE:
 
     def mergeTable(self,tableInput_name_list):
         '''
-        :param tableInput_name_list: array of csv file names (shuffled and merged)
+        :param: tableInput_name_list (list), array of csv file names (shuffled and merged)
         :return: merge all the tables
         '''
         idx = 0
@@ -223,8 +197,8 @@ class MERGE:
     @staticmethod
     def meanIntensity(df, group):
         '''
-        :param df: pandas Data frame
-        :param group: selecte the labeld droup
+        :param: df (data frame) pandas Data frame
+        :param: group (int) select the labeled Group
         :return: intensity percentage list and kernels
         '''
         dfSel = df.loc[df['classLabel'] == group]
@@ -242,8 +216,8 @@ class MERGE:
     @staticmethod
     def cleanTable(df):
         '''
-        :param df: pandas Data frame
-        :param group: selecte the labeld droup
+        :param: df (data frame), pandas Data frame
+        :param: group (int), selected labeled Group
         :return: remove null observations
         '''
         dfClean = df
@@ -263,8 +237,8 @@ class MERGE:
     @staticmethod
     def calcDecay(df,kernelSelect):
         '''
-        :param df: pandas finel table
-        :param kernelSelect: kernel size selected
+        :param: df (data frame), pandas finel table
+        :param: kernelSelect (int) kernel size selected
         :return: filter table for the kernel selcted result in 50% reduction in signal
         '''
         return df.loc[df['kernel']==kernelSelect,:]

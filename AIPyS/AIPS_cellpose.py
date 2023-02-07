@@ -1,22 +1,15 @@
 import numpy as np
-import time, os, sys
-from urllib.parse import urlparse
+import os
 import skimage.io
-from skimage import measure
 import matplotlib.pyplot as plt
-import matplotlib as mpl
-from urllib.parse import urlparse
 from cellpose import models, core
-from cellpose.io import logger_setup
-from cellpose import utils
-import glob
 import pandas as pd
 from scipy.stats import skew
 
-from PIL import Image, ImageEnhance, ImageDraw,ImageFont
-from skimage import io, filters, measure, color, img_as_ubyte
+from PIL import Image, ImageDraw,ImageFont
+from skimage import img_as_ubyte
 from skimage.draw import disk
-from skimage import measure, restoration,morphology
+from skimage import measure
 
 import seaborn as sns
 
@@ -94,12 +87,12 @@ class AIPS_cellpose:
     def __init__(self, Image_name=None, path=None, image = None, mask = None, table = None, model_type = None, channels = None, clean = None ):
         '''
         Cellpose algorithm
-        :param Image_name: str
-        :param path: str
-        :param image: inputimage for segmantion
-        :param model_type: 'cyto' or model_type='nuclei'
-        :param clean: int, remove object bellow the selected area size
-        :param channels: # channels = [0,0] # IF YOU HAVE GRAYSCALE
+        :param: Image_name (str)
+        :param: path (str)
+        :param: image (img) input image for segmentation
+        :param: model_type (str) 'cyto' or model_type='nuclei'
+        :param: clean (int), remove object bellow the selected area size
+        :param: channels: # channels = [0,0] # IF YOU HAVE GRAYSCALE
                     channels = [2,3] # IF YOU HAVE G=cytoplasm and B=nucleus
                     channels = [2,1] # IF YOU HAVE G=cytoplasm and R=nucleus
 
@@ -119,11 +112,10 @@ class AIPS_cellpose:
 
 
     def cellpose_image_load(self):
-        ''':parameter
-        Image: File name (tif format) - should be greyscale
-        path: path to the file
-        :return
-        grayscale_image_container: dictionary of np array
+        '''
+        :param: Image (img), File name (tif format) - should be greyscale
+        :param: path (str), path to the file
+        :return: grayscale_image_container (dict), dictionary of np array
         '''
         self.image = skimage.io.imread(os.path.join(self.path,self.Image_name))
         return self.image
@@ -148,10 +140,10 @@ class AIPS_cellpose:
     def stackObjects_cellpose_ebimage_parametrs_method(self, image_input ,extract_pixel, resize_pixel, img_label):
         '''
         fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask
-        :param extract_pixel: size of extraction acording to mask (e.g. 50 pixel)
-        :param resize_pixel: resize for preforming tf prediction (e.g. 150 pixel)
-        :param img_label: the mask value for stack
-        :return: center image with out background
+        :param: extract_pixel (int) size of extraction acording to mask (e.g. 50 pixel)
+        :param: resize_pixel (int) resize for preforming tf prediction (e.g. 150 pixel)
+        :param: img_label (int) the mask value for stack
+        :return: center image with out background (img)
         '''
         img = image_input
         mask= self.mask
@@ -217,16 +209,14 @@ class AIPS_cellpose:
 
     def display_image_prediction(self,img ,prediction_table, font_select = "DejaVuSans.ttf", font_size = 4, windows=False, lable_draw = 'predict',round_n = 2):
         '''
-        ch: 16 bit input image
-        mask: mask for labale
-        lable_draw: 'predict' or 'area'
-        font_select: copy font to the working directory ("DejaVuSans.ttf" eg)
-        font_size: 4 is nice size
-        round_n: integer how many number after decimel
-
-        return:
-        info_table: table of objects measure
-        PIL_image: 16 bit mask rgb of the labeled image
+        :param: ch (img), 16 bit input image
+        :param: mask (img), mask for labale
+        :param: lable_draw (str), 'predict' or 'area'
+        :param: font_select (str), copy font to the working directory ("DejaVuSans.ttf" eg)
+        :param: font_size (int), 4 is nice size
+        :param: round_n (int), integer how many number after decimel
+        :return: info_table (data frame), table of objects measure
+        :return: PIL_image (img), 16 bit mask rgb of the labeled image
         '''
         # count number of objects in nuc['sort_mask']
         img_gs = img_as_ubyte(img)
@@ -253,10 +243,9 @@ class AIPS_cellpose:
 
     def call_bin(self,table_sel_cor, threshold ,img_blank):
         '''
-        :parameter:
-        table_sel_cor: pandas table contain the center coordinates
-        threshold: thershold for predict phenotype (e.g. 0.5)
-        img_blank: blank image in the shape of the input image
+        :param: table_sel_cor (data frame), pandas table contain the center coordinates
+        :param: threshold (float), thershold for predict phenotype (e.g. 0.5)
+        :param: img_blank (img), blank image in the shape of the input image
         :return: binary image of the called masks, table_sel
         '''
         table_na_rmv_trgt = table_sel_cor.loc[table_sel_cor['predict'] > threshold, :]
@@ -268,10 +257,8 @@ class AIPS_cellpose:
 
     def removeObjects(self,objectList):
         '''
-        :parameter:
-        objectList: list of objects to remove
-        :return:
-        update mask and table
+        :param: objectList (list), list of objects to remove
+        :return: update mask and table
         '''
         if objectList is None:
             raise ValueError("Object list is missing")
@@ -291,8 +278,8 @@ class AIPS_cellpose:
 
     def keepObject(self, table):
         '''
-        :param table: keep all the object which are predicted above the threshold
-        :return: ROI image mask of selected objects
+        :param table (data frame), keep all the object which are predicted above the threshold
+        :return: (img), ROI image mask of selected objects
         '''
         nmask = np.zeros_like(self.mask)
         for label in table.index.values:

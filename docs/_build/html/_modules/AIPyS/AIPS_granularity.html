@@ -34,8 +34,13 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <!-- Local TOC -->
-              <div class="local-toc"></div>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/classification/index.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/deployment/index.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/simulation/index.html">2. Simulation</a></li>
+</ul>
+
         </div>
       </div>
     </nav>
@@ -61,50 +66,26 @@
            <div itemprop="articleBody">
              
   <h1>Source code for AIPyS.AIPS_granularity</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">tifffile</span> <span class="k">as</span> <span class="nn">tfi</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
-<span class="kn">from</span> <span class="nn">skimage.filters</span> <span class="kn">import</span> <span class="n">threshold_local</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_opening</span>
-<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
-
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">measure</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">img_as_ubyte</span>
-<span class="kn">import</span> <span class="nn">skimage.morphology</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="kn">from</span> <span class="nn">skimage.segmentation</span> <span class="kn">import</span> <span class="n">watershed</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
-<span class="kn">from</span> <span class="nn">skimage.exposure</span> <span class="kn">import</span> <span class="n">rescale_intensity</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span><span class="p">,</span> <span class="n">restoration</span><span class="p">,</span><span class="n">morphology</span>
-<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">rescale</span><span class="p">,</span> <span class="n">resize</span><span class="p">,</span> <span class="n">downscale_local_mean</span>
-<span class="kn">from</span> <span class="nn">skimage.draw</span> <span class="kn">import</span> <span class="n">disk</span>
-
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
-
-<span class="kn">import</span> <span class="nn">os</span>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span><span class="p">,</span> <span class="n">morphology</span>
+<span class="kn">from</span> <span class="nn">skimage.transform</span> <span class="kn">import</span> <span class="n">resize</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">scipy.ndimage.morphology</span> <span class="kn">import</span> <span class="n">binary_fill_holes</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">timeit</span>
-<span class="kn">import</span> <span class="nn">glob</span>
-<span class="kn">from</span> <span class="nn">AIPyS.AIPS_module</span> <span class="kn">import</span> <span class="n">Segmentation</span>
 <span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
 
-<div class="viewcode-block" id="GRANULARITY"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.GRANULARITY">[docs]</a><span class="k">class</span> <span class="nc">GRANULARITY</span><span class="p">():</span>
+<div class="viewcode-block" id="GRANULARITY"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY">[docs]</a><span class="k">class</span> <span class="nc">GRANULARITY</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">image</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span>
 
-<div class="viewcode-block" id="GRANULARITY.outlierRemoval"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.GRANULARITY.outlierRemoval">[docs]</a>    <span class="k">def</span> <span class="nf">outlierRemoval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="GRANULARITY.outlierRemoval"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.outlierRemoval">[docs]</a>    <span class="k">def</span> <span class="nf">outlierRemoval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="GRANULARITY.measure_properties"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.GRANULARITY.measure_properties">[docs]</a>    <span class="k">def</span> <span class="nf">measure_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_image</span><span class="p">,</span> <span class="n">input_mask</span><span class="p">,</span> <span class="n">prop_names</span><span class="p">):</span>
+<div class="viewcode-block" id="GRANULARITY.measure_properties"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.measure_properties">[docs]</a>    <span class="k">def</span> <span class="nf">measure_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_image</span><span class="p">,</span> <span class="n">input_mask</span><span class="p">,</span> <span class="n">prop_names</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        input_image: 8 bit greyscale image</span>
-<span class="sd">        mask: 32bit mask</span>
-<span class="sd">        prop_names: features array</span>
-<span class="sd">        return: skit image property table propriety table</span>
+<span class="sd">        :param: input_image (img), 8 bit greyscale image</span>
+<span class="sd">        :param: mask (img) 32bit mask</span>
+<span class="sd">        :param: prop_names (list), features array</span>
+<span class="sd">        :return: skit image property table propriety table</span>
 <span class="sd">        &#39;&#39;&#39;</span>
 
         <span class="k">def</span> <span class="nf">sd_intensity</span><span class="p">(</span><span class="n">regionmask</span><span class="p">,</span> <span class="n">intensity_image</span><span class="p">):</span>
@@ -124,9 +105,9 @@
             <span class="n">extra_properties</span><span class="o">=</span><span class="p">(</span><span class="n">sd_intensity</span><span class="p">,</span> <span class="n">pixelcount</span><span class="p">,</span> <span class="n">mean_int</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">table_prop</span></div>
 
-<div class="viewcode-block" id="GRANULARITY.featuresTable"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.GRANULARITY.featuresTable">[docs]</a>    <span class="k">def</span> <span class="nf">featuresTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">features</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]):</span>
+<div class="viewcode-block" id="GRANULARITY.featuresTable"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.featuresTable">[docs]</a>    <span class="k">def</span> <span class="nf">featuresTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">features</span> <span class="o">=</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param features: could be a list or tuple</span>
+<span class="sd">        :param: features (list), could be a list or tuple</span>
 <span class="sd">        :return: skit image property table and pandas DF of image intensity at the smallest kernel</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">prop_names</span> <span class="o">=</span> <span class="p">(</span>
@@ -158,9 +139,9 @@
         <span class="n">tableInit</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">tableOut</span><span class="p">[</span><span class="s1">&#39;mean_int&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">tableOut</span><span class="p">,</span> <span class="n">tableInit</span></div>
 
-<div class="viewcode-block" id="GRANULARITY.openingOperation"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.GRANULARITY.openingOperation">[docs]</a>    <span class="k">def</span> <span class="nf">openingOperation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">kernel</span><span class="p">):</span>
+<div class="viewcode-block" id="GRANULARITY.openingOperation"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.openingOperation">[docs]</a>    <span class="k">def</span> <span class="nf">openingOperation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">kernel</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param kernel: size of filter kernel</span>
+<span class="sd">        :param: kernel (int), size of filter kernel</span>
 <span class="sd">        :return: opening operation image</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">selem</span> <span class="o">=</span> <span class="n">morphology</span><span class="o">.</span><span class="n">disk</span><span class="p">(</span><span class="n">kernel</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
@@ -168,15 +149,14 @@
         <span class="n">imageOpen</span> <span class="o">=</span> <span class="n">morphology</span><span class="o">.</span><span class="n">dilation</span><span class="p">(</span><span class="n">eros_pix</span><span class="p">,</span> <span class="n">footprint</span><span class="o">=</span><span class="n">selem</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">imageOpen</span></div>
 
-<div class="viewcode-block" id="GRANULARITY.loopLabelimage"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.GRANULARITY.loopLabelimage">[docs]</a>    <span class="k">def</span> <span class="nf">loopLabelimage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">start_kernel</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">,</span> <span class="n">end_karnel</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">20</span> <span class="p">,</span> <span class="n">fetureLabel</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">],</span> <span class="n">deploy</span> <span class="o">=</span> <span class="kc">False</span> <span class="p">):</span>
+<div class="viewcode-block" id="GRANULARITY.loopLabelimage"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.loopLabelimage">[docs]</a>    <span class="k">def</span> <span class="nf">loopLabelimage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">start_kernel</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">,</span> <span class="n">end_karnel</span> <span class="o">=</span> <span class="mi">80</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">20</span> <span class="p">,</span> <span class="n">fetureLabel</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">],</span> <span class="n">deploy</span> <span class="o">=</span> <span class="kc">False</span> <span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param start_kernel: smallest kernel size</span>
-<span class="sd">        :param end_karnel: largest kernel size</span>
-<span class="sd">        :param kernel_size: number of opening operation to apply</span>
-<span class="sd">        :param fetureLabel: list of features measure per cell (beside intensity), e.g. [&quot;label&quot;,&quot;centroid&quot;,</span>
+<span class="sd">        :param start_kernel (int), smallest kernel size</span>
+<span class="sd">        :param end_karnel (int), largest kernel size</span>
+<span class="sd">        :param kernel_size (int), number of opening operation to apply</span>
+<span class="sd">        :param fetureLabel (list), list of features measure per cell (beside intensity), e.g. [&quot;label&quot;,&quot;centroid&quot;,</span>
 <span class="sd">            &quot;area&quot;] default [&quot;label&quot;]</span>
 <span class="sd">        :return: dataframe of image intensity per segmented cell per image</span>
-
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># returns column wise table</span>
         <span class="n">tableInit</span><span class="p">,</span> <span class="n">tableColumn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">featuresTable</span><span class="p">(</span><span class="n">features</span> <span class="o">=</span><span class="n">fetureLabel</span><span class="p">)</span>
@@ -210,13 +190,13 @@
         <span class="n">tableFinal</span><span class="p">[</span><span class="s1">&#39;labeledCell&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">tableFinal</span><span class="p">[</span><span class="s1">&#39;labeledCell&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">tableFinal</span></div>
 
-<div class="viewcode-block" id="GRANULARITY.stackTOobjects"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.GRANULARITY.stackTOobjects">[docs]</a>    <span class="k">def</span> <span class="nf">stackTOobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extract_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">,</span> <span class="n">img_label</span><span class="p">):</span>
+<div class="viewcode-block" id="GRANULARITY.stackTOobjects"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.stackTOobjects">[docs]</a>    <span class="k">def</span> <span class="nf">stackTOobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extract_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">,</span> <span class="n">img_label</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask</span>
-<span class="sd">        :param extract_pixel: size of extraction acording to mask (e.g. 50 pixel)</span>
-<span class="sd">        :param resize_pixel: resize for preforming tf prediction (e.g. 150 pixel)</span>
-<span class="sd">        :param img_label: the mask value for stack</span>
-<span class="sd">        :return: center image with out background</span>
+<span class="sd">        :param: extract_pixel (int), size of extraction acording to mask (e.g. 50 pixel)</span>
+<span class="sd">        :param: resize_pixel (int), resize for preforming tf prediction (e.g. 150 pixel)</span>
+<span class="sd">        :param: img_label (img), the mask value for stack</span>
+<span class="sd">        :return: (img), center image with out background</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span>
         <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span>
@@ -240,16 +220,15 @@
             <span class="k">return</span> <span class="n">stack_img</span><span class="p">,</span> <span class="n">mask_value</span></div></div>
 
 
-<div class="viewcode-block" id="MERGE"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.MERGE">[docs]</a><span class="k">class</span> <span class="nc">MERGE</span><span class="p">:</span>
+<div class="viewcode-block" id="MERGE"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE">[docs]</a><span class="k">class</span> <span class="nc">MERGE</span><span class="p">:</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    merge granularity table</span>
-
-<span class="sd">    This function is workin with the glob function where the complete path is given</span>
+<span class="sd">    This function is working with the glob function where the complete path is given</span>
 <span class="sd">    &#39;&#39;&#39;</span>
-<div class="viewcode-block" id="MERGE.replaceLabel"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.MERGE.replaceLabel">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="MERGE.replaceLabel"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.replaceLabel">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">replaceLabel</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param arr: pandas series</span>
+<span class="sd">        :param: arr (list), pandas series</span>
 <span class="sd">        :return: replace label values with unique values</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">uniqueLabel</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
@@ -259,9 +238,9 @@
             <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">arr</span></div>
 
-<div class="viewcode-block" id="MERGE.mergeTable"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.MERGE.mergeTable">[docs]</a>    <span class="k">def</span> <span class="nf">mergeTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">tableInput_name_list</span><span class="p">):</span>
+<div class="viewcode-block" id="MERGE.mergeTable"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.mergeTable">[docs]</a>    <span class="k">def</span> <span class="nf">mergeTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">tableInput_name_list</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param tableInput_name_list: array of csv file names (shuffled and merged)</span>
+<span class="sd">        :param: tableInput_name_list (list), array of csv file names (shuffled and merged)</span>
 <span class="sd">        :return: merge all the tables</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
@@ -283,11 +262,11 @@
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;labeledCell&#39;</span><span class="p">,</span> <span class="s1">&#39;kernel&#39;</span><span class="p">],</span> <span class="n">na_position</span><span class="o">=</span><span class="s1">&#39;first&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">df</span></div>
 
-<div class="viewcode-block" id="MERGE.meanIntensity"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.MERGE.meanIntensity">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="MERGE.meanIntensity"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.meanIntensity">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">meanIntensity</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">group</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param df: pandas Data frame</span>
-<span class="sd">        :param group: selecte the labeld droup</span>
+<span class="sd">        :param: df (data frame) pandas Data frame</span>
+<span class="sd">        :param: group (int) select the labeled Group</span>
 <span class="sd">        :return: intensity percentage list and kernels</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">dfSel</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;classLabel&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">group</span><span class="p">]</span>
@@ -302,11 +281,11 @@
             <span class="n">kernelArray</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">meanInten</span><span class="p">,</span> <span class="n">kernelArray</span></div>
 
-<div class="viewcode-block" id="MERGE.cleanTable"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.MERGE.cleanTable">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="MERGE.cleanTable"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.cleanTable">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">cleanTable</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param df: pandas Data frame</span>
-<span class="sd">        :param group: selecte the labeld droup</span>
+<span class="sd">        :param: df (data frame), pandas Data frame</span>
+<span class="sd">        :param: group (int), selected labeled Group</span>
 <span class="sd">        :return: remove null observations</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">dfClean</span> <span class="o">=</span> <span class="n">df</span>
@@ -323,11 +302,11 @@
 
 
 
-<div class="viewcode-block" id="MERGE.calcDecay"><a class="viewcode-back" href="../../AIPyS.html#AIPyS.AIPS_granularity.MERGE.calcDecay">[docs]</a>    <span class="nd">@staticmethod</span>
+<div class="viewcode-block" id="MERGE.calcDecay"><a class="viewcode-back" href="../../manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.calcDecay">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">calcDecay</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">kernelSelect</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param df: pandas finel table</span>
-<span class="sd">        :param kernelSelect: kernel size selected</span>
+<span class="sd">        :param: df (data frame), pandas finel table</span>
+<span class="sd">        :param: kernelSelect (int) kernel size selected</span>
 <span class="sd">        :return: filter table for the kernel selcted result in 50% reduction in signal</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;kernel&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">kernelSelect</span><span class="p">,:]</span></div></div>

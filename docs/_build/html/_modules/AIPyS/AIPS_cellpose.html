@@ -35,8 +35,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../Segmentation.html">1. Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Classification.html">2. Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/classification/index.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/deployment/index.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../manual/simulation/index.html">2. Simulation</a></li>
 </ul>
 
         </div>
@@ -65,24 +67,17 @@
              
   <h1>Source code for AIPyS.AIPS_cellpose</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">skimage.io</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
-<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span>
 <span class="kn">from</span> <span class="nn">cellpose</span> <span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">core</span>
-<span class="kn">from</span> <span class="nn">cellpose.io</span> <span class="kn">import</span> <span class="n">logger_setup</span>
-<span class="kn">from</span> <span class="nn">cellpose</span> <span class="kn">import</span> <span class="n">utils</span>
-<span class="kn">import</span> <span class="nn">glob</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">skew</span>
 
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageEnhance</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span><span class="n">ImageFont</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span><span class="p">,</span> <span class="n">filters</span><span class="p">,</span> <span class="n">measure</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">img_as_ubyte</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span><span class="n">ImageFont</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">img_as_ubyte</span>
 <span class="kn">from</span> <span class="nn">skimage.draw</span> <span class="kn">import</span> <span class="n">disk</span>
-<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span><span class="p">,</span> <span class="n">restoration</span><span class="p">,</span><span class="n">morphology</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span>
 
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
@@ -90,7 +85,7 @@
 <span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_file_display</span> <span class="k">as</span> <span class="n">afd</span>
 <span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_cellpose</span> <span class="k">as</span> <span class="n">AC</span>
 
-<div class="viewcode-block" id="granularityMesure_cellpose"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.granularityMesure_cellpose">[docs]</a><span class="k">def</span> <span class="nf">granularityMesure_cellpose</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">classLabel</span><span class="p">,</span><span class="n">outPath</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outputTableName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,):</span>
+<div class="viewcode-block" id="granularityMesure_cellpose"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.granularityMesure_cellpose">[docs]</a><span class="k">def</span> <span class="nf">granularityMesure_cellpose</span><span class="p">(</span><span class="n">file</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">classLabel</span><span class="p">,</span><span class="n">outPath</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">outputTableName</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,):</span>
     <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    function description:</span>
 <span class="sd">        1) cell segmented using cellpose</span>
@@ -156,16 +151,16 @@
 
 
 
-<div class="viewcode-block" id="AIPS_cellpose"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose">[docs]</a><span class="k">class</span> <span class="nc">AIPS_cellpose</span><span class="p">:</span>
+<div class="viewcode-block" id="AIPS_cellpose"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose">[docs]</a><span class="k">class</span> <span class="nc">AIPS_cellpose</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">Image_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">image</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">model_type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">channels</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="kc">None</span> <span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Cellpose algorithm</span>
-<span class="sd">        :param Image_name: str</span>
-<span class="sd">        :param path: str</span>
-<span class="sd">        :param image: inputimage for segmantion</span>
-<span class="sd">        :param model_type: &#39;cyto&#39; or model_type=&#39;nuclei&#39;</span>
-<span class="sd">        :param clean: int, remove object bellow the selected area size</span>
-<span class="sd">        :param channels: # channels = [0,0] # IF YOU HAVE GRAYSCALE</span>
+<span class="sd">        :param: Image_name (str)</span>
+<span class="sd">        :param: path (str)</span>
+<span class="sd">        :param: image (img) input image for segmentation</span>
+<span class="sd">        :param: model_type (str) &#39;cyto&#39; or model_type=&#39;nuclei&#39;</span>
+<span class="sd">        :param: clean (int), remove object bellow the selected area size</span>
+<span class="sd">        :param: channels: # channels = [0,0] # IF YOU HAVE GRAYSCALE</span>
 <span class="sd">                    channels = [2,3] # IF YOU HAVE G=cytoplasm and B=nucleus</span>
 <span class="sd">                    channels = [2,1] # IF YOU HAVE G=cytoplasm and R=nucleus</span>
 
@@ -184,17 +179,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">clean</span> <span class="o">=</span> <span class="n">clean</span>
 
 
-<div class="viewcode-block" id="AIPS_cellpose.cellpose_image_load"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_image_load">[docs]</a>    <span class="k">def</span> <span class="nf">cellpose_image_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;:parameter</span>
-<span class="sd">        Image: File name (tif format) - should be greyscale</span>
-<span class="sd">        path: path to the file</span>
-<span class="sd">        :return</span>
-<span class="sd">        grayscale_image_container: dictionary of np array</span>
+<div class="viewcode-block" id="AIPS_cellpose.cellpose_image_load"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_image_load">[docs]</a>    <span class="k">def</span> <span class="nf">cellpose_image_load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        :param: Image (img), File name (tif format) - should be greyscale</span>
+<span class="sd">        :param: path (str), path to the file</span>
+<span class="sd">        :return: grayscale_image_container (dict), dictionary of np array</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Image_name</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image</span></div>
 
-<div class="viewcode-block" id="AIPS_cellpose.cellpose_segmantation"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_segmantation">[docs]</a>    <span class="k">def</span> <span class="nf">cellpose_segmantation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span><span class="p">):</span>
+<div class="viewcode-block" id="AIPS_cellpose.cellpose_segmantation"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_segmantation">[docs]</a>    <span class="k">def</span> <span class="nf">cellpose_segmantation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span><span class="p">):</span>
         <span class="n">use_GPU</span> <span class="o">=</span> <span class="n">core</span><span class="o">.</span><span class="n">use_gpu</span><span class="p">()</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Cellpose</span><span class="p">(</span><span class="n">gpu</span><span class="o">=</span><span class="n">use_GPU</span><span class="p">,</span> <span class="n">model_type</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model_type</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">flows</span><span class="p">,</span> <span class="n">styles</span><span class="p">,</span> <span class="n">diams</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span><span class="n">image_input</span><span class="p">,</span> <span class="n">diameter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">flow_threshold</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">)</span>
@@ -211,13 +205,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">removeObjects</span><span class="p">(</span><span class="n">objectList</span><span class="o">=</span><span class="n">objectidx</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span></div>
 
-<div class="viewcode-block" id="AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method">[docs]</a>    <span class="k">def</span> <span class="nf">stackObjects_cellpose_ebimage_parametrs_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span> <span class="p">,</span><span class="n">extract_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">,</span> <span class="n">img_label</span><span class="p">):</span>
+<div class="viewcode-block" id="AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method">[docs]</a>    <span class="k">def</span> <span class="nf">stackObjects_cellpose_ebimage_parametrs_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_input</span> <span class="p">,</span><span class="n">extract_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">,</span> <span class="n">img_label</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask</span>
-<span class="sd">        :param extract_pixel: size of extraction acording to mask (e.g. 50 pixel)</span>
-<span class="sd">        :param resize_pixel: resize for preforming tf prediction (e.g. 150 pixel)</span>
-<span class="sd">        :param img_label: the mask value for stack</span>
-<span class="sd">        :return: center image with out background</span>
+<span class="sd">        :param: extract_pixel (int) size of extraction acording to mask (e.g. 50 pixel)</span>
+<span class="sd">        :param: resize_pixel (int) resize for preforming tf prediction (e.g. 150 pixel)</span>
+<span class="sd">        :param: img_label (int) the mask value for stack</span>
+<span class="sd">        :return: center image with out background (img)</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">img</span> <span class="o">=</span> <span class="n">image_input</span>
         <span class="n">mask</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span>
@@ -242,7 +236,7 @@
             <span class="n">stack_img</span> <span class="o">=</span> <span class="n">skimage</span><span class="o">.</span><span class="n">transform</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">stack_img</span><span class="p">,</span> <span class="p">(</span><span class="n">resize_pixel</span><span class="p">,</span> <span class="n">resize_pixel</span><span class="p">),</span> <span class="n">anti_aliasing</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">stack_img</span><span class="p">,</span> <span class="n">mask_value</span></div>
 
-<div class="viewcode-block" id="AIPS_cellpose.measure_properties"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.measure_properties">[docs]</a>    <span class="k">def</span> <span class="nf">measure_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_image</span><span class="p">):</span>
+<div class="viewcode-block" id="AIPS_cellpose.measure_properties"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.measure_properties">[docs]</a>    <span class="k">def</span> <span class="nf">measure_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_image</span><span class="p">):</span>
         <span class="k">def</span> <span class="nf">sd_intensity</span><span class="p">(</span><span class="n">regionmask</span><span class="p">,</span> <span class="n">intensity_image</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">intensity_image</span><span class="p">[</span><span class="n">regionmask</span><span class="p">])</span>
 
@@ -281,18 +275,16 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">table_prop</span></div>
 
-<div class="viewcode-block" id="AIPS_cellpose.display_image_prediction"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.display_image_prediction">[docs]</a>    <span class="k">def</span> <span class="nf">display_image_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">img</span> <span class="p">,</span><span class="n">prediction_table</span><span class="p">,</span> <span class="n">font_select</span> <span class="o">=</span> <span class="s2">&quot;DejaVuSans.ttf&quot;</span><span class="p">,</span> <span class="n">font_size</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lable_draw</span> <span class="o">=</span> <span class="s1">&#39;predict&#39;</span><span class="p">,</span><span class="n">round_n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+<div class="viewcode-block" id="AIPS_cellpose.display_image_prediction"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.display_image_prediction">[docs]</a>    <span class="k">def</span> <span class="nf">display_image_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">img</span> <span class="p">,</span><span class="n">prediction_table</span><span class="p">,</span> <span class="n">font_select</span> <span class="o">=</span> <span class="s2">&quot;DejaVuSans.ttf&quot;</span><span class="p">,</span> <span class="n">font_size</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">windows</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lable_draw</span> <span class="o">=</span> <span class="s1">&#39;predict&#39;</span><span class="p">,</span><span class="n">round_n</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        ch: 16 bit input image</span>
-<span class="sd">        mask: mask for labale</span>
-<span class="sd">        lable_draw: &#39;predict&#39; or &#39;area&#39;</span>
-<span class="sd">        font_select: copy font to the working directory (&quot;DejaVuSans.ttf&quot; eg)</span>
-<span class="sd">        font_size: 4 is nice size</span>
-<span class="sd">        round_n: integer how many number after decimel</span>
-
-<span class="sd">        return:</span>
-<span class="sd">        info_table: table of objects measure</span>
-<span class="sd">        PIL_image: 16 bit mask rgb of the labeled image</span>
+<span class="sd">        :param: ch (img), 16 bit input image</span>
+<span class="sd">        :param: mask (img), mask for labale</span>
+<span class="sd">        :param: lable_draw (str), &#39;predict&#39; or &#39;area&#39;</span>
+<span class="sd">        :param: font_select (str), copy font to the working directory (&quot;DejaVuSans.ttf&quot; eg)</span>
+<span class="sd">        :param: font_size (int), 4 is nice size</span>
+<span class="sd">        :param: round_n (int), integer how many number after decimel</span>
+<span class="sd">        :return: info_table (data frame), table of objects measure</span>
+<span class="sd">        :return: PIL_image (img), 16 bit mask rgb of the labeled image</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="c1"># count number of objects in nuc[&#39;sort_mask&#39;]</span>
         <span class="n">img_gs</span> <span class="o">=</span> <span class="n">img_as_ubyte</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
@@ -317,12 +309,11 @@
                       <span class="nb">str</span><span class="p">(</span><span class="n">info_table</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">lable</span><span class="p">]),</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">info_table</span><span class="p">,</span> <span class="n">PIL_image</span></div>
 
-<div class="viewcode-block" id="AIPS_cellpose.call_bin"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.call_bin">[docs]</a>    <span class="k">def</span> <span class="nf">call_bin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">table_sel_cor</span><span class="p">,</span> <span class="n">threshold</span> <span class="p">,</span><span class="n">img_blank</span><span class="p">):</span>
+<div class="viewcode-block" id="AIPS_cellpose.call_bin"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.call_bin">[docs]</a>    <span class="k">def</span> <span class="nf">call_bin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">table_sel_cor</span><span class="p">,</span> <span class="n">threshold</span> <span class="p">,</span><span class="n">img_blank</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :parameter:</span>
-<span class="sd">        table_sel_cor: pandas table contain the center coordinates</span>
-<span class="sd">        threshold: thershold for predict phenotype (e.g. 0.5)</span>
-<span class="sd">        img_blank: blank image in the shape of the input image</span>
+<span class="sd">        :param: table_sel_cor (data frame), pandas table contain the center coordinates</span>
+<span class="sd">        :param: threshold (float), thershold for predict phenotype (e.g. 0.5)</span>
+<span class="sd">        :param: img_blank (img), blank image in the shape of the input image</span>
 <span class="sd">        :return: binary image of the called masks, table_sel</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">table_na_rmv_trgt</span> <span class="o">=</span> <span class="n">table_sel_cor</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">table_sel_cor</span><span class="p">[</span><span class="s1">&#39;predict&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">,</span> <span class="p">:]</span>
@@ -332,12 +323,10 @@
             <span class="n">img_blank</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">img_blank</span><span class="p">,</span> <span class="n">table_na_rmv_trgt</span></div>
 
-<div class="viewcode-block" id="AIPS_cellpose.removeObjects"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.removeObjects">[docs]</a>    <span class="k">def</span> <span class="nf">removeObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objectList</span><span class="p">):</span>
+<div class="viewcode-block" id="AIPS_cellpose.removeObjects"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.removeObjects">[docs]</a>    <span class="k">def</span> <span class="nf">removeObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">objectList</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :parameter:</span>
-<span class="sd">        objectList: list of objects to remove</span>
-<span class="sd">        :return:</span>
-<span class="sd">        update mask and table</span>
+<span class="sd">        :param: objectList (list), list of objects to remove</span>
+<span class="sd">        :return: update mask and table</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="k">if</span> <span class="n">objectList</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Object list is missing&quot;</span><span class="p">)</span>
@@ -355,10 +344,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">table</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">objectList</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">table</span></div>
 
-<div class="viewcode-block" id="AIPS_cellpose.keepObject"><a class="viewcode-back" href="../../Segmentation.html#AIPyS.AIPS_cellpose.AIPS_cellpose.keepObject">[docs]</a>    <span class="k">def</span> <span class="nf">keepObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+<div class="viewcode-block" id="AIPS_cellpose.keepObject"><a class="viewcode-back" href="../../manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.keepObject">[docs]</a>    <span class="k">def</span> <span class="nf">keepObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;</span>
-<span class="sd">        :param table: keep all the object which are predicted above the threshold</span>
-<span class="sd">        :return: ROI image mask of selected objects</span>
+<span class="sd">        :param table (data frame), keep all the object which are predicted above the threshold</span>
+<span class="sd">        :return: (img), ROI image mask of selected objects</span>
 <span class="sd">        &#39;&#39;&#39;</span>
         <span class="n">nmask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mask</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>

@@ -18,7 +18,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="1. Segmentation" href="Segmentation.html" /> 
+    <link rel="next" title="Segmentation" href="manual/segmentation/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,8 +37,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
-<li class="toctree-l1"><a class="reference internal" href="Segmentation.html">1. Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Classification.html">2. Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual/segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual/classification/index.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual/deployment/index.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual/simulation/index.html">2. Simulation</a></li>
 </ul>
 
         </div>
@@ -65,35 +67,76 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p>Welcome to my <strong>Sphinx with github webpage</strong></p>
+  <p>AIPyS - AI Powered Photoswitchable Genetic CRISPR Screen, Version 2</p>
 <section id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="Segmentation.html">1. Segmentation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Segmentation.html#module-AIPyS.AIPS_cellpose">1.1. AIPyS.AIPS_cellpose module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Segmentation.html#module-AIPyS.AIPS_module">1.2. AIPyS.AIPS_module module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Segmentation.html#module-AIPyS.AIPS_functions">1.3. AIPyS.AIPS_functions module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual/segmentation/index.html">Segmentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual/segmentation/Parameter.html">Parametric object segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual/segmentation/Cellpose.html">AIPyS.AIPS_cellpose module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Classification.html">2. Classification</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Classification.html#module-AIPyS.AIPS_granularity">2.1. granularity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Classification.html#module-AIPyS.Baysian_deploy">2.2. deploy module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Classification.html#module-AIPyS.Baysian_training">2.3. training module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manual/classification/index.html">Classification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual/classification/Granularity.html">granularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual/classification/CNN.html">convolutional neural network</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual/deployment/index.html">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual/deployment/Deploy_gran.html">Deploy Granularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual/deployment/Deploy_CNN.html">Deploy CNN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manual/simulation/index.html">2. Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manual/simulation/simulation.html">1. Simulation</a></li>
 </ul>
 </li>
 </ul>
 </div>
+</section>
+<section id="installing-aipys">
+<h1>Installing AIPyS<a class="headerlink" href="#installing-aipys" title="Permalink to this headline"></a></h1>
+<section id="local-installation">
+<h2>Local installation<a class="headerlink" href="#local-installation" title="Permalink to this headline"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install AIPyS
+</pre></div>
+</div>
+<section id="core-dependencies">
+<h3>Core Dependencies<a class="headerlink" href="#core-dependencies" title="Permalink to this headline"></a></h3>
+<p>The following excellent packages, which are automatically installed with Conda/Pip if missing, are relied upon by AIPyS:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 29%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Dependency</p></th>
+<th class="head"><p>Version</p></th>
+<th class="head"><p>link</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td colspan="3"><p><strong>Core Dependencies</strong></p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 </ul>
+</section>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Segmentation.html" class="btn btn-neutral float-right" title="1. Segmentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="manual/segmentation/index.html" class="btn btn-neutral float-right" title="Segmentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

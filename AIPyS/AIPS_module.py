@@ -2,21 +2,20 @@ import tifffile as tfi
 import numpy as np
 from skimage.filters import threshold_local
 from skimage.util import img_as_ubyte
-from scipy.ndimage.morphology import binary_opening,binary_erosion
+from scipy.ndimage.morphology import binary_opening
 import skimage.morphology as sm
 from skimage.segmentation import watershed
 from skimage import measure
 import os
 import pandas as pd
 from scipy.ndimage.morphology import binary_fill_holes
-import skimage
-from skimage.transform import rescale, resize, downscale_local_mean
-from AIPyS.display_and_xml import evaluate_image_output,test_image
 from AIPyS.AIPS_functions import rgbTograyscale
 
 class AIPS():
     '''
     Initiate the AIPS object
+    :param Image_name: (str)
+    :param path: (str)
     '''
     def __init__(self, Image_name=None, path=None, inputImg = None):
         self.Image_name = Image_name
@@ -35,9 +34,15 @@ class AIPS():
             self.inputImg = input
 
     def imageMatrix(self):
+        '''
+        :return image: object , 8 or 64 bit
+        '''
         return self.inputImg
 
 class Segmentation(AIPS):
+    '''
+    Parametric object segmentation
+    '''
     def __init__(self,Image_name,path,ch_=None,rmv_object_nuc=None, block_size=None, offset=None, clean = None, seed_out = None, out_target = None):
         super().__init__(Image_name,path)
         self.ch_ = ch_
@@ -49,16 +54,16 @@ class Segmentation(AIPS):
         self.out_target = out_target
     def seedSegmentation(self):
         '''
-        ch_: Channel selected
-        block_size: Detect local edges 1-99 odd
-        offset: Detect local edges 0.001-0.9 odd
-        rmv_object_nuc: percentile of cells to remove, 0.01-0.99
-        clean: opening operation, matrix size must be odd
-        :return:
-        nmask2: local threshold binary map (eg nucleus)
-        nmask4: local threshold binary map post opening (eg nucleus)
-        sort_mask: RGB segmented image output first channel for mask (eg nucleus)
-        sort_mask_bin: Binary
+        :param ch_(int): Channel selected
+        :param block_size(float): Detect local edges 1-99 odd
+        :param offset(float): Detect local edges 0.001-0.9 odd
+        :param rmv_object_nuc(float): percentile of cells to remove, 0.01-0.99
+        :param clean(int): opening operation, matrix size must be odd
+
+        :return nmask2 (float): local threshold binary map (eg nucleus)
+        :return nmask4 (float): local threshold binary map post opening (eg nucleus)
+        :return sort_mask (img): RGB segmented image output first channel for mask (eg nucleus)
+        :return sort_mask_bin (img): Binary
         '''
         #
         ch = self.inputImg[self.ch_]
@@ -103,31 +108,23 @@ class Segmentation(AIPS):
             return self.seed_out
 
     def cytosolSegmentation(self, ch2_,block_size_cyto,offset_cyto,global_ther,rmv_object_cyto,rmv_object_cyto_small,remove_borders=False):
-        '''
-        ch: Input image (tifffile image object)
-        ch2: Input image (tifffile image object)
-        sort_mask: RGB segmented image output first channel for mask (eg nucleus)
-        sort_mask_bin: Binary
-        block_size_cyto: Detect local edges 1-99 odd
-        offset_cyto: Detect local edges 0.001-0.9 odd
-        global_ther: Percentile
-        rmv_object_cyto:  percentile of cells to remove, 0.01-0.99
-        rmv_object_cyto_small:  percentile of cells to remove, 0.01-0.99
-        remove_border: boolean -  object on border of image to be removed
-        :return:
-        nmask2: local threshold binary map (eg nucleus)
-        nmask4: local threshold binary map post opening (eg nucleus)
-        sort_mask: RGB segmented image output first channel for mask (eg nucleus)
-        cell_mask_2: local threshold binary map (eg cytoplasm)
-        combine: global threshold binary map (eg cytoplasm)
-        sort_mask_syn: RGB segmented image output first channel for mask (eg nucleus) sync
-        mask_unfiltered: Mask before filtering object size
-        cseg_mask: RGB segmented image output first channel for mask (eg nucleus)
-        cseg_mask_bin: Binary mask
-        test: Area table seed
-        info_table: Area table cytosol synchronize
-        table_unfiltered: Table before remove large and small objects
-        '''
+        """
+        Args:
+            ch: img,  Input image (tifffile image object)
+            ch2: img, Input image (tifffile image object)
+            sort_mask: img, RGB segmented image output first channel for mask (eg nucleus)
+            sort_mask_bin: img, Binary
+            block_size_cyto: int, Detect local edges 1-99 odd
+            offset_cyto: float, Detect local edges 0.001-0.9 odd
+            global_ther: float, Percentile
+            rmv_object_cyto: float, percentile of cells to remove, 0.01-0.99
+            rmv_object_cyto_small: float, percentile of cells to remove, 0.01-0.99
+            remove_border: boolean, binary, object on border of image to be removed
+        Returns:
+            nmask2: img, local threshold binary map (eg nucleus)
+            nmask4: img, local threshold binary map post opening (eg nucleus)
+            sort_mask: img, RGB segmented image output first channel for mask (eg nucleus)
+        """
         # load matrix from seedSegmentation module
         sort_mask = self.seed_out['sort_mask']
         sort_mask_bin = self.seed_out['sort_mask_bin']
