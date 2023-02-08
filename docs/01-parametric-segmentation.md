@@ -1,4 +1,4 @@
- # **Parametric Segmentation**
+<center><b><u>Parametric Segmentation</u></b></center>
 
 The AIPS packdge provides two alternative methods for segmenting cells: parametric or deep-learning segmentation. 
 For parametric segmentation, we enhanced and translated our  [R](https://www.r-project.org/)-based code.
@@ -12,6 +12,7 @@ from AIPyS import AIPS_file_display as afd
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 %matplotlib inline
 import sys
 sys.path.append(r'F:\Gil\AIPS_platforms\AIPyS')
@@ -38,6 +39,10 @@ import numpy as np
 from PIL import Image
 ```
 
+    F:\Gil\anaconda\envs\pm-tf24-cellpose\lib\site-packages\skimage\viewer\utils\__init__.py:1: UserWarning: Recommended matplotlib backend is `Agg` for full skimage.viewer functionality.
+      from .core import *
+    
+
 We demonstrate the image segmentation of a capture of Catalase-GFP expressing u2os cells. This image was cropped from a 2044x2048 pixel image to a size of 512x512.
 
 ```python
@@ -48,18 +53,19 @@ image_pex = io.imread('catGFP.tif')
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 from skimage import io
 image_pex = io.imread(os.path.join(r'F:\Gil\AIPS_platforms\AIPyS\data','catGFP.tif'))
 fig, ax = plt.subplots(1, 2, figsize=(8, 8)) 
 ax[0].imshow(image_pex[1,:,:], cmap=plt.cm.gray) 
 ax[0].title.set_text('Nucleus') 
 ax[1].imshow(image_pex[0,:,:], cmap=plt.cm.gray) 
-ax[1].title.set_text('Catalase GFP') 
+ax[1].title.set_text('GFP Catalase') 
 ```
 
 
     
-![png](output_5_0.png)
+![png](output_5_0_1.png)
     
 
 
@@ -78,6 +84,7 @@ Calculate a threshold mask image by using a weighted mean (block_size) of the lo
 
 ```{code-cell} ipython3
 :tags: [hide-input]
+
 input_str ='catGFP.tif'
 UPLOAD_DIRECTORY = r'F:\Gil\AIPS_platforms\AIPyS\data'
 AIPS_object = ai.Segmentation(Image_name=input_str, path=UPLOAD_DIRECTORY, ch_=1, rmv_object_nuc=0.1,block_size=89, offset=-0.5, clean = 3)
@@ -94,15 +101,24 @@ ax[1].title.set_text('RGB map - seed')
 
 
     
-![png](output_7_0.png)
+![png](output_7_0_1.png)
     
 
 
 Target channel (Catalase-GFP) was used to identify cell borders and edges for segmentation. High-pass filtering, local thresholding, and global thresholding were then used to create global and local masks.
-
-
 ```python
 target = AIPS_object.cytosolSegmentation(ch2_=0, block_size_cyto=3, offset_cyto=-5, global_ther= 0.51, rmv_object_cyto=0.99, rmv_object_cyto_small=0.25)
+combine = target['combine']
+cseg_mask = target['cseg_mask']
+mask_unfiltered = target['mask_unfiltered']
+maskContour = afd.Compsite_display(input_image = image_pex[0,:,:], mask_roi = cseg_mask, channel= 0).draw_ROI_contour()
+```
+
+
+```{code-cell} ipython3
+:tags: [hide-input]
+
+target = AIPS_object.cytosolSegmentation(ch2_=0, block_size_cyto=13, offset_cyto=-5, global_ther= 0.51, rmv_object_cyto=0.99, rmv_object_cyto_small=0.25)
 combine = target['combine']
 cseg_mask = target['cseg_mask']
 mask_unfiltered = target['mask_unfiltered']
@@ -118,8 +134,8 @@ ax[1,1].imshow(maskContour, cmap=plt.cm.rainbow)
 ax[1,1].title.set_text('Mask - Target (filterd)')
 ```
 
+![png](output_9_0_1.png)
+    
 
-    
-![png](output_9_0.png)
-    
+
 
