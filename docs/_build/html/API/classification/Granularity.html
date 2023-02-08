@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>granularity &mdash; AIPyS  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="convolutional neural network" href="CNN.html" />
+    <link rel="prev" title="Classification" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installing AIPyS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Classification</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">granularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CNN.html">convolutional neural network</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">miscellaneous modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../API.html">&lt;no title&gt;</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Classification</a></li>
+      <li class="breadcrumb-item active">granularity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/API/classification/Granularity.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-AIPyS.AIPS_granularity">
+<span id="granularity"></span><h1>granularity<a class="headerlink" href="#module-AIPyS.AIPS_granularity" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.GRANULARITY">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_granularity.</span></span><span class="sig-name descname"><span class="pre">GRANULARITY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#GRANULARITY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.GRANULARITY" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.GRANULARITY.featuresTable">
+<span class="sig-name descname"><span class="pre">featuresTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['label']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#GRANULARITY.featuresTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.GRANULARITY.featuresTable" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>features (list), could be a list or tuple</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>skit image property table and pandas DF of image intensity at the smallest kernel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.GRANULARITY.loopLabelimage">
+<span class="sig-name descname"><span class="pre">loopLabelimage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_karnel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fetureLabel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['label']</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deploy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#GRANULARITY.loopLabelimage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.GRANULARITY.loopLabelimage" title="Permalink to this definition"></a></dt>
+<dd><p>:param start_kernel (int), smallest kernel size
+:param end_karnel (int), largest kernel size
+:param kernel_size (int), number of opening operation to apply
+:param fetureLabel (list), list of features measure per cell (beside intensity), e.g. [“label”,”centroid”,</p>
+<blockquote>
+<div><p>“area”] default [“label”]</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dataframe of image intensity per segmented cell per image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.GRANULARITY.measure_properties">
+<span class="sig-name descname"><span class="pre">measure_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#GRANULARITY.measure_properties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.GRANULARITY.measure_properties" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>input_image (img), 8 bit greyscale image</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>mask (img) 32bit mask</p>
+</dd>
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>prop_names (list), features array</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>skit image property table propriety table</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.GRANULARITY.openingOperation">
+<span class="sig-name descname"><span class="pre">openingOperation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#GRANULARITY.openingOperation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.GRANULARITY.openingOperation" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>kernel (int), size of filter kernel</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>opening operation image</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.GRANULARITY.outlierRemoval">
+<span class="sig-name descname"><span class="pre">outlierRemoval</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#GRANULARITY.outlierRemoval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.GRANULARITY.outlierRemoval" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.GRANULARITY.stackTOobjects">
+<span class="sig-name descname"><span class="pre">stackTOobjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extract_pixel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resize_pixel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#GRANULARITY.stackTOobjects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.GRANULARITY.stackTOobjects" title="Permalink to this definition"></a></dt>
+<dd><p>fnction similar to the EBimage stackObjectsta, return a crop size based on center of measured mask
+:param: extract_pixel (int), size of extraction acording to mask (e.g. 50 pixel)
+:param: resize_pixel (int), resize for preforming tf prediction (e.g. 150 pixel)
+:param: img_label (img), the mask value for stack
+:return: (img), center image with out background</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.MERGE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_granularity.</span></span><span class="sig-name descname"><span class="pre">MERGE</span></span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#MERGE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.MERGE" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>merge granularity table
+This function is working with the glob function where the complete path is given</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.MERGE.calcDecay">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">calcDecay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernelSelect</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#MERGE.calcDecay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.MERGE.calcDecay" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>df (data frame), pandas finel table</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>kernelSelect (int) kernel size selected</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>filter table for the kernel selcted result in 50% reduction in signal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.MERGE.cleanTable">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cleanTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#MERGE.cleanTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.MERGE.cleanTable" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>df (data frame), pandas Data frame</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>group (int), selected labeled Group</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>remove null observations</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.MERGE.meanIntensity">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">meanIntensity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#MERGE.meanIntensity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.MERGE.meanIntensity" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>df (data frame) pandas Data frame</p>
+</dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>group (int) select the labeled Group</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>intensity percentage list and kernels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.MERGE.mergeTable">
+<span class="sig-name descname"><span class="pre">mergeTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tableInput_name_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#MERGE.mergeTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.MERGE.mergeTable" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>tableInput_name_list (list), array of csv file names (shuffled and merged)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>merge all the tables</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.AIPS_granularity.MERGE.replaceLabel">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">replaceLabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_granularity.html#MERGE.replaceLabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_granularity.MERGE.replaceLabel" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>arr (list), pandas series</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>replace label values with unique values</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Classification" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="CNN.html" class="btn btn-neutral float-right" title="convolutional neural network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

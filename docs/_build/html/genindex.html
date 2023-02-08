@@ -14,6 +14,7 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -34,11 +35,15 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
-<li class="toctree-l1"><a class="reference internal" href="manual/segmentation/index.html">Segmentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manual/classification/index.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manual/deployment/index.html">Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="manual/simulation/index.html">2. Simulation</a></li>
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">Installing AIPyS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Tutorial notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API/segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API/classification/index.html">Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API/deployment/index.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API/simulation/index.html">Simulation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API/miscellaneous/index.html">miscellaneous modules</a></li>
 </ul>
 
         </div>
@@ -79,6 +84,7 @@
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -87,59 +93,73 @@
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/segmentation/Parameter.html#AIPyS.AIPS_module.AIPS">AIPS (class in AIPyS.AIPS_module)</a>
+      <li><a href="API/segmentation/Parameter.html#AIPyS.AIPS_module.AIPS">AIPS (class in AIPyS.AIPS_module)</a>
 </li>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose">AIPS_cellpose (class in AIPyS.AIPS_cellpose)</a>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose">AIPS_cellpose (class in AIPyS.AIPS_cellpose)</a>
 </li>
       <li>
     AIPyS.AIPS_cellpose
 
       <ul>
-        <li><a href="manual/segmentation/Cellpose.html#module-AIPyS.AIPS_cellpose">module</a>
+        <li><a href="API/segmentation/Cellpose.html#module-AIPyS.AIPS_cellpose">module</a>
+</li>
+      </ul></li>
+      <li>
+    AIPyS.AIPS_file_display
+
+      <ul>
+        <li><a href="API/miscellaneous/Display.html#module-AIPyS.AIPS_file_display">module</a>
+</li>
+      </ul></li>
+      <li>
+    AIPyS.AIPS_functions
+
+      <ul>
+        <li><a href="API/miscellaneous/Support_function.html#module-AIPyS.AIPS_functions">module</a>
 </li>
       </ul></li>
       <li>
     AIPyS.AIPS_granularity
 
       <ul>
-        <li><a href="manual/classification/Granularity.html#module-AIPyS.AIPS_granularity">module</a>
-</li>
-      </ul></li>
-      <li>
-    AIPyS.AIPS_module
-
-      <ul>
-        <li><a href="manual/segmentation/Parameter.html#module-AIPyS.AIPS_module">module</a>
+        <li><a href="API/classification/Granularity.html#module-AIPyS.AIPS_granularity">module</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    AIPyS.AIPS_module
+
+      <ul>
+        <li><a href="API/segmentation/Parameter.html#module-AIPyS.AIPS_module">module</a>
+</li>
+      </ul></li>
+      <li>
     AIPyS.AIPS_simulate
 
       <ul>
-        <li><a href="manual/simulation/simulation.html#module-AIPyS.AIPS_simulate">module</a>
+        <li><a href="API/simulation/simulation.html#module-AIPyS.AIPS_simulate">module</a>
 </li>
       </ul></li>
       <li>
     AIPyS.Baysian_deploy
 
       <ul>
-        <li><a href="manual/deployment/Deploy_gran.html#module-AIPyS.Baysian_deploy">module</a>
+        <li><a href="API/deployment/Deploy_gran.html#module-AIPyS.Baysian_deploy">module</a>
 </li>
       </ul></li>
       <li>
     AIPyS.CNN_deploy
 
       <ul>
-        <li><a href="manual/deployment/Deploy_CNN.html#module-AIPyS.CNN_deploy">module</a>
+        <li><a href="API/deployment/Deploy_CNN.html#module-AIPyS.CNN_deploy">module</a>
 </li>
       </ul></li>
       <li>
     AIPyS.model_builder
 
       <ul>
-        <li><a href="manual/classification/CNN.html#module-AIPyS.model_builder">module</a>
+        <li><a href="API/classification/CNN.html#module-AIPyS.model_builder">module</a>
 </li>
       </ul></li>
   </ul></td>
@@ -148,13 +168,13 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.BayesianGranularityDeploy">BayesianGranularityDeploy() (in module AIPyS.Baysian_deploy)</a>
+      <li><a href="API/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.BayesianGranularityDeploy">BayesianGranularityDeploy() (in module AIPyS.Baysian_deploy)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.BayesianGranularityDeployTest">BayesianGranularityDeployTest() (in module AIPyS.Baysian_deploy)</a>
+      <li><a href="API/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.BayesianGranularityDeployTest">BayesianGranularityDeployTest() (in module AIPyS.Baysian_deploy)</a>
 </li>
-      <li><a href="manual/classification/CNN.html#AIPyS.model_builder.model_builder.build_image__sets">build_image__sets() (AIPyS.model_builder.model_builder method)</a>
+      <li><a href="API/classification/CNN.html#AIPyS.model_builder.model_builder.build_image__sets">build_image__sets() (AIPyS.model_builder.model_builder method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -162,17 +182,17 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.calcDecay">calcDecay() (AIPyS.AIPS_granularity.MERGE static method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.calcDecay">calcDecay() (AIPyS.AIPS_granularity.MERGE static method)</a>
 </li>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.call_bin">call_bin() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.call_bin">call_bin() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_image_load">cellpose_image_load() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.cellpose_image_load">cellpose_image_load() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
 </li>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.cleanTable">cleanTable() (AIPyS.AIPS_granularity.MERGE static method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.cleanTable">cleanTable() (AIPyS.AIPS_granularity.MERGE static method)</a>
 </li>
-      <li><a href="manual/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation.cytosolSegmentation">cytosolSegmentation() (AIPyS.AIPS_module.Segmentation method)</a>
+      <li><a href="API/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation.cytosolSegmentation">cytosolSegmentation() (AIPyS.AIPS_module.Segmentation method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -180,11 +200,11 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/CNN.html#AIPyS.model_builder.model_builder.display_data_distribution">display_data_distribution() (AIPyS.model_builder.model_builder method)</a>
+      <li><a href="API/classification/CNN.html#AIPyS.model_builder.model_builder.display_data_distribution">display_data_distribution() (AIPyS.model_builder.model_builder method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.display_image_prediction">display_image_prediction() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.display_image_prediction">display_image_prediction() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -192,7 +212,7 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.featuresTable">featuresTable() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.featuresTable">featuresTable() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -200,11 +220,11 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY">GRANULARITY (class in AIPyS.AIPS_granularity)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY">GRANULARITY (class in AIPyS.AIPS_granularity)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.granularityMesure_cellpose">granularityMesure_cellpose() (in module AIPyS.AIPS_cellpose)</a>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.granularityMesure_cellpose">granularityMesure_cellpose() (in module AIPyS.AIPS_cellpose)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -212,7 +232,7 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.id_generator">id_generator() (in module AIPyS.Baysian_deploy)</a>
+      <li><a href="API/deployment/Deploy_gran.html#AIPyS.Baysian_deploy.id_generator">id_generator() (in module AIPyS.Baysian_deploy)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -220,7 +240,7 @@
 <h2 id="K">K</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.keepObject">keepObject() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.keepObject">keepObject() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -228,7 +248,7 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.loopLabelimage">loopLabelimage() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.loopLabelimage">loopLabelimage() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -236,43 +256,47 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.meanIntensity">meanIntensity() (AIPyS.AIPS_granularity.MERGE static method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.meanIntensity">meanIntensity() (AIPyS.AIPS_granularity.MERGE static method)</a>
 </li>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.measure_properties">measure_properties() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.measure_properties">measure_properties() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
 </li>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE">MERGE (class in AIPyS.AIPS_granularity)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE">MERGE (class in AIPyS.AIPS_granularity)</a>
 </li>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.mergeTable">mergeTable() (AIPyS.AIPS_granularity.MERGE method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.mergeTable">mergeTable() (AIPyS.AIPS_granularity.MERGE method)</a>
 </li>
-      <li><a href="manual/classification/CNN.html#AIPyS.model_builder.model_builder">model_builder (class in AIPyS.model_builder)</a>
+      <li><a href="API/classification/CNN.html#AIPyS.model_builder.model_builder">model_builder (class in AIPyS.model_builder)</a>
 </li>
-      <li><a href="manual/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_basic">model_cnn_basic() (AIPyS.model_builder.model_builder method)</a>
+      <li><a href="API/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_basic">model_cnn_basic() (AIPyS.model_builder.model_builder method)</a>
 </li>
-      <li><a href="manual/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_basic_Augmentation">model_cnn_basic_Augmentation() (AIPyS.model_builder.model_builder method)</a>
+      <li><a href="API/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_basic_Augmentation">model_cnn_basic_Augmentation() (AIPyS.model_builder.model_builder method)</a>
 </li>
-      <li><a href="manual/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_drop_layer_4and5">model_cnn_transfer_learning_Augmentation_drop_layer_4and5() (AIPyS.model_builder.model_builder method)</a>
+      <li><a href="API/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_drop_layer_4and5">model_cnn_transfer_learning_Augmentation_drop_layer_4and5() (AIPyS.model_builder.model_builder method)</a>
+</li>
+      <li><a href="API/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_freez_all">model_cnn_transfer_learning_Augmentation_freez_all() (AIPyS.model_builder.model_builder method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/CNN.html#AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_freez_all">model_cnn_transfer_learning_Augmentation_freez_all() (AIPyS.model_builder.model_builder method)</a>
-</li>
       <li>
     module
 
       <ul>
-        <li><a href="manual/segmentation/Cellpose.html#module-AIPyS.AIPS_cellpose">AIPyS.AIPS_cellpose</a>
+        <li><a href="API/segmentation/Cellpose.html#module-AIPyS.AIPS_cellpose">AIPyS.AIPS_cellpose</a>
 </li>
-        <li><a href="manual/classification/Granularity.html#module-AIPyS.AIPS_granularity">AIPyS.AIPS_granularity</a>
+        <li><a href="API/miscellaneous/Display.html#module-AIPyS.AIPS_file_display">AIPyS.AIPS_file_display</a>
 </li>
-        <li><a href="manual/segmentation/Parameter.html#module-AIPyS.AIPS_module">AIPyS.AIPS_module</a>
+        <li><a href="API/miscellaneous/Support_function.html#module-AIPyS.AIPS_functions">AIPyS.AIPS_functions</a>
 </li>
-        <li><a href="manual/simulation/simulation.html#module-AIPyS.AIPS_simulate">AIPyS.AIPS_simulate</a>
+        <li><a href="API/classification/Granularity.html#module-AIPyS.AIPS_granularity">AIPyS.AIPS_granularity</a>
 </li>
-        <li><a href="manual/deployment/Deploy_gran.html#module-AIPyS.Baysian_deploy">AIPyS.Baysian_deploy</a>
+        <li><a href="API/segmentation/Parameter.html#module-AIPyS.AIPS_module">AIPyS.AIPS_module</a>
 </li>
-        <li><a href="manual/deployment/Deploy_CNN.html#module-AIPyS.CNN_deploy">AIPyS.CNN_deploy</a>
+        <li><a href="API/simulation/simulation.html#module-AIPyS.AIPS_simulate">AIPyS.AIPS_simulate</a>
 </li>
-        <li><a href="manual/classification/CNN.html#module-AIPyS.model_builder">AIPyS.model_builder</a>
+        <li><a href="API/deployment/Deploy_gran.html#module-AIPyS.Baysian_deploy">AIPyS.Baysian_deploy</a>
+</li>
+        <li><a href="API/deployment/Deploy_CNN.html#module-AIPyS.CNN_deploy">AIPyS.CNN_deploy</a>
+</li>
+        <li><a href="API/classification/CNN.html#module-AIPyS.model_builder">AIPyS.model_builder</a>
 </li>
       </ul></li>
   </ul></td>
@@ -281,13 +305,25 @@
 <h2 id="O">O</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate.observePerRaw">observePerRaw() (AIPyS.AIPS_simulate.Simulate method)</a>
+      <li><a href="API/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate.observePerRaw">observePerRaw() (AIPyS.AIPS_simulate.Simulate method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.openingOperation">openingOperation() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.openingOperation">openingOperation() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
 </li>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.outlierRemoval">outlierRemoval() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.outlierRemoval">outlierRemoval() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="API/miscellaneous/Support_function.html#AIPyS.AIPS_functions.plot_composite_image">plot_composite_image() (in module AIPyS.AIPS_functions)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="API/miscellaneous/Support_function.html#AIPyS.AIPS_functions.px_pil_figure">px_pil_figure() (in module AIPyS.AIPS_functions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -295,11 +331,17 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.removeObjects">removeObjects() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
+      <li><a href="API/miscellaneous/Support_function.html#AIPyS.AIPS_functions.remove_gradiant_label_border">remove_gradiant_label_border() (in module AIPyS.AIPS_functions)</a>
+</li>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.removeObjects">removeObjects() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.replaceLabel">replaceLabel() (AIPyS.AIPS_granularity.MERGE static method)</a>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.MERGE.replaceLabel">replaceLabel() (AIPyS.AIPS_granularity.MERGE static method)</a>
+</li>
+      <li><a href="API/miscellaneous/Support_function.html#AIPyS.AIPS_functions.rgb_file_gray_scale">rgb_file_gray_scale() (in module AIPyS.AIPS_functions)</a>
+</li>
+      <li><a href="API/miscellaneous/Support_function.html#AIPyS.AIPS_functions.rgbTograyscale">rgbTograyscale() (in module AIPyS.AIPS_functions)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -307,19 +349,23 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation.seedSegmentation">seedSegmentation() (AIPyS.AIPS_module.Segmentation method)</a>
+      <li><a href="API/miscellaneous/Support_function.html#AIPyS.AIPS_functions.save_pil_to_directory">save_pil_to_directory() (in module AIPyS.AIPS_functions)</a>
 </li>
-      <li><a href="manual/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation">Segmentation (class in AIPyS.AIPS_module)</a>
+      <li><a href="API/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation.seedSegmentation">seedSegmentation() (AIPyS.AIPS_module.Segmentation method)</a>
 </li>
-      <li><a href="manual/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate">Simulate (class in AIPyS.AIPS_simulate)</a>
+      <li><a href="API/segmentation/Parameter.html#AIPyS.AIPS_module.Segmentation">Segmentation (class in AIPyS.AIPS_module)</a>
+</li>
+      <li><a href="API/miscellaneous/Support_function.html#AIPyS.AIPS_functions.show_image_adjust">show_image_adjust() (in module AIPyS.AIPS_functions)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate.simulation">simulation() (AIPyS.AIPS_simulate.Simulate method)</a>
+      <li><a href="API/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate">Simulate (class in AIPyS.AIPS_simulate)</a>
 </li>
-      <li><a href="manual/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method">stackObjects_cellpose_ebimage_parametrs_method() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
+      <li><a href="API/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate.simulation">simulation() (AIPyS.AIPS_simulate.Simulate method)</a>
 </li>
-      <li><a href="manual/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.stackTOobjects">stackTOobjects() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
+      <li><a href="API/segmentation/Cellpose.html#AIPyS.AIPS_cellpose.AIPS_cellpose.stackObjects_cellpose_ebimage_parametrs_method">stackObjects_cellpose_ebimage_parametrs_method() (AIPyS.AIPS_cellpose.AIPS_cellpose method)</a>
+</li>
+      <li><a href="API/classification/Granularity.html#AIPyS.AIPS_granularity.GRANULARITY.stackTOobjects">stackTOobjects() (AIPyS.AIPS_granularity.GRANULARITY method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -327,7 +373,7 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="manual/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate.truePositiveTuple">truePositiveTuple() (AIPyS.AIPS_simulate.Simulate method)</a>
+      <li><a href="API/simulation/simulation.html#AIPyS.AIPS_simulate.Simulate.truePositiveTuple">truePositiveTuple() (AIPyS.AIPS_simulate.Simulate method)</a>
 </li>
   </ul></td>
 </tr></table>

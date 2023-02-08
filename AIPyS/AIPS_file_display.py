@@ -21,7 +21,7 @@ class Compsite_display(object):
         self.input_image = input_image
         self.mask_roi = mask_roi
         self.channel = channel
-        self.rgb_out = self.draw_ROI_contour(self.channel)
+        self.rgb_out = self.draw_ROI_contour()
 
     def outline_seg(mask,index):
         '''
@@ -64,7 +64,7 @@ class Compsite_display(object):
             framed_mask = Compsite_display.outline_seg(mask, info_table.index.values)
         return framed_mask
 
-    def draw_ROI_contour(self, channel=None):
+    def draw_ROI_contour(self):
         ''' create a 3 channel rgb image from 16bit input image
             optional bin contour image from ROI image
             :parameter
@@ -85,8 +85,8 @@ class Compsite_display(object):
         if len(np.unique(mask_input)) > 1:
             bin_mask = Compsite_display.binary_frame_mask(ch=self.input_image,mask=self.mask_roi)
             bin_mask = np.where(bin_mask == 1, True, False)
-            if channel is not None:
-                rgb_input_img[bin_mask > 0, channel] = 255
+            if self.channel is not None:
+                rgb_input_img[bin_mask > 0, self.channel] = 255
             else:
                 rgb_input_img[bin_mask > 0, 2] = 255
         return rgb_input_img

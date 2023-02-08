@@ -1,9 +1,0 @@
-============
-Deployment
-============
-
-.. toctree::
-    :maxdepth: 2
-    :numbered:
-
-    Deploy_gran
