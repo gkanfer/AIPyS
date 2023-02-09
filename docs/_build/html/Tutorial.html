@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutorial notebooks &mdash; AIPyS  documentation</title>
+  <title>Tutorials &mdash; AIPyS  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="01-parametric-segmentation.html" />
+    <link rel="next" title="AIPyS modules" href="API.html" />
     <link rel="prev" title="Installing AIPyS" href="install/index.html" /> 
 </head>
 
@@ -41,7 +41,9 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install/index.html">Installing AIPyS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial notebooks</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#parametric-segmentation">1 Parametric Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deep-learning-segmentation">2 Deep learning Segmentation</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">AIPyS modules</a></li>
@@ -61,7 +63,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a></li>
-      <li class="breadcrumb-item active">Tutorial notebooks</li>
+      <li class="breadcrumb-item active">Tutorials</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Tutorial.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -95,14 +97,82 @@
     text-align: unset;
 }
 </style>
-<section id="tutorial-notebooks">
-<h1>Tutorial notebooks<a class="headerlink" href="#tutorial-notebooks" title="Permalink to this headline"></a></h1>
-<p>Developed AI-Powered Photoswitchable Genetic CRISPR Screen, Version 2. Utilized Numpy, scikit-image, scipy for cell detection, U-net/cGAN for segmentation, PyMC3 for Bayes’ Logistic Model, and Bayesian inference for sgRNA abundance analysis. Published online using Plotly-Dash for users to interact and visualize results.
-The project is divided into two steps. The first step involves segmentation, training classifiers, and simulating enrichment analysis. The second step is deployment.</p>
-<p>To learn AIPyS, follow this numbered sequence of tutorial notebooks. If you want to run
-these Jupyter notebooks you can get them from the PyImageJ repository <a class="reference external" href="https://github.com/gkanfer/AIPyS/tree/main/docs">here</a>.</p>
-<div class="toctree-wrapper compound">
+<section id="tutorials">
+<h1>Tutorials<a class="headerlink" href="#tutorials" title="Permalink to this headline"></a></h1>
+<section id="parametric-segmentation">
+<h2>1 Parametric Segmentation<a class="headerlink" href="#parametric-segmentation" title="Permalink to this headline"></a></h2>
+<p>The AIPS packdge provides two alternative methods for segmenting cells: parametric or deep-learning segmentation.
+For parametric segmentation, we enhanced and translated our  <a class="reference external" href="https://www.r-project.org/">R</a>-based code.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_module</span> <span class="k">as</span> <span class="n">ai</span>
+<span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_functions</span> <span class="k">as</span> <span class="n">af</span>
+<span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_file_display</span> <span class="k">as</span> <span class="n">afd</span>
+</pre></div>
 </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>F:\Gil\anaconda\envs\pm-tf24-cellpose\lib\site-packages\skimage\viewer\utils\__init__.py:1: UserWarning: Recommended matplotlib backend is `Agg` for full skimage.viewer functionality.
+  from .core import *
+</pre></div>
+</div>
+<p>We demonstrate the image segmentation of a capture of Catalase-GFP expressing u2os cells. This image was cropped from a 2044x2048 pixel image to a size of 512x512.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">io</span>
+<span class="n">image_pex</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="s1">&#39;catGFP.tif&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/output_5_0_1.png" /></p>
+<p>Set AIPyS object for preforming segmentation of the nucleus (seed),</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AIPS_object</span> <span class="o">=</span> <span class="n">ai</span><span class="o">.</span><span class="n">Segmentation</span><span class="p">(</span><span class="n">Image_name</span><span class="o">=</span> <span class="s1">&#39;catGFP.tif&#39;</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">ch_</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rmv_object_nuc</span> <span class="o">=</span> <span class="mf">0.12</span><span class="p">,</span><span class="n">block_size</span> <span class="o">=</span> <span class="mi">59</span><span class="p">,</span> <span class="n">offset</span><span class="o">=-</span><span class="mi">4</span><span class="p">,</span> <span class="n">clean</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="n">AIPS_object</span><span class="o">.</span><span class="n">seedSegmentation</span><span class="p">()</span>
+<span class="n">nmask2</span> <span class="o">=</span> <span class="n">seed</span><span class="p">[</span><span class="s1">&#39;nmask2&#39;</span><span class="p">]</span> <span class="c1">#Local threshold map - seed</span>
+<span class="n">sort_mask</span> <span class="o">=</span> <span class="n">seed</span><span class="p">[</span><span class="s1">&#39;sort_mask&#39;</span><span class="p">]</span> <span class="c1">#RGB map - seed</span>
+</pre></div>
+</div>
+<p>Then object is used for segmenting based on the nucleus as a seed.
+where the seed  segmentation parametrs are pluged in.
+Calculate a threshold mask image by using a weighted mean (block_size) of the local neighborhood of each pixel, minus a offset.</p>
+<p><img alt="png" src="_images/output_7_0_1.png" /></p>
+<p>Target channel (Catalase-GFP) was used to identify cell borders and edges for segmentation. High-pass filtering, local thresholding, and global thresholding were then used to create global and local masks.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">target</span> <span class="o">=</span> <span class="n">AIPS_object</span><span class="o">.</span><span class="n">cytosolSegmentation</span><span class="p">(</span><span class="n">ch2_</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">block_size_cyto</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">offset_cyto</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span> <span class="n">global_ther</span><span class="o">=</span> <span class="mf">0.51</span><span class="p">,</span> <span class="n">rmv_object_cyto</span><span class="o">=</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">rmv_object_cyto_small</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">combine</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;combine&#39;</span><span class="p">]</span>
+<span class="n">cseg_mask</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;cseg_mask&#39;</span><span class="p">]</span>
+<span class="n">mask_unfiltered</span> <span class="o">=</span> <span class="n">target</span><span class="p">[</span><span class="s1">&#39;mask_unfiltered&#39;</span><span class="p">]</span>
+<span class="n">maskContour</span> <span class="o">=</span> <span class="n">afd</span><span class="o">.</span><span class="n">Compsite_display</span><span class="p">(</span><span class="n">input_image</span> <span class="o">=</span> <span class="n">image_pex</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:],</span> <span class="n">mask_roi</span> <span class="o">=</span> <span class="n">cseg_mask</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw_ROI_contour</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/output_9_0_1.png" /></p>
+</section>
+<section id="deep-learning-segmentation">
+<h2>2 Deep learning Segmentation<a class="headerlink" href="#deep-learning-segmentation" title="Permalink to this headline"></a></h2>
+<center><b><u>02 Deep learning Segmentation (CellPose)</u></b></center>
+<p>The CellPose method (publish by Stinger et. al. ) uses a neural network (NN) to detect and segment cells from an input image. The NN is trained on a dataset of labeled images, with the labels indicating which pixels belong to each cell. After training, the network is able to accurately identify cells in a new image. CellPose also allows for the detection of multiple cells in an image, allowing for the analysis of cell colonies.</p>
+<p>In conclusion, the CellPose method provides an efficient and accurate way to segment cells from microscopy images. This method can be used to analyze individual cells or cell colonies, allowing for the accurate measurement of cell features.</p>
+<ul class="simple">
+<li><p>Stringer, C., Wang, T., Michaelos, M., &amp; Pachitariu, M. (2021). Cellpose: a generalist algorithm for cellular segmentation. <em>Nature methods, 18</em>(1), 100-106.
+[<a class="reference external" href="https://scholar.googleusercontent.com/scholar.bib?q=info:rmoKTp0cEiYJ:scholar.google.com/&amp;output=citation&amp;scisdr=CgXHFLYtEMb9qOfkmrg:AAGBfm0AAAAAY2jigrhA_p9qteLfyKDZlh96dZdapgkX&amp;scisig=AAGBfm0AAAAAY2jigv55oXhgKwSArS2sr_fxBh--42gU&amp;scisf=4&amp;ct=citation&amp;cd=-1&amp;hl=en&amp;scfhb=1">bibtex</a>] <Br></p></li>
+<li><p><a class="reference external" href="https://github.com/MouseLand/cellpose">Cellpose github page</a></p></li>
+</ul>
+<p>We integrated Cellpose with the AIPS platform to enable automatic capture of cell borders.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_cellpose</span> <span class="k">as</span> <span class="n">AC</span>
+</pre></div>
+</div>
+<p>In addation, the compsite_display module for display the mask contour</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_file_display</span> <span class="k">as</span> <span class="n">afd</span>
+</pre></div>
+</div>
+<p>Similar to the parametric segmentation method, GFP-expressing Catalase images are uploaded and analyzed using the <code class="docutils literal notranslate"><span class="pre">AIPS_cellpose</span></code> module.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AIPS_pose_object</span> <span class="o">=</span> <span class="n">AC</span><span class="o">.</span><span class="n">AIPS_cellpose</span><span class="p">(</span><span class="n">Image_name</span> <span class="o">=</span> <span class="s1">&#39;catGFP.tif&#39;</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">model_type</span> <span class="o">=</span> <span class="s1">&#39;cyto&#39;</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">AIPS_pose_object</span><span class="o">.</span><span class="n">cellpose_image_load</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">channels=[0,0]</span></code> indicates input grayscale image.</p>
+<p>The module <code class="docutils literal notranslate"><span class="pre">cellpose_segmantation</span></code> calls for CellPose segmentation algorithm, and returns target mask (in this case “cyto”) and features table.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">AIPS_pose_object</span><span class="o">.</span><span class="n">cellpose_segmantation</span><span class="p">(</span><span class="n">image_input</span><span class="o">=</span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:])</span>
+</pre></div>
+</div>
+<p>Display cytosolic mask contour using the <code class="docutils literal notranslate"><span class="pre">Compsite_display</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">maskContour</span> <span class="o">=</span> <span class="n">afd</span><span class="o">.</span><span class="n">Compsite_display</span><span class="p">(</span><span class="n">input_image</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:],</span> <span class="n">mask_roi</span> <span class="o">=</span> <span class="n">mask</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">draw_ROI_contour</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><img alt="png" src="_images/output_7_0_2.png" /></p>
+</section>
 </section>
 
 
@@ -110,7 +180,7 @@ these Jupyter notebooks you can get them from the PyImageJ repository <a class="
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="install/index.html" class="btn btn-neutral float-left" title="Installing AIPyS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="01-parametric-segmentation.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="API.html" class="btn btn-neutral float-right" title="AIPyS modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -2,44 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/02_Deep_learning_Segmentation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/01-parametric-segmentation.doctree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/01-parametric-segmentation.md.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_5_0_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_7_0_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_9_0_1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/.ipynb_checkpoints/02_Deep_learning_Segmentation-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/01-parametric-segmentation_temp.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/02_Deep_learning_Segmentation.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/temp.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.ipynb_checkpoints/01-parametric-segmentation_temp-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.ipynb_checkpoints/01-parametric-segmentation_temp-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/01-parametric-segmentation_temp.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/API.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/API.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/API/simulation/simulation.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/API/simulation/simulation.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/01-parametric-segmentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/01-parametric-segmentation.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/02_Deep_learning_Segmentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/02_Deep_learning_Segmentation.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Tutorial.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Tutorial.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/API.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/API.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/01-parametric-segmentation.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/01-parametric-segmentation.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/02_Deep_learning_Segmentation.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/02_Deep_learning_Segmentation.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/install/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/install/index.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/01-parametric-segmentation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/01-parametric-segmentation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/02_Deep_learning_Segmentation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/02_Deep_learning_Segmentation.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/API.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/API/simulation/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API/simulation/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/API/simulation/simulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API/simulation/simulation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/Install.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Install.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/model_builder.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/model_builder.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/API.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/API.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/API/simulation/simulation.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/API/simulation/simulation.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/01-parametric-segmentation.md.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/01-parametric-segmentation.md.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/02_Deep_learning_Segmentation.md.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/02_Deep_learning_Segmentation.md.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/install/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/install/index.rst.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/install/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/install/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/01-parametric-segmentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/01-parametric-segmentation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/output_5_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/output_7_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/docs/output_7_0_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/output_9_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/install/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/install/index.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

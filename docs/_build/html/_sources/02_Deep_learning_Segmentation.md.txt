@@ -51,19 +51,16 @@ img = AIPS_pose_object.cellpose_image_load()
 mask, table = AIPS_pose_object.cellpose_segmantation(image_input=img[0,:,:])
 ```
 
-    F:\Gil\anaconda\envs\pymc3_cellpose\lib\site-packages\skimage\viewer\utils\__init__.py:1: UserWarning: Recommended matplotlib backend is `Agg` for full skimage.viewer functionality.
-      from .core import *
-    
-
 The module ```cellpose_segmantation``` calls for CellPose segmentation algorithm, and returns target mask (in this case "cyto") and features table.  
+
 ```python
 mask, table = AIPS_pose_object.cellpose_segmantation(image_input=img[0,:,:])
 ```
+
 Display cytosolic mask contour using the ```Compsite_display```.  
 ```python
 maskContour = afd.Compsite_display(input_image = img[0,:,:], mask_roi = mask, channel= 0).draw_ROI_contour()
 ```
-
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -76,8 +73,6 @@ ax[1].imshow(maskContour, cmap=plt.cm.rainbow)
 ax[1].title.set_text('Mask - Target') 
 ```
 
-
-    
 ![png](output_7_0_2.png)
     
 

@@ -1,4 +1,4 @@
-<center><b><u>Parametric Segmentation</u></b></center>
++++ <center><b><u>Parametric Segmentation</u></b></center>
 
 The AIPS packdge provides two alternative methods for segmenting cells: parametric or deep-learning segmentation. 
 For parametric segmentation, we enhanced and translated our  [R](https://www.r-project.org/)-based code.

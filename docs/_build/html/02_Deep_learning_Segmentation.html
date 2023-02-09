@@ -116,10 +116,6 @@
 </pre></div>
 </div>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">channels=[0,0]</span></code> indicates input grayscale image.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>F:\Gil\anaconda\envs\pymc3_cellpose\lib\site-packages\skimage\viewer\utils\__init__.py:1: UserWarning: Recommended matplotlib backend is `Agg` for full skimage.viewer functionality.
-  from .core import *
-</pre></div>
-</div>
 <p>The module <code class="docutils literal notranslate"><span class="pre">cellpose_segmantation</span></code> calls for CellPose segmentation algorithm, and returns target mask (in this case “cyto”) and features table.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mask</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">AIPS_pose_object</span><span class="o">.</span><span class="n">cellpose_segmantation</span><span class="p">(</span><span class="n">image_input</span><span class="o">=</span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:])</span>
 </pre></div>
