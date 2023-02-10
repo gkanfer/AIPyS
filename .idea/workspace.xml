@@ -2,38 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/temp.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/01-parametric-segmentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/01-parametric-segmentation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/02_Deep_learning_Segmentation.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/02_Deep_learning_Segmentation.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Tutorial.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Tutorial.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/01-parametric-segmentation.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/01-parametric-segmentation.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/02_Deep_learning_Segmentation.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/02_Deep_learning_Segmentation.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/install/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/install/index.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/01-parametric-segmentation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/01-parametric-segmentation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/02_Deep_learning_Segmentation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/02_Deep_learning_Segmentation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/API.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/Install.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Install.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/model_builder.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/model_builder.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/01-parametric-segmentation.md.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/01-parametric-segmentation.md.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/02_Deep_learning_Segmentation.md.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/02_Deep_learning_Segmentation.md.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/install/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/install/index.rst.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/install/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/install/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/install/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/install/index.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/exp001_13DKO_2-1.tif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/draft.py" beforeDir="false" afterPath="$PROJECT_DIR$/draft.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,9 +101,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/AIPyS/AIPS_cellpose.py</url>
+          <line>321</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/draft.py</url>
-          <line>32</line>
-          <option name="timeStamp" value="1" />
+          <line>26</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

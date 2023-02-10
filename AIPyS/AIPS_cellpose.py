@@ -273,7 +273,7 @@ class AIPS_cellpose:
 
 
 
-def granularityMesure_cellpose(file,path,classLabel,outPath, clean = None, outputTableName = None,):
+def granularityMesure_cellpose(file,path,classLabel,outPath = None, clean = None, outputTableName = None,saveMode = True, **kwargs):
     '''
     function description:
         1) cell segmented using cellpose
@@ -295,31 +295,48 @@ def granularityMesure_cellpose(file,path,classLabel,outPath, clean = None, outpu
     outPath: str
     outputTableName: str
         e.g. "outputTableNorm.csv"
-
+    saveMode: bool
+        save returns
     Notes
     -----
     required single channel tif
     '''
     AIPS_pose_object = AC.AIPS_cellpose(Image_name=file, path=path, model_type="cyto", channels=[0, 0])
     img = AIPS_pose_object.cellpose_image_load()
+    if len(img.shape) > 2:
+        raise ValueError("required single channel tif")
     mask, table = AIPS_pose_object.cellpose_segmantation(image_input=img)
     compsite = afd.Compsite_display(input_image=img, mask_roi=mask)
-    compsiteImage  = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24,  intensity=2,label_draw = 'area')
-    compsiteImage.save(os.path.join(outPath,"merge.png"), "PNG")
+    if 'intensity' in kwargs:
+        intensity = kwargs['intensity']
+    compsiteImage  = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24,  intensity=1,label_draw = 'area')
+    if saveMode:
+        compsiteImage.save(os.path.join(outPath,"merge.png"), "PNG")
     if clean:
         objectidx = table.loc[table['area'] < clean,:].index.tolist()
         mask, table = AIPS_pose_object.removeObjects(objectList=objectidx)
         compsite = afd.Compsite_display(input_image=img, mask_roi=mask)
-        compsiteImage = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24, intensity=2,label_draw='area')
-        compsiteImage.save(os.path.join(outPath,"mergeClean.png"), "PNG")
+        compsiteImage = compsite.display_image_label(table=table, font_select="arial.ttf", font_size=24, intensity=1,label_draw='area')
+        if saveMode:
+            compsiteImage.save(os.path.join(outPath,"mergeClean.png"), "PNG")
     gran = ag.GRANULARITY(image=img, mask=mask)
-    granData = gran.loopLabelimage(start_kernel=2, end_karnel=7, kernel_size=7)
+    start_kernel = kwargs.get('start_kernel', 2)
+    end_karnel = kwargs.get('end_karnel', 7)
+    kernel_size = kwargs.get('kernel_size', 7)
+    if 'start_kernel' in kwargs:
+        start_kernel = kwargs['start_kernel']
+    if 'end_karnel' in kwargs:
+        end_karnel = kwargs['end_karnel']
+    if 'kernel_size' in kwargs:
+        kernel_size = kwargs['kernel_size']
+    granData = gran.loopLabelimage(start_kernel=start_kernel, end_karnel=end_karnel, kernel_size=kernel_size)
     granOriginal, _ = gran.featuresTable(features=['label', 'centroid'])
     granData["classLabel"] = classLabel
-    if outputTableName is None:
-        granData.to_csv(os.path.join(outPath,'granularity.csv'))
-    else:
-        granData.to_csv(os.path.join(outPath, outputTableName))
+    if saveMode:
+        if outputTableName is None:
+            granData.to_csv(os.path.join(outPath,'granularity.csv'))
+        else:
+            granData.to_csv(os.path.join(outPath, outputTableName))
     Intensity, Kernel = ag.MERGE().meanIntensity(granData, group=classLabel)
     df = pd.DataFrame({"kernel":Kernel,"Signal intensity (ratio)":Intensity})
     from matplotlib.backends.backend_pdf import PdfPages
@@ -340,7 +357,10 @@ def granularityMesure_cellpose(file,path,classLabel,outPath, clean = None, outpu
         with PdfPages(fname) as pp:
             for plot in plots:
                 pp.savefig(plot.figure)
-    plots2pdf(generate_plots(), os.path.join(outPath,'outPlots.pdf'))
+    if saveMode:
+        plots2pdf(generate_plots(), os.path.join(outPath,'outPlots.pdf'))
+    else:
+        return compsiteImage, table, df
 
 
 
