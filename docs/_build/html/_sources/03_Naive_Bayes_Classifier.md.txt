@@ -359,39 +359,44 @@ A peroxisome logistic regression classifier is a machine learning algorithm that
 
 Here is the The logistic model used for classify peroxisome:
 
-<div style="text-align:center">
-$y|\alpha,\beta,b  \sim Bernoulli(\theta)$<br/>
-$\theta = logistic(\alpha + \beta \times b)$ 
-</div>
+
+```{math}
+y|\alpha,\beta,b  \sim Bernoulli(\theta)
+\theta = logistic(\alpha + \beta \times b) 
+```
 
 
 **The exponential decay equation** 
 
-$ t = a \times t0 \times e^{-b \times kernel}$\
+```{math}
+t = a \times t0 \times e^{-b \times kernel}
+```
 
 where t is the current value of the decaying quantity, t0 is the initial value of the decaying quantity, a is a constant, b is the decay rate and kernel is the time interval over which the decay takes place.
 
-$b =  - \frac {ln \frac {t}{t0}}{Kernel}$
+```{math}
+b =  - \frac {ln \frac {t}{t0}}{Kernel}
+```
 
 The decay rate, b, is calculated by taking the natural logarithm of the ratio of the current value to the initial value and dividing it by the kernel. 
 
 **The Decay formula logistic model** is a mathematical expression used to model the behaviour of a system over time. It is based on the idea that the rate of change in the system is proportional to the current state of the system. The equation is represented as: 
-
-$\theta = logistic(\alpha + \beta \frac {ln \frac {t}{t0}}{Kernel})$ 
-
+```{math}
+\theta = logistic(\alpha + \beta \frac {ln \frac {t}{t0}}{Kernel}) 
+```
 Where: 
 
-$\theta$ is the output of the model, which describes the rate of change in the system.
+```{math}\theta``` is the output of the model, which describes the rate of change in the system.
 
 The Normal distribution prior assigned to $\alpha$ and $\beta$ had a mean of 0 and a standard deviation of 10, which can be adjusted to control the behavior of the model.
 
-$t$ is the current state of the system.
+```{math}t``` is the current state of the system.
 
-$t0$ is the initial state of the system.
+```{math}t0``` is the initial state of the system.
 
-$Kernel$ is the rate of change in the system.
+```{math}Kernel``` is the rate of change in the system.
 
-The logistic part of the equation is used to ensure that the output is within a certain range. This range is defined by the parameters $a$ and $\beta$. 
+The logistic part of the equation is used to ensure that the output is within a certain range. This range is defined by the parameters ```{math}a``` and ```{math}\beta```. 
 
 <center><b><u>Logistic Regression Classifier, training</u></b></center>
 
@@ -644,12 +649,10 @@ az.plot_trace(trace, figsize=(12, 6), compact=True)
 
 <b><u>Model evaluation </u></b>
 The boundaries between classes are determined by the logistic function, which is used to calculate the probability of a data point belonging to a particular class. The model's parameters are estimated based on the training data, and the model is then used to make predictions on unseen data.
-
-$\theta = logistic(\alpha + \beta \times b)$
-<Br/>
-<Br/>
-$bd = - \frac{\alpha}{\beta}$
-
+```{math}
+\theta = logistic(\alpha + \beta \times b)
+\bd = - \frac{\alpha}{\beta}
+```
 
 ```{code-cell} ipython3
 :tags: [hide-input]
@@ -689,11 +692,3 @@ ax[1].text(0, 0.1, "b :{}".format(np.round(trace['b'].mean(), 2)), fontsize=10,t
 
 
 
-```python
-
-```
-
-
-```python
-
-```

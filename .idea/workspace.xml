@@ -2,24 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/data/norm.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pheno.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/.ipynb_checkpoints/Multiple_logistic_regression-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/03_Naive_Bayes_Classifier.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/Multiple_logistic_regression.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_20_0_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_22_2_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_24_1_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_2_0_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_7_1_3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/03_Naive_Bayes_Classifier.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/AIPS_cellpose.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/Baysian_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Baysian_training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.ipynb_checkpoints/03_Naive_Bayes_Classifier-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.ipynb_checkpoints/03_Naive_Bayes_Classifier-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/03_Naive_Bayes_Classifier.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Tutorial.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Tutorial.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/draft.py" beforeDir="false" afterPath="$PROJECT_DIR$/draft.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/03_Naive_Bayes_Classifier.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/03_Naive_Bayes_Classifier.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/03_Naive_Bayes_Classifier.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/03_Naive_Bayes_Classifier.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/03_Naive_Bayes_Classifier.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/03_Naive_Bayes_Classifier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/03_Naive_Bayes_Classifier.md.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/03_Naive_Bayes_Classifier.md.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
