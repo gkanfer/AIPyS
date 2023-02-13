@@ -18,9 +18,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Classification" href="../classification/index.html" />
-    <link rel="prev" title="Parametric object segmentation" href="Parameter.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,18 +37,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installing AIPyS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial notebooks</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Segmentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Parameter.html">Parametric object segmentation</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cellpose module</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../classification/index.html">Classification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">miscellaneous modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../API.html">AIPyS modules</a></li>
 </ul>
 
         </div>
@@ -67,8 +57,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="../../API.html">&lt;no title&gt;</a></li>
-          <li class="breadcrumb-item"><a href="index.html">Segmentation</a></li>
       <li class="breadcrumb-item active">cellpose module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/API/segmentation/Cellpose.rst.txt" rel="nofollow"> View page source</a>
@@ -229,7 +217,7 @@ channels = [1,1]</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="AIPyS.AIPS_cellpose.granularityMesure_cellpose">
-<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_cellpose.</span></span><span class="sig-name descname"><span class="pre">granularityMesure_cellpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classLabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outPath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputTableName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_cellpose.html#granularityMesure_cellpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.granularityMesure_cellpose" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">AIPyS.AIPS_cellpose.</span></span><span class="sig-name descname"><span class="pre">granularityMesure_cellpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classLabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outPath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputTableName</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">saveMode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/AIPS_cellpose.html#granularityMesure_cellpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.AIPS_cellpose.granularityMesure_cellpose" title="Permalink to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>function description:</dt><dd><ol class="arabic simple">
 <li><p>cell segmented using cellpose</p></li>
@@ -254,6 +242,7 @@ channels = [1,1]</p></li>
 <li><p><strong>path</strong> (<em>str</em>) – </p></li>
 <li><p><strong>outPath</strong> (<em>str</em>) – </p></li>
 <li><p><strong>outputTableName</strong> (<em>str</em>) – e.g. “outputTableNorm.csv”</p></li>
+<li><p><strong>saveMode</strong> (<em>bool</em>) – save returns</p></li>
 </ul>
 </dd>
 </dl>
@@ -266,10 +255,7 @@ channels = [1,1]</p></li>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Parameter.html" class="btn btn-neutral float-left" title="Parametric object segmentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../classification/index.html" class="btn btn-neutral float-right" title="Classification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

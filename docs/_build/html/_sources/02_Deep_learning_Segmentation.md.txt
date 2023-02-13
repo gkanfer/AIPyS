@@ -1,4 +1,4 @@
-<center><b><u>02 Deep learning Segmentation (CellPose)</u></b></center>
++++ <center><b><u>02 Deep learning Segmentation (CellPose)</u></b></center>
 
 
 The CellPose method (publish by Stinger et. al. ) uses a neural network (NN) to detect and segment cells from an input image. The NN is trained on a dataset of labeled images, with the labels indicating which pixels belong to each cell. After training, the network is able to accurately identify cells in a new image. CellPose also allows for the detection of multiple cells in an image, allowing for the analysis of cell colonies. 

@@ -360,7 +360,7 @@ def granularityMesure_cellpose(file,path,classLabel,outPath = None, clean = None
     if saveMode:
         plots2pdf(generate_plots(), os.path.join(outPath,'outPlots.pdf'))
     else:
-        return compsiteImage, table, df
+        return compsiteImage, table, df, granData
 
 
 
