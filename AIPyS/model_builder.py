@@ -31,6 +31,54 @@ from keras.preprocessing.image import load_img, img_to_array, array_to_img
 import os
 
 class model_builder():
+    """
+    Parameters
+    ----------
+    IMG_DIM: tuple
+        The dimensions of images to be used for training and validation.
+    path_training: str
+        The path to the directory containing training images.
+    path_validation: str
+        The path to the directory containing validation images.
+    train_imgs_scaled: tf.array
+        The scaled training images.
+    validation_imgs_scaled:  tf.array
+        The scaled validation images.
+    path_model: str
+        The path to the directory containing the model to be used for training.
+    batch: int
+        The batch size to be used for training.
+    epoch: int
+        The number of epochs to be used for training.
+    input_shape: int
+        The shape of the inputs to be used for training.
+    train_labels_enc: tf.array
+        The encoded labels associated with the training images.
+    validation_labels_enc: tf.array
+        The encoded labels associated with the validation images.
+    train_imgs: image
+        The training images.
+    validation_imgs: image
+        The validation images.
+    steps_per_epoch_sel: int
+        The number of steps to take per epoch during training.
+    validation_steps: int
+        The number of steps to take during validation.
+    file_extention: str
+        The file extension for the images to be used for training and validation.
+    extract_size_train: int
+        The size of the training set to be used for training.
+    extract_size_val: int
+        The size of the validation set to be used for validation.
+    imbalance_train: int
+        The imbalance ratio of the training set.
+    imbalance_val: int
+        The imbalance ratio of the validation set.
+    model_name: str
+        The name of the model to be used for training.
+    path_checkpoints: str
+        The path to the directory containing the checkpoints of the model.
+    """
     def __init__(self, IMG_DIM=None, path_training=None, path_validation=None,
                 train_imgs_scaled=None, validation_imgs_scaled=None, path_model=None, batch=None, epoch=None,
                 input_shape=None, train_labels_enc=None, validation_labels_enc = None, train_imgs = None,
@@ -156,29 +204,6 @@ class model_builder():
         # save the model
         os.chdir(self.path_model)
         model.save('cnn_basic.h5')
-
-        # # test CNN preformance
-        # f, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-        # t = f.suptitle('Basic CNN Performance', fontsize=12)
-        # f.subplots_adjust(top=0.85, wspace=0.3)
-
-        # epoch_list = list(range(1, self.epoch + 1))
-        # ax1.plot(epoch_list, history.history['accuracy'], label='Train Accuracy')
-        # ax1.plot(epoch_list, history.history['val_accuracy'], label='Validation Accuracy')
-        # ax1.set_xticks(np.arange(0, self.epoch + 1, 5))
-        # ax1.set_ylabel('Accuracy Value')
-        # ax1.set_xlabel('Epoch')
-        # ax1.set_title('Accuracy')
-        # l1 = ax1.legend(loc="best")
-
-        # ax2.plot(epoch_list, history.history['loss'], label='Train Loss')
-        # ax2.plot(epoch_list, history.history['val_loss'], label='Validation Loss')
-        # ax2.set_xticks(np.arange(0, self.epoch + 1, 5))
-        # ax2.set_ylabel('Loss Value')
-        # ax2.set_xlabel('Epoch')
-        # ax2.set_title('Loss')
-        # l2 = ax2.legend(loc="best")
-
         return history
 
     def model_cnn_basic_Augmentation(self):
@@ -225,27 +250,6 @@ class model_builder():
         os.chdir(self.path_model)
         model.save('cnn_basic_Augmentation.h5')
 
-        # f, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-        # t = f.suptitle('cnn_basic_Augmentation', fontsize=12)
-        # f.subplots_adjust(top=0.85, wspace=0.3)
-
-        # epochs = self.epoch
-        # epoch_list = list(range(1, epochs + 1))
-        # ax1.plot(epoch_list, history.history['accuracy'], label='Train Accuracy')
-        # ax1.plot(epoch_list, history.history['val_accuracy'], label='Validation Accuracy')
-        # ax1.set_xticks(np.arange(0, epochs + 1, 5))
-        # ax1.set_ylabel('Accuracy Value')
-        # ax1.set_xlabel('Epoch')
-        # ax1.set_title('Accuracy')
-        # l1 = ax1.legend(loc="best")
-
-        # ax2.plot(epoch_list, history.history['loss'], label='Train Loss')
-        # ax2.plot(epoch_list, history.history['val_loss'], label='Validation Loss')
-        # ax2.set_xticks(np.arange(0, epochs + 1, 5))
-        # ax2.set_ylabel('Loss Value')
-        # ax2.set_xlabel('Epoch')
-        # ax2.set_title('Loss')
-        # l2 = ax2.legend(loc="best")
         return history
 
     def model_cnn_transfer_learning_Augmentation_freez_all(self):
@@ -310,27 +314,6 @@ class model_builder():
         os.chdir(self.path_model)
         model.save('transfer_learning_aug_dropout_freez_all.h5')
 
-        # f, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-        # t = f.suptitle('nn_transfer_learning_Augmentation_freez_all', fontsize=12)
-        # f.subplots_adjust(top=0.85, wspace=0.3)
-
-        # epochs = self.epoch
-        # epoch_list = list(range(1, epochs + 1))
-        # ax1.plot(epoch_list, history.history['accuracy'], label='Train Accuracy')
-        # ax1.plot(epoch_list, history.history['val_accuracy'], label='Validation Accuracy')
-        # ax1.set_xticks(np.arange(0, epochs + 1, 5))
-        # ax1.set_ylabel('Accuracy Value')
-        # ax1.set_xlabel('Epoch')
-        # ax1.set_title('Accuracy')
-        # l1 = ax1.legend(loc="best")
-
-        # ax2.plot(epoch_list, history.history['loss'], label='Train Loss')
-        # ax2.plot(epoch_list, history.history['val_loss'], label='Validation Loss')
-        # ax2.set_xticks(np.arange(0, epochs + 1, 5))
-        # ax2.set_ylabel('Loss Value')
-        # ax2.set_xlabel('Epoch')
-        # ax2.set_title('Loss')
-        # l2 = ax2.legend(loc="best")
         return history
 
     def model_cnn_transfer_learning_Augmentation_drop_layer_4and5(self):
@@ -398,28 +381,6 @@ class model_builder():
             model.save('cnn_transfer_learning_Augmentation_drop_layer_4and5.h5')
             with open('history_', 'wb') as file_pi:
                 pickle.dump(history.history, file_pi)
-        
-        # f, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
-        # t = f.suptitle('cnn_transfer_learning_Augmentation_drop_layer_4and5n', fontsize=12)
-        # f.subplots_adjust(top=0.85, wspace=0.3)
-
-        # epochs = self.epoch
-        # epoch_list = list(range(1, epochs + 1))
-        # ax1.plot(epoch_list, history.history['accuracy'], label='Train Accuracy')
-        # ax1.plot(epoch_list, history.history['val_accuracy'], label='Validation Accuracy')
-        # ax1.set_xticks(np.arange(0, epochs + 1, 5))
-        # ax1.set_ylabel('Accuracy Value')
-        # ax1.set_xlabel('Epoch')
-        # ax1.set_title('Accuracy')
-        # l1 = ax1.legend(loc="best")
-
-        # ax2.plot(epoch_list, history.history['loss'], label='Train Loss')
-        # ax2.plot(epoch_list, history.history['val_loss'], label='Validation Loss')
-        # ax2.set_xticks(np.arange(0, epochs + 1, 5))
-        # ax2.set_ylabel('Loss Value')
-        # ax2.set_xlabel('Epoch')
-        # ax2.set_title('Loss')
-        # l2 = ax2.legend(loc="best")
         return history
 
 
