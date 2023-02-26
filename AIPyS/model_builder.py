@@ -316,7 +316,7 @@ class model_builder():
 
         return history
 
-    def model_cnn_transfer_learning_Augmentation_drop_layer_4and5(self):
+    def model_cnn_transfer_learning_Augmentation_drop_layer_4and5(self,**kwargs):
         vgg = vgg16.VGG16(include_top=False, weights='imagenet',
                           input_shape=self.input_shape)
 
@@ -357,8 +357,11 @@ class model_builder():
         model.add(Dropout(0.3))
         model.add(Dense(1, activation='sigmoid'))
 
+        learning_rate = kwargs.get('learning_rate', 1e-5)
+        if 'learning_rate' in kwargs:
+            learning_rate = kwargs['learning_rate']
         model.compile(loss='binary_crossentropy',
-                      optimizer=optimizers.RMSprop(learning_rate=1e-5),
+                      optimizer=optimizers.RMSprop(learning_rate=learning_rate),
                       metrics=['accuracy'])
         
         checkpoint_path = self.path_checkpoints + "cp-{epoch:04d}.ckpt"

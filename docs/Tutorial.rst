@@ -15,3 +15,8 @@ ______________________________
 ________________________________________________
 .. include:: 03_Naive_Bayes_Classifier.md
    :parser: myst_parser.sphinx_
+
+4 Convolutional Neural Network - Classifier
+________________________________________________
+.. include:: 04_Convolutional_Neural_Network_Classifier.md
+   :parser: myst_parser.sphinx_

@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/.ipynb_checkpoints/03_Naive_Bayes_Classifier-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/04_Convolutional_Neural_Network_Classifier.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/output_11_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier/04 Convolutional Neural Network - Classifier.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier/output_11_4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AIPyS/model_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/model_builder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/02_Deep_learning_Segmentation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/02_Deep_learning_Segmentation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/03_Naive_Bayes_Classifier.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/03_Naive_Bayes_Classifier.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/Tutorial.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Tutorial.rst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
