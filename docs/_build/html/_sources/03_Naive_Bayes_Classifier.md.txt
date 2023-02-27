@@ -651,6 +651,8 @@ az.plot_trace(trace, figsize=(12, 6), compact=True)
 The boundaries between classes are determined by the logistic function, which is used to calculate the probability of a data point belonging to a particular class. The model's parameters are estimated based on the training data, and the model is then used to make predictions on unseen data.
 ```{math}
 \theta = logistic(\alpha + \beta \times b)
+```
+```{math}
 \bd = - \frac{\alpha}{\beta}
 ```
 

@@ -16,16 +16,25 @@ def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 def BayesianGranularityDeploy(file,path,kernel_size,trace_a,trace_b,thold,pathOut,clean,saveMerge=False):
     '''
     on the fly cell call function for activating cells
-    :param: file: str, single channel target image
-    :param: path: str
-    :param: kernel_size: int,
-    :param: trace_a: int,
-    :param: trace_b: int
-    :param: thold: int, probability threshold for calling cells
-    :param: pathOut: str
-    :param: clean: int, remove object bellow the selected area size
-    :param saveMerge: boolean
-    :return: binary mask for activating the called cell
+
+    Parameters
+    ----------
+    file: str
+        single channel target image
+    path: str
+    kernel_size: int
+    trace_a: int
+    trace_b: int
+    thold: int
+        probability threshold for calling cells
+    pathOut: str
+    clean: int
+        remove object bellow the selected area size
+    saveMerge: boolean
+
+    Returns
+    -------
+    binary mask for activating the called cell
     '''
     if isinstance(clean, int) == False:
         mesg = "area size is not of type integer"
@@ -80,40 +89,6 @@ def BayesianGranularityDeploy(file,path,kernel_size,trace_a,trace_b,thold,pathOu
 
 
 
-def BayesianGranularityDeployTest(file,path,kernel_size,trace_a,trace_b,thold,pathOut, clean ):
-    '''
-    on the fly cell call function for activating cells
-
-    :param file: str, single channel target image
-    :param path: str
-    :param kernel_size: int,
-    :param trace_a: int,
-    :param trace_b: int
-    :param thold: int, probability threshold for calling cells
-    :param pathOut: str
-    :param clean: int, remove object bellow the selected area size
-    :return: binary mask for activating the called cell
-    '''
-    if isinstance(clean, int) == False:
-        mesg = "area size is not of type integer"
-        raise ValueError(mesg)
-    AIPS_pose_object = AC.AIPS_cellpose(Image_name=file, path=path, model_type="cyto", channels=[0, 0], clean = clean)
-    img = AIPS_pose_object.cellpose_image_load()
-    # create mask for the entire image
-    mask, table = AIPS_pose_object.cellpose_segmantation(image_input=img)
-    gran = ag.GRANULARITY(image=img, mask=mask)
-    granData = gran.loopLabelimage(start_kernel=1, end_karnel=kernel_size, kernel_size=kernel_size)
-    granDataFinal = ag.MERGE().calcDecay(granData, kernel_size)
-    def classify(n, thold):
-        mu = trace_a + trace_b * n
-        prob = 1 / (1 + np.exp(-mu))
-        return prob, prob > thold
-    rate = granDataFinal.intensity.values
-    prob, prediction = classify(rate, thold)
-    table["predict"] = prob
-    image_blank = np.zeros_like(img)
-    binary, table_sel = AIPS_pose_object.call_bin(table_sel_cor=table, threshold=0.9, img_blank=image_blank)
-    return img, mask, table, binary, table_sel
 
 
 

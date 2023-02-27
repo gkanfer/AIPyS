@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; AIPyS  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installing AIPyS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../API.html">AIPyS modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/tutorial/04 Convolutional Neural Network - Classifier/04 Convolutional Neural Network - Classifier.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<p>Convolutional Neural Network - Classifier</p>
+<p>For training the CNN peroxisome model, we utilized Pex13 mutant cells, which expressed GFP-Cat signals throughout their cytoplasm.</p>
+<p>The Classification diverged into three parts:</p>
+<ol class="arabic simple">
+<li><p>Set training data</p></li>
+<li><p>Model Generation</p></li>
+<li><p>Evaluation</p></li>
+</ol>
+<center><b><u>Set training data</u></b></center>
+<p>The GFP-Cat images were then segmented into individual cells and saved into two separate folders - one for phenotypic images and another for normal peroxisomes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_cellpose</span> <span class="k">as</span> <span class="n">AC</span>
+</pre></div>
+</div>
+<p>For example, we used the CellPose model for segmenting the images (as described in section 2):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AIPS_pose_object</span> <span class="o">=</span> <span class="n">AC</span><span class="o">.</span><span class="n">AIPS_cellpose</span><span class="p">(</span><span class="n">Image_name</span> <span class="o">=</span> <span class="s1">&#39;catGFP.tif&#39;</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="n">model_type</span> <span class="o">=</span> <span class="s1">&#39;cyto&#39;</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">AIPS_pose_object</span><span class="o">.</span><span class="n">cellpose_image_load</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The function <code class="docutils literal notranslate"><span class="pre">stackObjects_cellpose_ebimage_parametrs_method</span></code> similar to the R packadge EBimage (publish by Pau et. al. ) brekes the mask input into 150 pixel single-cell images.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AIPS_pose_object</span> <span class="o">=</span> <span class="n">AC</span><span class="o">.</span><span class="n">stackObjects_cellpose_ebimage_parametrs_method</span><span class="p">(</span><span class="n">Image_name</span> <span class="o">=</span> <span class="s1">&#39;catGFP.tif&#39;</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span>                                                                          <span class="n">model_type</span> <span class="o">=</span> <span class="s1">&#39;cyto&#39;</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">AIPS_pose_object</span><span class="o">.</span><span class="n">cellpose_image_load</span><span class="p">()</span>
+<span class="n">mask</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">AIPS_pose_object</span><span class="o">.</span><span class="n">cellpose_segmantation</span><span class="p">(</span><span class="n">image_input</span><span class="o">=</span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:])</span>
+
+<span class="c1">##### Than EBimage like stacking function is used</span>
+
+<span class="n">stack</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">AIPS_pose_object</span><span class="o">.</span><span class="n">stackObjects_cellpose_ebimage_parametrs_method</span><span class="p">(</span><span class="n">image_input</span><span class="o">=</span><span class="n">img</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span>
+                                                                           <span class="n">extract_pixel</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                                                                           <span class="n">resize_pixel</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span>
+                                                                           <span class="n">img_label</span><span class="o">=</span><span class="n">table</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Pau G, Fuchs F, Sklyar O, Boutros M, Huber W (2010). “EBImage—an R package for image processing with applications to cellular phenotypes.” Bioinformatics, 26(7), 979–981. doi: 10.1093/bioinformatics/btq046.</p></li>
+</ul>
+<p>The single-cell images are to be organized into a training structure consisting of three separate directories, training_data, validation_data and test_data, each containing two folders; one for positive samples (pheno) and one for negative samples (norm). The data is then ready to be used for machine learning model training and validation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">Taining_data_orgenizer</span> <span class="k">as</span> <span class="n">orgenizer</span> 
+
+
+<span class="n">pathInput</span> <span class="o">=</span> <span class="s1">&#39;/input_sc_mix&#39;</span>
+<span class="n">pathOrigen</span> <span class="o">=</span> <span class="s1">&#39;/data/training_set&#39;</span>
+<span class="n">labelA</span> <span class="o">=</span> <span class="s1">&#39;norm&#39;</span>
+<span class="n">labelB</span> <span class="o">=</span> <span class="s1">&#39;pheno&#39;</span>
+<span class="n">file_extention</span> <span class="o">=</span> <span class="s1">&#39;png&#39;</span>
+
+
+<span class="n">path_builder</span> <span class="o">=</span> <span class="n">orgenizer</span><span class="o">.</span><span class="n">classification_data_orgenizer</span><span class="p">(</span><span class="n">path_input</span> <span class="o">=</span> <span class="n">pathInput</span><span class="p">,</span>
+                                                       <span class="n">path_origen</span> <span class="o">=</span> <span class="n">pathOrigen</span><span class="p">,</span>
+                                                       <span class="n">label_A</span><span class="o">=</span><span class="n">labelA</span><span class="p">,</span>
+                                                       <span class="n">label_B</span> <span class="o">=</span><span class="n">labelB</span><span class="p">,</span>
+                                                       <span class="n">file_extention</span> <span class="o">=</span><span class="n">file_extention</span><span class="p">)</span>
+
+<span class="n">path_builder</span><span class="o">.</span><span class="n">get_file_names_list</span><span class="p">()</span>
+
+<span class="n">statment_a</span><span class="p">,</span> <span class="n">statment_b</span><span class="p">,</span> <span class="n">train_files</span><span class="p">,</span> <span class="n">validate_files</span><span class="p">,</span> <span class="n">test_files</span> <span class="o">=</span> <span class="n">path_builder</span><span class="o">.</span><span class="n">split_traning_set_and_copy</span><span class="p">()</span>
+
+</pre></div>
+</div>
+<p>Directory structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>training_set
+│
+└───training_data
+|       │phno01.png
+│       │norm01.png
+│       │...
+│   
+└───validation_data
+|       │pheno02.png
+│       │norm02.png
+│       │...
+└───test_data
+        │pheno03.png
+        │norm03.pn
+        │...
+</pre></div>
+</div>
+<center><b><u>Model Generation</u></b></center>
+<p>The plotform contain four CNN models.</p>
+<ul class="simple">
+<li><p>Basic CNN model</p></li>
+<li><p>Basic CNN model with data Augmentation</p></li>
+<li><p>Transfer learning drop layer 4 and 5</p></li>
+<li><p>Transfer learning with Augmentation freez all layer</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">model_builder</span> <span class="k">as</span> <span class="n">mb</span>
+</pre></div>
+</div>
+<p>We set hyperparamters for the model</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_origen</span><span class="p">,</span> <span class="s1">&#39;training_data&#39;</span><span class="p">)</span>
+<span class="n">val_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_origen</span><span class="p">,</span> <span class="s1">&#39;validation_data&#39;</span><span class="p">)</span>
+<span class="n">test_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path_origen</span><span class="p">,</span> <span class="s1">&#39;test_data&#39;</span><span class="p">)</span>
+<span class="n">batch</span>  <span class="o">=</span> <span class="mi">30</span>
+<span class="n">epoch</span>  <span class="o">=</span> <span class="mi">50</span>
+<span class="n">step_per_epoch</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">9930</span><span class="p">)</span><span class="o">/</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">validation_steps</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="mi">1242</span><span class="p">)</span><span class="o">/</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">path_model</span> <span class="o">=</span> <span class="s1">&#39;/data/models&#39;</span>
+<span class="n">IMG_DIM</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">imbalance_train</span> <span class="o">=</span> <span class="mi">921</span>
+<span class="n">imbalance_val</span> <span class="o">=</span> <span class="mi">115</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;10precent.h5&#39;</span>
+<span class="n">path_checkpoints</span> <span class="o">=</span> <span class="s1">&#39;/data/models/chakpoints_10p/&#39;</span>
+</pre></div>
+</div>
+<p>Intiate model bulider:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model_build</span> <span class="o">=</span> <span class="n">mb</span><span class="o">.</span><span class="n">model_builder</span><span class="p">(</span><span class="n">IMG_DIM</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">path_training</span><span class="o">=</span><span class="n">train_dir</span><span class="p">,</span><span class="n">path_validation</span><span class="o">=</span><span class="n">val_dir</span><span class="p">,</span>
+                 <span class="n">batch</span><span class="o">=</span><span class="n">batch</span><span class="p">,</span> <span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span><span class="p">,</span><span class="n">input_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="p">,</span><span class="n">steps_per_epoch_sel</span><span class="o">=</span> <span class="n">step_per_epoch</span><span class="p">,</span>
+                 <span class="n">validation_steps</span><span class="o">=</span><span class="n">validation_steps</span><span class="p">,</span><span class="n">path_model</span> <span class="o">=</span> <span class="n">path_model</span><span class="p">,</span><span class="n">file_extention</span> <span class="o">=</span> <span class="s1">&#39;png&#39;</span><span class="p">,</span>
+                 <span class="n">extract_size_train</span> <span class="o">=</span> <span class="n">extract_size_train</span><span class="p">,</span> <span class="n">extract_size_val</span><span class="o">=</span><span class="n">extract_size_val</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Image files are loaded and converted to tf tensor.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TRimgScale</span><span class="p">,</span><span class="n">ValimgScale</span><span class="p">,</span><span class="n">TRlabels</span><span class="p">,</span><span class="n">Valabels</span><span class="p">,</span><span class="n">TRimg</span><span class="p">,</span><span class="n">Valimg</span><span class="p">,</span><span class="n">report</span> <span class="o">=</span> <span class="n">model_build</span><span class="o">.</span><span class="n">build_image__sets</span><span class="p">()</span>
+<span class="nb">print</span> <span class="n">report</span>
+</pre></div>
+</div>
+<p>tarin labels:[‘norm’, ‘pheno’, ‘norm’, ‘norm’, ‘norm’], train_labels_enc:[0 1 0 0 0].</p>
+<p>Train models:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cnn_basic</span> <span class="o">=</span> <span class="n">model_build</span><span class="o">.</span><span class="n">model_cnn_basic</span><span class="p">()</span>
+<span class="n">cnn_basic_Augmentation</span> <span class="o">=</span> <span class="n">model_build</span><span class="o">.</span><span class="n">model_cnn_basic_Augmentation</span><span class="p">()</span>
+<span class="n">cnn_transfer_learning_Augmentation_drop_layer_4and5</span>  <span class="o">=</span>           <span class="n">model_build</span><span class="o">.</span><span class="n">model_cnn_transfer_learning_Augmentation_drop_layer_4and5</span><span class="p">()</span>
+<span class="n">transfer_learning_aug_dropout_freez_all</span> <span class="o">=</span> <span class="n">model_build</span><span class="o">.</span><span class="n">model_cnn_transfer_learning_Augmentation_freez_all</span><span class="p">()</span>
+</pre></div>
+</div>
+<center><b><u>Evaluation</u></b></center>
+<p>Assess the efficacy of the model constructed by assessing its performance.
+First, the test files will be converted into tensors of model input pixel size.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_imgs</span> <span class="o">=</span> <span class="p">[</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">load_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="n">IMG_DIM</span><span class="p">))</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">test_files</span><span class="p">]</span>
+<span class="n">test_imgs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_imgs</span><span class="p">)</span>
+<span class="n">test_imgs_scaled</span> <span class="o">=</span> <span class="n">test_imgs</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">test_imgs_scaled</span> <span class="o">/=</span> <span class="mi">255</span>
+</pre></div>
+</div>
+<p>The labels are assigned an integer value to be encoded.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">fn</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">test_files</span><span class="p">]</span>
+<span class="n">num2class_label_transformer</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;norm&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;pheno&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">class2num_label_transformer</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;pheno&#39;</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">test_labels_enc</span> <span class="o">=</span> <span class="n">class2num_label_transformer</span><span class="p">(</span><span class="n">test_labels</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test dataset shape:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_imgs</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span> <span class="n">test_labels_enc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># {code-cell} ipython3</span>
+<span class="c1"># :tags: [hide-input]</span>
+
+
+<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.vgg16</span> <span class="kn">import</span> <span class="n">VGG16</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing</span> <span class="kn">import</span> <span class="n">image</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.applications.vgg16</span> <span class="kn">import</span> <span class="n">preprocess_input</span><span class="p">,</span> <span class="n">decode_predictions</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">ImageDataGenerator</span><span class="p">,</span> <span class="n">load_img</span><span class="p">,</span> <span class="n">img_to_array</span><span class="p">,</span> <span class="n">array_to_img</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">optimizers</span>
+
+<span class="kn">from</span> <span class="nn">keras.applications</span> <span class="kn">import</span> <span class="n">vgg16</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+<span class="kn">import</span> <span class="nn">keras</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">InputLayer</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras</span> <span class="kn">import</span> <span class="n">optimizers</span>
+
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">keras.preprocessing.image</span> <span class="kn">import</span> <span class="n">load_img</span><span class="p">,</span> <span class="n">img_to_array</span><span class="p">,</span> <span class="n">array_to_img</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">load_model</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s1">&#39;/data/kanferg/Images/Pex_project/Transfer_learning/code&#39;</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">model_evaluation_utils</span> <span class="k">as</span> <span class="n">meu</span>
+
+<span class="n">IMG_DIM</span> <span class="o">=</span> <span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;/data/kanferg/Images/Pex_project/SIngle_cell_images_training_set/&quot;</span><span class="p">)</span>
+<span class="n">test_files</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;test_data/*&#39;</span><span class="p">)</span>
+<span class="n">test_imgs</span> <span class="o">=</span> <span class="p">[</span><span class="n">img_to_array</span><span class="p">(</span><span class="n">load_img</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">target_size</span><span class="o">=</span><span class="n">IMG_DIM</span><span class="p">))</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">test_files</span><span class="p">]</span>
+<span class="n">test_imgs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_imgs</span><span class="p">)</span>
+<span class="c1">#test_files[0].split(&#39;/&#39;)[1].split(&#39;_&#39;)[0].strip()</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="p">[</span><span class="n">fn</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">fn</span> <span class="ow">in</span> <span class="n">test_files</span><span class="p">]</span>
+<span class="c1">#test_labels = [fn.split(&#39;/&#39;)[1].split(&#39;.&#39;)[0].strip() for fn in test_files]</span>
+
+<span class="n">test_imgs_scaled</span> <span class="o">=</span> <span class="n">test_imgs</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+<span class="n">test_imgs_scaled</span> <span class="o">/=</span> <span class="mi">255</span>
+<span class="n">num2class_label_transformer</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;norm&#39;</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;pheno&#39;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">class2num_label_transformer</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;pheno&#39;</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">]</span>
+<span class="n">test_labels_enc</span> <span class="o">=</span> <span class="n">class2num_label_transformer</span><span class="p">(</span><span class="n">test_labels</span><span class="p">[:</span><span class="mi">5</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test dataset shape:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_imgs</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_labels</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">],</span> <span class="n">test_labels_enc</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Test dataset shape:(5967, 150, 150, 3)
+[&#39;norm&#39;, &#39;pheno&#39;, &#39;norm&#39;, &#39;pheno&#39;, &#39;norm&#39;] [1, 0, 1, 0, 1]
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">predictions</span> <span class="o">=</span> <span class="n">cnn_transfer_learning_Augmentation_drop_layer_4and5</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_imgs_scaled</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># {code-cell} ipython3</span>
+<span class="c1"># :tags: [hide-input]</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">path_model</span> <span class="o">=</span> <span class="s1">&#39;/data/kanferg/Images/Pex_project/Transfer_learning/models&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">path_model</span><span class="p">)</span>
+<span class="n">cnn_transfer_learning_Augmentation_drop_layer_4and5</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="s1">&#39;cnn_transfer_learning_Augmentation_drop_layer_4and5.h5&#39;</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">cnn_transfer_learning_Augmentation_drop_layer_4and5</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_imgs_scaled</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+<span class="c1"># classes_x=[np.where(lab &gt;0.5,1,0).tolist() for lab in predictions]</span>
+<span class="c1"># predictions_label = num2class_label_transformer(classes_x)</span>
+<span class="c1"># predictions_label</span>
+
+<span class="c1"># meu.get_metrics(test_labels, predictions_label)</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(array([1.131e+03, 6.000e+00, 4.000e+00, 4.000e+00, 3.000e+00, 4.000e+00,
+        6.000e+00, 5.000e+00, 7.000e+00, 4.797e+03]),
+ array([0.00314956, 0.1028346 , 0.20251964, 0.3022047 , 0.40188974,
+        0.50157475, 0.6012598 , 0.70094484, 0.8006299 , 0.9003149 ,
+        1.        ], dtype=float32),
+ &lt;BarContainer object of 10 artists&gt;)
+</pre></div>
+</div>
+<p><img alt="png" src="tutorial/04 Convolutional Neural Network - Classifier/output_11_1.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classes_x</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lab</span> <span class="o">&gt;</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">predictions</span><span class="p">]</span>
+<span class="n">predictions_label</span> <span class="o">=</span> <span class="n">num2class_label_transformer</span><span class="p">(</span><span class="n">classes_x</span><span class="p">)</span>
+<span class="n">predictions_label</span>
+<span class="n">meu</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">predictions_label</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># {code-cell} ipython3</span>
+<span class="c1"># :tags: [hide-input]</span>
+
+<span class="n">classes_x</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">lab</span> <span class="o">&gt;</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">lab</span> <span class="ow">in</span> <span class="n">predictions</span><span class="p">]</span>
+<span class="n">predictions_label</span> <span class="o">=</span> <span class="n">num2class_label_transformer</span><span class="p">(</span><span class="n">classes_x</span><span class="p">)</span>
+<span class="n">predictions_label</span>
+<span class="n">meu</span><span class="o">.</span><span class="n">get_metrics</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">predictions_label</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Accuracy: 0.9943
+Precision: 0.9944
+Recall: 0.9943
+F1 Score: 0.9943
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

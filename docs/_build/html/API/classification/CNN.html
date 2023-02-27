@@ -18,9 +18,7 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Deployment" href="../deployment/index.html" />
-    <link rel="prev" title="granularity" href="Granularity.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,18 +37,10 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../install/index.html">Installing AIPyS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">Tutorial notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../segmentation/index.html">Segmentation</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Classification</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Granularity.html">granularity</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">convolutional neural network</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../deployment/index.html">Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../simulation/index.html">Simulation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../miscellaneous/index.html">miscellaneous modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Tutorial.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../API.html">AIPyS modules</a></li>
 </ul>
 
         </div>
@@ -67,8 +57,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="../../API.html">&lt;no title&gt;</a></li>
-          <li class="breadcrumb-item"><a href="index.html">Classification</a></li>
       <li class="breadcrumb-item active">convolutional neural network</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/API/classification/CNN.rst.txt" rel="nofollow"> View page source</a>
@@ -103,53 +91,14 @@
     text-align: unset;
 }
 </style>
-<section id="module-AIPyS.model_builder">
-<span id="convolutional-neural-network"></span><h1>convolutional neural network<a class="headerlink" href="#module-AIPyS.model_builder" title="Permalink to this headline"></a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="AIPyS.model_builder.model_builder">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.model_builder.</span></span><span class="sig-name descname"><span class="pre">model_builder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">IMG_DIM</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_validation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_imgs_scaled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_imgs_scaled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_labels_enc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_labels_enc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_imgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_imgs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps_per_epoch_sel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validation_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extention</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_size_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extract_size_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imbalance_train</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imbalance_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_checkpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/model_builder.html#model_builder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.model_builder.model_builder" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="AIPyS.model_builder.model_builder.build_image__sets">
-<span class="sig-name descname"><span class="pre">build_image__sets</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/model_builder.html#model_builder.build_image__sets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.model_builder.model_builder.build_image__sets" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="AIPyS.model_builder.model_builder.display_data_distribution">
-<span class="sig-name descname"><span class="pre">display_data_distribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/model_builder.html#model_builder.display_data_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.model_builder.model_builder.display_data_distribution" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="AIPyS.model_builder.model_builder.model_cnn_basic">
-<span class="sig-name descname"><span class="pre">model_cnn_basic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/model_builder.html#model_builder.model_cnn_basic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.model_builder.model_builder.model_cnn_basic" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="AIPyS.model_builder.model_builder.model_cnn_basic_Augmentation">
-<span class="sig-name descname"><span class="pre">model_cnn_basic_Augmentation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/model_builder.html#model_builder.model_cnn_basic_Augmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.model_builder.model_builder.model_cnn_basic_Augmentation" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_drop_layer_4and5">
-<span class="sig-name descname"><span class="pre">model_cnn_transfer_learning_Augmentation_drop_layer_4and5</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/model_builder.html#model_builder.model_cnn_transfer_learning_Augmentation_drop_layer_4and5"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_drop_layer_4and5" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_freez_all">
-<span class="sig-name descname"><span class="pre">model_cnn_transfer_learning_Augmentation_freez_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/AIPyS/model_builder.html#model_builder.model_cnn_transfer_learning_Augmentation_freez_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.model_builder.model_builder.model_cnn_transfer_learning_Augmentation_freez_all" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
+<section id="convolutional-neural-network">
+<h1>convolutional neural network<a class="headerlink" href="#convolutional-neural-network" title="Permalink to this headline"></a></h1>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="Granularity.html" class="btn btn-neutral float-left" title="granularity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../deployment/index.html" class="btn btn-neutral float-right" title="Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

@@ -2,14 +2,63 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/docs/04_Convolutional_Neural_Network_Classifier.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/output_11_4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier/04 Convolutional Neural Network - Classifier.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier/output_11_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/04_Bayes_classifier_deployment.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/04_Convolutional_Neural_Network_Classifier.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/04 Convolutional Neural Network - Classifier.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/Untitled.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/tutorial/04 Convolutional Neural Network - Classifier.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/tutorial/04 Convolutional Neural Network - Classifier/04 Convolutional Neural Network - Classifier.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/doctrees/tutorial/Untitled.doctree" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/04_Convolutional_Neural_Network_Classifier.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_images/output_11_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/04_Convolutional_Neural_Network_Classifier.md.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/04 Convolutional Neural Network - Classifier.ipynb.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/04 Convolutional Neural Network - Classifier/04 Convolutional Neural Network - Classifier.md.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/Untitled.ipynb.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/04 Convolutional Neural Network - Classifier.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/04 Convolutional Neural Network - Classifier.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/04 Convolutional Neural Network - Classifier/04 Convolutional Neural Network - Classifier.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/Untitled.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/Untitled.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIPyS/model_builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/model_builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/Baysian_deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/Baysian_deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AIPyS/CNN_deploy.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIPyS/CNN_deploy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/04_Convolutional_Neural_Network_Classifier.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/05_Convolutional_Neural_Network_Classifier.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/Tutorial.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Tutorial.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/03_Naive_Bayes_Classifier.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/03_Naive_Bayes_Classifier.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/API.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/API.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/API/classification/CNN.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/API/classification/CNN.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/API/deployment/Deploy_CNN.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/API/deployment/Deploy_CNN.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/API/deployment/Deploy_gran.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/API/deployment/Deploy_gran.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/02_Deep_learning_Segmentation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/02_Deep_learning_Segmentation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/03_Naive_Bayes_Classifier.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/03_Naive_Bayes_Classifier.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/03_Naive_Bayes_Classifier.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/03_Naive_Bayes_Classifier.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/API.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/API/classification/CNN.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API/classification/CNN.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/API/classification/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API/classification/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/API/deployment/Deploy_CNN.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API/deployment/Deploy_CNN.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/API/deployment/Deploy_gran.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API/deployment/Deploy_gran.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/API/deployment/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/API/deployment/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/Baysian_deploy.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/AIPyS/Baysian_deploy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_modules/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/03_Naive_Bayes_Classifier.md.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/03_Naive_Bayes_Classifier.md.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/02_Deep_learning_Segmentation.ipynb.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/02_Deep_learning_Segmentation.ipynb.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/03_Naive_Bayes_Classifier.ipynb.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/03_Naive_Bayes_Classifier.ipynb.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/02_Deep_learning_Segmentation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/02_Deep_learning_Segmentation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/02_Deep_learning_Segmentation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/02_Deep_learning_Segmentation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/03_Naive_Bayes_Classifier.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/03_Naive_Bayes_Classifier.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier/04 Convolutional Neural Network - Classifier.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorial/04 Convolutional Neural Network - Classifier/output_11_4.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,0 +1,243 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "72a33bba",
+   "metadata": {},
+   "source": [
+    "Convolutional Neural Network - Classifier\n",
+    "\n",
+    "For training the CNN peroxisome model, we utilized Pex13 mutant cells, which expressed GFP-Cat signals throughout their cytoplasm. \n",
+    "\n",
+    "The Classification diverged into three parts:\n",
+    "1) Set training data\n",
+    "2) Model Generation\n",
+    "3) Evaluation"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "9b96e0ef",
+   "metadata": {},
+   "source": [
+    "<center><b><u>Set training data</u></b></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ca0e94d2",
+   "metadata": {},
+   "source": [
+    "The GFP-Cat images were then segmented into individual cells and saved into two separate folders - one for phenotypic images and another for normal peroxisomes.\n",
+    "\n",
+    "```python\n",
+    "from AIPyS import AIPS_cellpose as AC\n",
+    "```\n",
+    "For example, we used the CellPose model for segmenting the images (as described in section 2):\n",
+    "```python\n",
+    "AIPS_pose_object = AC.AIPS_cellpose(Image_name = 'catGFP.tif', path = 'data', model_type = 'cyto', channels=[0,0])\n",
+    "img = AIPS_pose_object.cellpose_image_load()\n",
+    "```\n",
+    "\n",
+    "The function ```stackObjects_cellpose_ebimage_parametrs_method``` similar to the R packadge EBimage (publish by Pau et. al. ) brekes the mask input into 150 pixel single-cell images. \n",
+    "\n",
+    "```python\n",
+    "AIPS_pose_object = AC.stackObjects_cellpose_ebimage_parametrs_method(Image_name = 'catGFP.tif', path = 'data',                                                                          model_type = 'cyto', channels=[0,0])\n",
+    "img = AIPS_pose_object.cellpose_image_load()\n",
+    "mask, table = AIPS_pose_object.cellpose_segmantation(image_input=img[0,:,:])\n",
+    "\n",
+    "##### Than EBimage like stacking function is used\n",
+    "\n",
+    "stack, _ = AIPS_pose_object.stackObjects_cellpose_ebimage_parametrs_method(image_input=img[0, :, :],\n",
+    "                                                                           extract_pixel=50,\n",
+    "                                                                           resize_pixel=150,\n",
+    "                                                                           img_label=table.index.values[i])\n",
+    "\n",
+    "\n",
+    "```\n",
+    "\n",
+    "- Pau G, Fuchs F, Sklyar O, Boutros M, Huber W (2010). “EBImage—an R package for image processing with applications to cellular phenotypes.” Bioinformatics, 26(7), 979–981. doi: 10.1093/bioinformatics/btq046.\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fb46fe4e",
+   "metadata": {},
+   "source": [
+    "The single-cell images are to be organized into a training structure consisting of three separate directories, training_data, validation_data and test_data, each containing two folders; one for positive samples (pheno) and one for negative samples (norm). The data is then ready to be used for machine learning model training and validation.\n",
+    "\n",
+    "```python\n",
+    "from AIPyS import Taining_data_orgenizer as orgenizer \n",
+    "\n",
+    "\n",
+    "pathInput = '/input_sc_mix'\n",
+    "pathOrigen = '/data/training_set'\n",
+    "labelA = 'norm'\n",
+    "labelB = 'pheno'\n",
+    "file_extention = 'png'\n",
+    "\n",
+    "\n",
+    "path_builder = orgenizer.classification_data_orgenizer(path_input = pathInput,\n",
+    "                                                       path_origen = pathOrigen,\n",
+    "                                                       label_A=labelA,\n",
+    "                                                       label_B =labelB,\n",
+    "                                                       file_extention =file_extention)\n",
+    "\n",
+    "path_builder.get_file_names_list()\n",
+    "\n",
+    "statment_a, statment_b, train_files, validate_files, test_files = path_builder.split_traning_set_and_copy()\n",
+    "\n",
+    "```\n",
+    "\n",
+    "Directory structure:\n",
+    "\n",
+    "```\n",
+    "training_set\n",
+    "│\n",
+    "└───training_data\n",
+    "|       │phno01.png\n",
+    "│       │norm01.png\n",
+    "│       │...\n",
+    "│   \n",
+    "└───validation_data\n",
+    "|       │pheno02.png\n",
+    "│       │norm02.png\n",
+    "│       │...\n",
+    "└───test_data\n",
+    "        │pheno03.png\n",
+    "        │norm03.pn\n",
+    "        │...\n",
+    "```\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "91c38ec7",
+   "metadata": {},
+   "source": [
+    "<center><b><u>Model Generation</u></b></center>"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bba4fb38",
+   "metadata": {},
+   "source": [
+    "The plotform contain four CNN models. \n",
+    "- Basic CNN model\n",
+    "- Basic CNN model with data Augmentation\n",
+    "- Transfer learning drop layer 4 and 5\n",
+    "- Transfer learning with Augmentation freez all layer"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b15003cf",
+   "metadata": {},
+   "source": [
+    "```python\n",
+    "from AIPyS import model_builder as mb\n",
+    "```\n",
+    "\n",
+    "We set hyperparamters for the model\n",
+    "\n",
+    "```python\n",
+    "train_dir = os.path.join(path_origen, 'training_data')\n",
+    "val_dir = os.path.join(path_origen, 'validation_data')\n",
+    "test_dir = os.path.join(path_origen, 'test_data')\n",
+    "batch  = 30\n",
+    "epoch  = 50\n",
+    "step_per_epoch = int((9930)/30)\n",
+    "validation_steps = int((1242)/30)\n",
+    "path_model = '/data/models'\n",
+    "IMG_DIM=(150,150,3)\n",
+    "imbalance_train = 921\n",
+    "imbalance_val = 115\n",
+    "model_name = '10precent.h5'\n",
+    "path_checkpoints = '/data/models/chakpoints_10p/'\n",
+    "```\n",
+    "\n",
+    "Intiate model bulider:\n",
+    "\n",
+    "```python\n",
+    "model_build = mb.model_builder(IMG_DIM=(150,150,3),path_training=train_dir,path_validation=val_dir,\n",
+    "                 batch=batch, epoch = epoch,input_shape = (150,150,3) ,steps_per_epoch_sel= step_per_epoch,\n",
+    "                 validation_steps=validation_steps,path_model = path_model,file_extention = 'png',\n",
+    "                 extract_size_train = extract_size_train, extract_size_val=extract_size_val)\n",
+    "```\n",
+    "\n",
+    "Image files are loaded and converted to tf tensor.\n",
+    "\n",
+    "```python\n",
+    "TRimgScale,ValimgScale,TRlabels,Valabels,TRimg,Valimg,report = model_build.build_image__sets()\n",
+    "print report\n",
+    "```\n",
+    "tarin labels:['norm', 'pheno', 'norm', 'norm', 'norm'], train_labels_enc:[0 1 0 0 0].\n",
+    "\n",
+    "\n",
+    "Train models:\n",
+    "\n",
+    "```python\n",
+    "f1 = model_build.model_cnn_basic()\n",
+    "f2 = model_build.model_cnn_basic_Augmentation()\n",
+    "f3 = model_build.model_cnn_transfer_learning_Augmentation_drop_layer_4and5()\n",
+    "f4 = model_build.model_cnn_transfer_learning_Augmentation_freez_all()\n",
+    "```\n",
+    "\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "hide_input": false,
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.12"
+  },
+  "latex_envs": {
+   "LaTeX_envs_menu_present": true,
+   "autoclose": false,
+   "autocomplete": true,
+   "bibliofile": "biblio.bib",
+   "cite_by": "apalike",
+   "current_citInitial": 1,
+   "eqLabelWithNumbers": true,
+   "eqNumInitial": 1,
+   "hotkeys": {
+    "equation": "Ctrl-E",
+    "itemize": "Ctrl-I"
+   },
+   "labels_anchors": false,
+   "latex_user_defs": false,
+   "report_style_numbering": false,
+   "user_envs_cfg": false
+  },
+  "toc": {
+   "base_numbering": 1,
+   "nav_menu": {},
+   "number_sections": true,
+   "sideBar": true,
+   "skip_h1_title": false,
+   "title_cell": "Table of Contents",
+   "title_sidebar": "Contents",
+   "toc_cell": false,
+   "toc_position": {},
+   "toc_section_display": true,
+   "toc_window_display": false
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
