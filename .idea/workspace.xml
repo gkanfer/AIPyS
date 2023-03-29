@@ -3,8 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Tutorial.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/Tutorial.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/tutorial/01-parametric-segmentation_temp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorial/01-parametric-segmentation_temp.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/07-hit-enrichment-analysis.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/07-hit-enrichment-analysis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/Tutorial.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/01-parametric-segmentation_temp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/doctrees/nbsphinx/tutorial/01-parametric-segmentation_temp.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/Tutorial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/Tutorial.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/01-parametric-segmentation_temp.ipynb.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/tutorial/01-parametric-segmentation_temp.ipynb.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/py-modindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/01-parametric-segmentation_temp.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/01-parametric-segmentation_temp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/tutorial/01-parametric-segmentation_temp.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/tutorial/01-parametric-segmentation_temp.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

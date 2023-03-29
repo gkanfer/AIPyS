@@ -50,6 +50,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#baye-s-classifier-deployment">4 Baye’s Classifier - Deployment</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#convolutional-neural-network-classifier">5 Convolutional Neural Network - Classifier</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cnn-classifier-deployment">6 CNN Classifier - Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enrichment-analysis-crisper-i-screen">7 Enrichment Analysis  - Crisper[i] Screen</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="API.html">AIPyS modules</a></li>
@@ -863,6 +864,59 @@ call python D:<span class="se">\r</span>un_CNN_Classifier.py
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
+</section>
+<section id="enrichment-analysis-crisper-i-screen">
+<h2>7 Enrichment Analysis  - Crisper[i] Screen<a class="headerlink" href="#enrichment-analysis-crisper-i-screen" title="Permalink to this headline"></a></h2>
+<p>Our platform allows for screening rates of up to one million cells per run, with a minimum rate of 100,000 cells. To optimize this process, an enrichment strategy has been developed.</p>
+<p>In a CRISPR perturbation screen, the Geometric Distribution is the most commonly used sgRNA sequencing distribution, with an emphasis on evenly distributes sgRNAs across a gene or set of genes. However, the Negative Binomial Distribution is also used and provides more accurate measurement of perturbation by emphasizing the number of times a gene target is hit.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Simulate</span></code> module simulates AIPS by definingthe  the sgRNA pool for a given gene using the <code class="docutils literal notranslate"><span class="pre">lookupString</span></code> parameter. It uses the published crispri sgRNA data (Horlbeck et al) and a Negative Binomial distribution with parameters n and p to determine the number of effective (successful) sgRNA in the pool , as shown in the Python library <a class="reference external" href="https://www.pymc.io/welcome.html">pymc</a>. The argument <code class="docutils literal notranslate"><span class="pre">tpRatio</span></code> indicates the number of effective target sgRNA in the pool. It is known that approximately 0.2 to 0.4 of the sgRNA targeting a particular gene are effective, according to the paper by Daley et al.</p>
+<ul class="simple">
+<li><p>Max A Horlbeck, Luke A Gilbert, Jacqueline E Villalta, Britt Adamson, Ryan A Pak, Yuwen Chen, Alexander P Fields, Chong Yon Park, Jacob E Corn, Martin Kampmann, Jonathan S Weissman (2016) Compact and highly active next-generation libraries for CRISPR-mediated gene repression and activation eLife 5:e19760 https://doi.org/10.7554/eLife.19760</p></li>
+<li><p>Daley, T., Lin, Z., Lin, X. et al. CRISPhieRmix: a hierarchical mixture model for CRISPR pooled screens. Genome Biol 19, 159 (2018). https://doi.org/10.1186/s13059-018-1538-6</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">AIPS_simulate</span> <span class="k">as</span> <span class="n">sim</span>
+<span class="c1"># filtered list of sgRNA data from the reference library for the sub library h4</span>
+<span class="n">dfH4</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;dfH4.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">simulation</span></code> defines the false positives limits and the number of observations per acquisition, which is drawn from a normal distribution.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">orig</span><span class="p">,</span> <span class="n">Q1</span><span class="p">,</span> <span class="n">Q2</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Simulate</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">dfH4</span> <span class="p">,</span><span class="n">lookupString</span> <span class="o">=</span>  <span class="s1">&#39;PEX&#39;</span> <span class="p">,</span><span class="n">tpRatio</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span> <span class="mi">10</span> <span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">)</span><span class="o">.</span><span class="n">simulation</span><span class="p">(</span>
+                            <span class="n">FalseLimits</span>  <span class="o">=</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">ObservationNum</span> <span class="o">=</span> <span class="p">(</span><span class="mi">70</span><span class="p">,</span><span class="mi">20</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>This function returns three data frames: <code class="docutils literal notranslate"><span class="pre">orig</span></code> contains the original read counts, <code class="docutils literal notranslate"><span class="pre">Q1</span></code> contains the read counts of the sgRNAs not selected during acquisition, and <code class="docutils literal notranslate"><span class="pre">Q2</span></code> contains the read counts of the selected hits the “activated” sample.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;activeSg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">indexPexActiveArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">indexTarget</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tpRatio</span><span class="p">)]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indexPexActiveArray</span><span class="p">,</span> <span class="s1">&#39;activeSg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1"># list of sgRNA which are true</span>
+<span class="n">TruePositiveSGs</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">indexPexActiveArray</span><span class="p">,</span> <span class="s1">&#39;sgID&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Enrichment analysis was performed by comparing the activated simulated data (Q2) with the non-activated simulated data (Q1). Mapping of the read counts was done according to the unique Gene names, and the perturbation effects were calculated by dividing the log count data of Q2 by that of Q1.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">AIPyS</span> <span class="kn">import</span> <span class="n">mapSgRNA</span>
+<span class="c1"># filtered list of sgRNA data from the reference library for the sub library h4</span>
+<span class="n">pathIn</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;F:\HAB_2\PrinzScreen\AIPS_simulation\AIPS_simulation\data&#39;</span>
+<span class="n">Q2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pathIn</span><span class="p">,</span><span class="s1">&#39;h4_1_45tpGuide_Q2.csv&#39;</span><span class="p">))</span>
+<span class="n">Q1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pathIn</span><span class="p">,</span><span class="s1">&#39;h4_1_45tpGuide_Q1.csv&#39;</span><span class="p">))</span>
+<span class="c1"># unique</span>
+
+<span class="n">uniqueSgRNA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">Q2</span><span class="o">.</span><span class="n">sgID</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+<span class="c1"># The mapping of unique sgRNA to the SIM was performed using the module mapsgrna</span>
+
+<span class="n">dictDF</span> <span class="o">=</span> <span class="n">mapSgRNA</span><span class="p">(</span><span class="n">df1</span> <span class="o">=</span> <span class="n">Q1</span><span class="p">,</span> <span class="n">df2</span> <span class="o">=</span> <span class="n">Q2</span><span class="p">)</span>
+
+<span class="c1"># Make dictionary mapping reads to unique sgRNA</span>
+
+<span class="n">df_dict</span> <span class="o">=</span> <span class="n">dictDF</span><span class="o">.</span><span class="n">mapping</span><span class="p">(</span><span class="n">uniqueSgRNA</span> <span class="o">=</span> <span class="n">uniqueSgRNA</span><span class="p">)</span>
+
+<span class="c1"># data frame contain logFC and z-score logFC</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">dictDF</span><span class="o">.</span><span class="n">dataFrameFinal</span><span class="p">(</span><span class="n">df_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<center><b><u>Simulation</u></b></center>
+<p><img alt="png" src="_images/output_7_0_0.png" /></p>
 </section>
 </section>
 

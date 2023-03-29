@@ -253,7 +253,7 @@
  "metadata": {
   "hide_input": false,
   "kernelspec": {
-   "display_name": "Python [conda env:pm-tf24-cellpose]",
+   "display_name": "Python [conda env:pm-tf24-cellpose] *",
    "language": "python",
    "name": "conda-env-pm-tf24-cellpose-py"
   },
