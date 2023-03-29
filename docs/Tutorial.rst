@@ -31,3 +31,8 @@ ________________________________________________
 .. include:: 06_CNN_Classifier_Deployment.md
    :parser: myst_parser.sphinx_
 
+7 Enrichment Analysis  - Crisper[i] Screen
+________________________________________________
+.. include:: 07-hit-enrichment-analysis.md
+   :parser: myst_parser.sphinx_
+
