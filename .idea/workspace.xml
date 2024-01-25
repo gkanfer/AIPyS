@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="" />
+    <list default="true" id="5a80e9b6-3e7d-4194-bc71-483acbac0552" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/notebooks/torch_cnn_adaptation.ipynb" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +34,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/notebooks" />
       <recent name="F:\Gil\AIPS_platforms\AIPyS\docs\tutorial" />
       <recent name="F:\Gil\AIPS_platforms\AIPyS\docs" />
       <recent name="F:\Gil\AIPS_platforms\AIPyS\docs\install" />
