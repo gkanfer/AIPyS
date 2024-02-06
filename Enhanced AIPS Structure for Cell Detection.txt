@@ -1,0 +1,12 @@
+The new AIPS layout will have global segmentation initially, followed by basic Bayesian categorization, switching later to cellpose segmentation and concluding with pytorch CNN phenotypic cell identification. 
+0) Images with extremely low or high standard deviation will be ignored
+1) To differentiate the forehead from the background, we will utilize global classification.
+1.1. By using the threshold_local function from skimage.filters module with a float input named offset_cyto with typical values ranging from 0.001 to 0.9, we will segment the image globally. 
+1.2. The opening function will help us generate a mask.
+2) The granularity_cellprofiler module will operate kernel subtraction based on the granCalc function.
+2.1. Our target image will go through the classification process.
+3) Bayesian model construction will then proceed, harnessing the intensity info.
+4) We’ll run steps 0-3 to identify which part of the image is most likely to have phenotypic cells. 
+5) The crop input image will depend on the image slice with the highest likelihood.
+6) Cellpose will further segment this image.
+7) Lastly, we'll use Pytorch for image categorization.
