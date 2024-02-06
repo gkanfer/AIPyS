@@ -25,7 +25,7 @@ import glob
 import pdb
 # from tifffile import imread
 from AIPyS import AIPS_cellpose as AC
-
+import pdb
 
 class Granularity_cellprofiler:
     def __init__(self, image_list, diameter_cp = None, model_type="cyto",channels = [0,0]):
@@ -69,7 +69,65 @@ class Granularity_cellprofiler:
 
     def normalize(self,image_input,mean,std):
         return (image_input - mean)/std
-        
+
+class ImageToVideo:
+    def __init__(self,origFolder,imageNames,outFolder,alpha = 1.5, beta = 0,displayPrograss = True):
+        self.origFolder = origFolder
+        self.imageNames = imageNames
+        self.outFolder = outFolder
+        self.alpha = alpha
+        self.beta = beta
+        self.displayPrograss = displayPrograss
+        self.loadImages()
+    
+    def extract_mean_sd(self,filename):
+        mean = re.search('mean_(.*?)_', filename)
+        if mean:
+            mean = float(mean.group(1))
+        sd = re.search('sd_(.*?)_', filename)
+        if sd:
+            sd = float(sd.group(1))
+        return mean, sd
+
+    def addText(self,image_input,text):
+        return cv2.putText(image_input, f'mean: {text[0]} \n sd: {text[1]}', (10,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv2.LINE_AA)
+    
+    def rgbImge(self,image_input):
+        input_gs_image = (image_input / image_input.max()) * 255
+        ch2_u8 = np.uint8(input_gs_image)
+        rgb_input_img = np.zeros((np.shape(ch2_u8)[0], np.shape(ch2_u8)[1], 3), dtype=np.uint8)
+        rgb_input_img[:, :, 0] = ch2_u8
+        rgb_input_img[:, :, 1] = ch2_u8
+        rgb_input_img[:, :, 2] = ch2_u8
+        pilimage = Image.fromarray(rgb_input_img)
+        return rgb_input_img
+    
+    def imagesTovideo(self,files,imageName):
+        frame = skimage.io.imread(files[0])
+        frame = self.rgbImge(frame)
+        width,height,layers = frame.shape
+        video = cv2.VideoWriter(os.path.join(self.outFolder,imageName + '_out.avi'), cv2.VideoWriter_fourcc(*'MJPG'),10.0,(width,height),  isColor = True)  
+        for file in files:
+            mean, sd = self.extract_mean_sd(file)
+            frame = io.imread(file)
+            frame = self.rgbImge(frame)
+            # add text:
+            self.addText(frame,(mean,sd))
+            #frame = ((frame - frame.min()) / (frame.ptp()) * 255).astype(np.uint8)
+            video.write(frame)
+        video.release()
+    
+    def loadImages(self):
+        if self.displayPrograss:
+           clear_output(wait=True)
+        for i,imageName in enumerate(self.imageNames):
+            files = glob.glob(self.origFolder + imageName + '/ImageSplit/*tif')    
+            #pdb.set_trace()
+            self.imagesTovideo(files,imageName)
+            if self.displayPrograss:
+                print('-' * i, end = '\r')
+
+
 class ImageExploration(Granularity_cellprofiler,ImageToVideo):
     '''
     Explore several objects per image and intensity to determine sliding window size.
@@ -133,9 +191,21 @@ class ImageExploration(Granularity_cellprofiler,ImageToVideo):
         return video showing image lost
         '''
         kernels = np.linspace(start_kernel, end_karnel, kernel_size, endpoint=True, dtype=int)
-        singleImage = self.images[np.random.randint(0,len(self.images))]
+        files = self.image_list[np.random.randint(0,len(self.image_list))]
+        singleImage = skimage.io.imread(files)
         images = [self.openingOperation(singleImage, kernel) for kernel in kernels]
-        
+        frame = self.rgbImge(images[0])
+        width,height,layers = frame.shape
+        video = cv2.VideoWriter(os.path.join(pathout,output_name), cv2.VideoWriter_fourcc(*'MJPG'),1.0,(width,height),  isColor = True)
+        #pdb.set_trace()
+        for image in images:
+            mean,sd = np.mean(image), np.std(image)
+            frame = self.rgbImge(image)
+            # add text:
+            #self.addText(frame,(mean,sd))
+            video.write(frame)
+        video.release()
+
 
 class RunningWindow(Granularity_cellprofiler):
     '''
@@ -227,62 +297,7 @@ class Granularity(RunningWindow):
                 if self.displayPrograss:
                     print('-' * i, end = '\r')
 
-class ImageToVideo:
-    def __init__(self,origFolder,imageNames,outFolder,alpha = 1.5, beta = 0,displayPrograss = True):
-        self.origFolder = origFolder
-        self.imageNames = imageNames
-        self.outFolder = outFolder
-        self.alpha = alpha
-        self.beta = beta
-        self.displayPrograss = displayPrograss
-        self.loadImages()
-    
-    def extract_mean_sd(self,filename):
-        mean = re.search('mean_(.*?)_', filename)
-        if mean:
-            mean = float(mean.group(1))
-        sd = re.search('sd_(.*?)_', filename)
-        if sd:
-            sd = float(sd.group(1))
-        return mean, sd
 
-    def addText(self,image_input,text):
-        return cv2.putText(image_input, f'mean: {text[0]} \n sd: {text[1]}', (10,50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2, cv2.LINE_AA)
-    
-    def rgbImge(self,image_input):
-        input_gs_image = (image_input / image_input.max()) * 255
-        ch2_u8 = np.uint8(input_gs_image)
-        rgb_input_img = np.zeros((np.shape(ch2_u8)[0], np.shape(ch2_u8)[1], 3), dtype=np.uint8)
-        rgb_input_img[:, :, 0] = ch2_u8
-        rgb_input_img[:, :, 1] = ch2_u8
-        rgb_input_img[:, :, 2] = ch2_u8
-        pilimage = Image.fromarray(rgb_input_img)
-        return rgb_input_img
-    
-    def imagesTovideo(self,files,imageName):
-        frame = skimage.io.imread(files[0])
-        frame = self.rgbImge(frame)
-        width,height,layers = frame.shape
-        video = cv2.VideoWriter(os.path.join(self.outFolder,imageName + '_out.avi'), cv2.VideoWriter_fourcc(*'MJPG'),10.0,(width,height),  isColor = True)  
-        for file in files:
-            mean, sd = self.extract_mean_sd(file)
-            frame = io.imread(file)
-            frame = self.rgbImge(frame)
-            # add text:
-            self.addText(frame,(mean,sd))
-            #frame = ((frame - frame.min()) / (frame.ptp()) * 255).astype(np.uint8)
-            video.write(frame)
-        video.release()
-    
-    def loadImages(self):
-        if self.displayPrograss:
-           clear_output(wait=True)
-        for i,imageName in enumerate(self.imageNames):
-            files = glob.glob(self.origFolder + imageName + '/ImageSplit/*tif')    
-            #pdb.set_trace()
-            self.imagesTovideo(files,imageName)
-            if self.displayPrograss:
-                print('-' * i, end = '\r')
             
 
     
