@@ -6,12 +6,9 @@ from scipy.ndimage.morphology import binary_opening
 import skimage.morphology as sm
 from skimage.segmentation import watershed
 from skimage import measure
-import skimage
 import os
 import pandas as pd
 from scipy.ndimage.morphology import binary_fill_holes
-from PIL import Image, ImageDraw,ImageFont
-import matplotlib.pyplot as plt
 from AIPyS.AIPS_functions import rgbTograyscale
 
 class AIPS():
@@ -38,7 +35,7 @@ class AIPS():
                 input = rgbTograyscale(input)
             self.inputImg = input
 
-    def imageMatrix(self):
+    def __call__(self):
        return self.inputImg
 
 class Segmentation(AIPS):
@@ -268,77 +265,3 @@ class Segmentation(AIPS):
         outTarget['table_unfiltered'] = table_unfiltered
         self.out_target = outTarget
         return self.out_target
-
-
-class AIPS_Cyto_Global:
-    '''
-    Initiate the AIPS object
-    Parameters
-    ----------
-        Image_name: (str)
-        path: (str)
-        block_size_cyto: int
-            Detect local edges 1-99 odd
-        offset_cyto: float
-            Detect local edges 0.001-0.9 odd
-        global_ther: float
-            Percentile
-        clean : int
-            opening operation, matrix size must be odd
-    
-    Returns
-    -------
-        combine: img
-            global threshold binary map (eg cytoplasm)
-    '''
-    def __init__(self, Image_name=None, block_size_cyto = 11, offset_cyto = 0.1, global_ther = 0.1, clean  = 5,channel = 2,bit8 = 255,ci = 1):
-        self.Image_name = Image_name #(glob)
-        self.block_size_cyto = block_size_cyto
-        self.offset_cyto = offset_cyto
-        self.global_ther = global_ther
-        self.clean = clean
-        self.channel = channel
-        self.bit8 = bit8
-        self.ci = ci
-        self.ch2 = self.loadFile()
-        self.mask = self.cytosolSegmentation_()
-        self.rgb_input_img = self.disply_compsite()
-        
-    def loadFile(self):
-        ch2 = skimage.io.imread(self.Image_name)
-        return ch2
-    
-    def cytosolSegmentation_(self):
-        # load matrix from seedSegmentation module
-        ch2 = self.ch2
-        ther_cell = threshold_local(ch2, self.block_size_cyto, "gaussian", self.offset_cyto)
-        blank = np.zeros_like(ch2)
-        cell_mask_1 = ch2 > ther_cell
-        cell_mask_2 = binary_opening(cell_mask_1, structure=np.ones((self.clean,self.clean))).astype(np.float64)
-        # global threshold
-        quntile_num = np.quantile(ther_cell, self.global_ther)
-        cell_mask_3 = np.where(ther_cell > quntile_num, 1, 0)
-        # in-case of segmentation failed
-        if np.sum(cell_mask_3)==0:
-            outTarget["cell_mask_1"] = cell_mask_2
-            self.out_target = outTarget
-            return  self.out_target
-        combine = cell_mask_2
-        combine[cell_mask_3 > combine] = cell_mask_3[cell_mask_3 > combine]
-        return combine
-
-    def disply_compsite(self):
-        '''
-        bit8 color assign 255 is very bright
-        '''
-        input_gs_image = self.ch2
-        input_gs_image = input_gs_image*self.ci
-        input_gs_image = (input_gs_image / input_gs_image.max()) * 255
-        ch2_u8 = np.uint8(input_gs_image)
-        rgb_input_img = np.zeros((np.shape(ch2_u8)[0], np.shape(ch2_u8)[1], 3), dtype=np.uint8)
-        rgb_input_img[:, :, 0] = ch2_u8
-        rgb_input_img[:, :, 1] = ch2_u8
-        rgb_input_img[:, :, 2] = ch2_u8
-        rgb_input_img[self.mask > 0, self.channel] = self.bit8
-        return rgb_input_img
-        

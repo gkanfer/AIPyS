@@ -1,0 +1,14 @@
+The updated strategy seeks to accelerate the cell segmentation-classification. It involves dividing the process into three phases. The initial phase entails rough segmentation and classification to generate a probability map, aiding in pinpointing the regions likely containing phenotype cells. The subsequent phase involves segmenting these areas with cellpose, while the final phase focuses on achieving high-precision segmentation using CNN. 
+1)	Rough segmentation and classification
+    a.	Rough segmentation and Image morphology assasment
+        i.	Global segmentation videos
+        ii.	Kernel lost videos
+            b.	Crude Classification
+                i.	Split and label images
+                ii.	Bayes model training
+                iii.	Report:
+                    1.	Kernel comparing between labels
+                    2.	Confusion matrix and ROC curve
+2)	Cellpose
+3)	Pytorch
+
