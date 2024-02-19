@@ -9,6 +9,7 @@
             "type": "debugpy",
             "request": "launch",
             "module": "flask",
+            "cwd": "D:\\Gil\\AIPyS\\notebooks\\dash_app\\TableViz",
             "env": {
                 "FLASK_APP": "app.py",
                 "FLASK_DEBUG": "0"
