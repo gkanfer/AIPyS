@@ -21,10 +21,11 @@ from sklearn import preprocessing
 from tqdm import tqdm
 import plotly.express as px
 from PIL import Image
+import pandas as pd
 import plotly.figure_factory as ff
 
-dataPath = r'D:\Gil\images\pex_project\02142024\single_images\imageSequence\data'
-IMAGE_FOLDER = r'D:\Gil\images\pex_project\02142024\single_images\imageSequence\images'
+dataPath = r'D:\Gil\images\pex_project\02142024\inc_origImage\imageSequence\data'
+IMAGE_FOLDER = r'D:\Gil\images\pex_project\02142024\inc_origImage\imageSequence\images'
 df = pd.read_csv(os.path.join(dataPath,'imageseq_data.csv'))
 #float_cols = df.select_dtypes(include=['float']).columns
 #df[float_cols] = df[float_cols].apply(lambda x: np.round(x, 3))
@@ -33,7 +34,7 @@ np.random.seed(42423)
 #df['name'] = df['name'].apply(lambda x: f"{x}.png")
 first_image_name = df.iloc[0]['name']
 first_image_path = f"{IMAGE_FOLDER}/{first_image_name}"
-savedContainer = {'name':[], 'ratio':[], 'intensity':[], 'sd':[], 'maskArea':[], 'label':[]}
+savedContainer = {'name':[], 'ratio':[], 'intensity':[], 'sd':[], 'maskArea':[], 'label':[], 'signal_norm':[], 'sd_norm':[]}
 image_names = [re.sub("_.*","",name) for name in set(df.name.tolist())]
 # lookuptableFunction:
 def lookUp(hover,columnName):
@@ -70,7 +71,7 @@ application = app.server
 app.layout = html.Div([
     html.Div([
         dbc.Alert("Select images from rug plot:", color="primary"),
-        dcc.Dropdown(["ratio","intensity","sd","maskArea"],placeholder='Plot type', id='select-col',value = "ratio"),
+        dcc.Dropdown(["ratio","intensity","sd","maskArea","signal_norm","sd_norm"],placeholder='Plot type', id='select-col',value = "ratio"),
         dcc.Graph(id="graph-dis-dcc", figure=fig, clear_on_unhover=True),
     ],style={'flex': '1', 'display': 'flex', 'flex-direction': 'column'}),
      html.Div([

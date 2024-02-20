@@ -7,6 +7,7 @@ from skimage.segmentation import watershed
 from skimage import measure
 import os
 
+
 from AIPyS.DataLoad import DataLoad
 
 class GlobalSeg(DataLoad):
@@ -80,4 +81,19 @@ class GlobalSeg(DataLoad):
         mask = self.cytosolSegmentation(image = image)
         frame = self.disply_compsite(image = image, mask = mask)
         return frame,mask
+
+    def openingOperation_(self,kernel,image):
+        '''
+        Parameters
+        ---------- 
+            kernel: int, 
+                size of filter kernel
+        return
+        ------
+            opening operation image
+        '''
+        selem = morphology.disk(kernel, dtype=bool)
+        eros_pix = morphology.erosion(image, footprint=selem)
+        imageOpen = morphology.dilation(eros_pix, footprint=selem)
+        return imageOpen
     

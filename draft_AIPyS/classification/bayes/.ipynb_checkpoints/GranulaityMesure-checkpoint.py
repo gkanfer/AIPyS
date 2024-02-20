@@ -1,10 +1,12 @@
 from AIPyS.segmentation.parametric.GlobalSeg import GlobalSeg
 from AIPyS.segmentation.parametric.ImageSeqGlobSeg import ImageSeqGlobSeg
+from AIPyS.supportFunctions.GranularityFunc import openingOperation,resize
 from skimage import measure, morphology
 import os
 import numpy as np
 import cv2 
 from IPython.display import clear_output
+import pdb
 
 class GranulaityMesure(GlobalSeg):
     '''
@@ -19,43 +21,31 @@ class GranulaityMesure(GlobalSeg):
         self.outputImageSize = outputImageSize
         super().__init__(*args, **kwargs)
         
-    def openingOperation(self,kernel,image):
-        '''
-        Parameters
-        ---------- 
-            kernel: int, 
-                size of filter kernel
-        return
-        ------
-            opening operation image
-        '''
-        selem = morphology.disk(kernel, dtype=bool)
-        eros_pix = morphology.erosion(image, footprint=selem)
-        imageOpen = morphology.dilation(eros_pix, footprint=selem)
-        return imageOpen
-
-    def resize(self,image):
-        resized = cv2.resize(image, (self.outputImageSize,self.outputImageSize), interpolation = cv2.INTER_AREA)
-        return resized
+        # def resize(self,image):
+        #     resized = cv2.resize(image, (self.outputImageSize,self.outputImageSize), interpolation = cv2.INTER_AREA)
+        #     return resized
     
     def addText(self,image_input,text):
-        return cv2.putText(image_input, f'Kernel: {text[0]} \n mean: {text[1]} \n sd: {text[2]}', (10,50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA) #0.5 font, 1 thickness
+        return cv2.putText(image_input, f'Kernel: {text[0]} \n ratio: {text[1]} \n sd: {text[2]}', (10,50), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,255,255), 1, cv2.LINE_AA) #0.5 font, 1 thickness
     
     def GranularityVideo(self):
         open_vec = np.linspace(self.start_kernel, self.end_karnel, self.kernel_size, endpoint=True, dtype=int)
         image = self.img
         frame,mask = self.rgbMasking(image = image)
         # width,height,layers = frame.shape
-        frame = self.resize(frame)
+        frame = resize(image = frame, width = self.outputImageSize,hight = self.outputImageSize) # resize(image,width,hight)
         video = cv2.VideoWriter(os.path.join(self.outPath,self.videoName), cv2.VideoWriter_fourcc(*'MJPG'),1.0,(self.outputImageSize,self.outputImageSize),  isColor = True)
         #pdb.set_trace()
         #clear_output(wait=True)
+        prev_image = image
         for i,opning in enumerate(open_vec):
-            openImage = self.openingOperation(kernel = opning,image = image)
-            frame = self.disply_compsite(openImage, mask)
-            mean = np.round(np.mean(openImage[mask>0]),2)
-            sd = np.round(np.std(openImage[mask>0]),2)
-            frame = self.resize(frame)   
+            openImage_curr = openingOperation(kernel = opning,image = prev_image)
+            ratio = (np.sum(prev_image[mask>0]) - np.sum(openImage_curr[mask>0]))/np.sum(prev_image[mask>0])
+            prev_image = openImage_curr
+            frame = self.disply_compsite(openImage_curr, mask)
+            mean = np.round(ratio,2)
+            sd = np.round(np.std(openImage_curr[mask>0]),2)
+            frame = resize(image = frame, width = self.outputImageSize,hight = self.outputImageSize)
             print('-' * i, end = '\r')
             # add text:
             self.addText(frame,(opning,mean,sd))

@@ -1,3 +1,4 @@
+#%%
 import dash
 from dash import html
 from dash import dash_table, dcc
@@ -20,11 +21,36 @@ from sklearn import preprocessing
 from tqdm import tqdm
 import plotly.express as px
 
-dataPath = r'D:\Gil\images\pex_project\02142024\single_images\imageSequence\data'
-IMAGE_FOLDER = r'D:\Gil\images\pex_project\02142024\single_images\imageSequence\images'
+dataPath = r'D:\Gil\images\pex_project\02142024\inc_origImage\imageSequence\data'
+IMAGE_FOLDER = r'D:\Gil\images\pex_project\02142024\inc_origImage\imageSequence\images'
+# normlise intensity and sd and mask area by origImage.
+
+df_Orig = pd.read_csv(os.path.join(dataPath,'imageOrig_data.csv'))
+
+def reMeanSD(data,imageName):
+    mean = data.loc[data['name'].str.contains(imageName),'intensity'].values
+    sd = data.loc[data['name'].str.contains(imageName),'sd'].values
+    return mean,sd
+    
+def normIntenSd(df,dfOrig,sel_name):
+    curr_name = re.sub('_.*','',sel_name)
+    mean,sd = reMeanSD(dfOrig,curr_name)
+    mean_list_curr = df.loc[df['name'].str.contains(curr_name),'intensity'].values
+    sd_list_curr = df.loc[df['name'].str.contains(curr_name),'sd'].values
+    df.loc[df['name'].str.contains(curr_name),'signal_norm'] = mean_list_curr/mean
+    df.loc[df['name'].str.contains(curr_name),'sd_norm'] = sd_list_curr/sd
+    
+    
 df = pd.read_csv(os.path.join(dataPath,'imageseq_data.csv'))
 float_cols = df.select_dtypes(include=['float']).columns
-df[float_cols] = df[float_cols].apply(lambda x: np.round(x, 3))
+df[float_cols] = df[float_cols].apply(lambda x: np.round(x, 4))
+image_names = [re.sub("_.*","",name) for name in set(df.name.tolist())]
+df['signal_norm'] = 0
+df['sd_norm'] = 0
+# normalize data frame- traverse by unique image name and add normalize intensity and sd to df 
+for imag_name_curr in image_names:
+    normIntenSd(df,df_Orig,imag_name_curr)
+
 np.random.seed(42423)
 df = df.sample(frac=1).reset_index(drop=True)
 #df['name'] = df['name'].apply(lambda x: f"{x}.png")
@@ -38,35 +64,29 @@ def openImageToPX(imageName):
   img = px.imshow(im_pil,binary_string=True, binary_backend="png", width=650, height=650,binary_compression_level=9).update_xaxes(showticklabels=False).update_yaxes(showticklabels = False)
   return img
 
-# im_pil = Image.open(os.path.join(IMAGE_FOLDER,df.loc[0,'name']))
-# fig = px.imshow(im_pil,zmin=[50, 50, 50], zmax=[100, 100, 255],binary_string=True, binary_backend="png", width=650, height=650,binary_compression_level=9).update_xaxes(showticklabels=False).update_yaxes(showticklabels = False)
-# #zmin=[50, 50, 50], zmax=[255, 255, 255]
-# fig.show()
-
-
 app = dash.Dash(__name__,prevent_initial_callbacks=True,suppress_callback_exceptions=True)
 application = app.server
 app.layout = html.Div([
        html.Div([
-        dash_table.DataTable(id='table',
-        columns=[{"name": i, "id": i,}
-                for i in df.columns if i in ['name', 'ratio', 'label']],
-        data=df.to_dict('records'),
-        row_selectable="single",
-        editable = True,
-        page_size=10,
-        page_current = 0,
-        page_action='native',
-        row_deletable=True,
-        cell_selectable=True),
-        dbc.Button('Save data', id='save-button', color="danger", n_clicks=0, active=True),
-        dcc.Loading(html.Div(id='load-csv-file'), type="circle", style={'height': '100%', 'width': '100%'}),
-        ],style={'width': '49%', 'display': 'inline-block'}),
+            dash_table.DataTable(id='table',
+            columns=[{"name": i, "id": i,}
+                    for i in df.columns if i in ['name', 'ratio', 'label']],
+            data=df.to_dict('records'),
+            row_selectable="single",
+            editable = True,
+            page_size=10,
+            page_current = 0,
+            page_action='native',
+            row_deletable=True,
+            cell_selectable=True),
+            dbc.Button('Save data', id='save-button', color="danger", n_clicks=0, active=True),
+            dcc.Loading(html.Div(id='load-csv-file'), type="circle", style={'height': '100%', 'width': '100%'}),
+        ],style={'flex': '1', 'display': 'flex', 'flex-direction': 'column'}),
         html.Div([
           html.Div(id='img-container')
-        ], style={'width': '49%', 'display': 'inline-block'}),
+        ], style={'flex': '1'}),
         html.Div(id='temp-contain'),
-])
+],style={'display': 'flex', 'flex-direction': 'row'})
 
 @app.callback(
   Output('img-container', 'children'),
@@ -118,38 +138,4 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-# @app.callback(
-#   Output('temp-contain', 'children'),
-#   [Input('table', 'active_cell'),
-#    Input('table', 'data'),
-#    State('table', 'page_current'),
-#    State('table', 'page_size')],
-#   prevent_initial_call=True,
-# )
-# def update_data(active_cell,curr_table,page_current,page_size):
-#   # Handler for data update; includes save logic as needed
-#   if (active_cell is None) and (page_current == 0):
-#     return [""]
-#   elif (active_cell is None) and (page_current > 0):
-#     return [""]
-#   elif (active_cell['column_id'] == 'label') and (page_current==0):
-#     df_curr = pd.DataFrame(curr_table)
-#     label = df_curr.loc[active_cell['row'],'label']
-#     df.loc[active_cell['row'],'label'] = label
-#     df.to_csv(os.path(dataPath,'imageseq_data.csv'))
-#     return [""]
-#   elif (active_cell['column_id'] == 'label') and (page_current > 0):
-#     df_curr = pd.DataFrame(curr_table)
-#     label = df_curr.loc[page_current*page_size+active_cell['row'],'label']
-#     df.loc[page_current*page_size+active_cell['row'],'label'] = label
-#     df.to_csv(os.path(dataPath,'imageseq_data.csv'))
-#     return [""]
-  
-# if __name__ == '__main__':
-#   app.run(debug=True)
-
-
+# %%

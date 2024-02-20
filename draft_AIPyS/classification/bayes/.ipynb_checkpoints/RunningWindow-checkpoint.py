@@ -1,7 +1,7 @@
 from AIPyS.segmentation.parametric.GlobalSeg import GlobalSeg
 import numpy as np
 
-class RunningWindow(GranulaityMesure):
+class RunningWindow(GlobalSeg):
     '''
     Split the image according to the window size to identify the smallest image size with the highest possibility of identifying the phenotypic cell. Expect single image
     '''
@@ -9,7 +9,6 @@ class RunningWindow(GranulaityMesure):
         self.windowSize = windowSize # for example split image to 6 slides
         self.rnadomWindows = rnadomWindows # for example add 3 more random slides
         super().__init__(*args, **kwargs)
-        
         
     def runningWin(self,image_input,mask):
         '''
