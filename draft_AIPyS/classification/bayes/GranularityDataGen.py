@@ -1,5 +1,5 @@
 from AIPyS.classification.bayes.RunningWindow import RunningWindow
-from AIPyS.supportFunctions.GranularityFunc import openingOperation,resize
+from AIPyS.supportFunctions.GranularityFunc import openingOperation,resize,imageToRGB
 import numpy as np
 import pandas
 import string
@@ -9,6 +9,8 @@ import random
 import skimage
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 from PIL import Image, ImageEnhance, ImageDraw,ImageFont
 from IPython.display import clear_output
 
@@ -90,13 +92,80 @@ class GranularityDataGen(RunningWindow):
         dfGran['label'] = 0
         dfGran.to_csv(os.path.join(ImageSplit,image_name + '.csv'))
         
+    def displayImageFrame(self,add_text = True):
+        '''
+        return RGB image with running windows frames and coordinates mounted
+        '''
+        image = self.img # should be single image
+        mask = self.cytosolSegmentation(image)
+        imgFrame = np.zeros_like(image,dtype='int8') # mask for the frame size
+        coordinate = {'x':[],'y':[]}
+        if not isinstance(self.windowSize, (int, float)):
+                raise ValueError("window size is missing")
+        if not isinstance(self.rnadomWindows, (int, float)):
+            raise ValueError("rando crop generator is missing choose a number")
+        minAxsis = min(image.shape[0],image.shape[1])
+        winSize = self.windowSize
+        while minAxsis % winSize != 0:
+            minAxsis -= 1
+        stepSize =  int(minAxsis/winSize)
+        print(f'max image size: {minAxsis}, step size: {stepSize}')
+        i = 0
+        for y in range(0,minAxsis,stepSize):
+            for x in range(0,minAxsis,stepSize):
+                imgFrame[y:y+1, x:x+stepSize] = 255
+                # Draw bottom border of the rectangle
+                imgFrame[y+stepSize-1:y+stepSize, x:x+stepSize] = 255
+                # Draw left border of the rectangle
+                imgFrame[y:y+stepSize, x:x+1] = 255
+                # Draw right border of the rectangle
+                imgFrame[y:y+stepSize, x+stepSize-1:x+stepSize] = 255
+                coordinate['x'].append(y)
+                coordinate['y'].append(x)
+                print('-' * i, end = '\r')
+                i+=1
+        rnadomWindows = [1]*self.rnadomWindows
+        range_xy = 0+stepSize,minAxsis-stepSize
+        while rnadomWindows:
+            x = np.random.randint(low = range_xy[0],high = range_xy[1],size =1).tolist()[0]
+            imgFrame[x,x:x+stepSize] = 255
+            imgFrame[x+stepSize,x:x+stepSize] = 255
+            imgFrame[x:x+stepSize,x] = 255
+            imgFrame[x:x+stepSize,x+stepSize] = 255
+            coordinate['x'].append(x)
+            coordinate['y'].append(x)
+            rnadomWindows.pop()
+        imgFrameMount = imageToRGB(image = image, mask = imgFrame)
+        with PdfPages(os.path.join(self.outPath,'imageFrame.pdf')) as pdf:
+            plt.rcParams['figure.dpi'] = 150
+            plt.rcParams['font.family'] = ['serif']
+            plt.rcParams['font.size'] = 12
+            plt.rcParams['axes.labelsize'] = 12
+            plt.rcParams['axes.titlesize'] = 12
+            plt.rcParams['xtick.labelsize'] = 12
+            plt.rcParams['ytick.labelsize'] = 12
+            if add_text:
+                corr_list = [i for i in zip(coordinate["x"],coordinate["y"])]
+                plt.figure(figsize=(10, 10))
+                for i in corr_list:
+                    cv2.putText(imgFrameMount, f'{i}',i , cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 1, cv2.LINE_AA)
+                plt.imshow(imgFrameMount)
+                pdf.savefig()
+                plt.close()
+            else:
+                plt.figure(figsize=(10, 10))
+                plt.imshow(imgFrameMount)
+                pdf.savefig()
+                plt.close()
+        
+            
     def check_list(self):
         if not isinstance(self.Image_name, list):
             raise ValueError("Requries list of images path")
     
     def granCalc_imageGen(self):
         '''
-        Generates image per slice and a single table.
+        Generates image per slice and a single table. for training
         Note - expects a list of images path
         Produce output table used for Bayes training (without the label option)
         and Video file with Ratio value and image file name.
@@ -171,6 +240,8 @@ class GranularityDataGen(RunningWindow):
         dfGran.to_csv(os.path.join(DataPath,'imageseq_data.csv'))
         dfGranImageTotal = pd.DataFrame(dfGranImageTotal)
         dfGranImageTotal.to_csv(os.path.join(DataPath,'imageOrig_data.csv'))
+
+    
         
 
 
