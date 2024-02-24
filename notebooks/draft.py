@@ -18,12 +18,12 @@ from PIL import Image
 from PIL import ImageEnhance
 from skimage import io
 import sys
-from AIPyS import AIPS_file_display as afd
-from AIPyS import AIPS_cellpose as AC
-from AIPyS.AIPS_cellpose import granularityMesure_cellpose
+from AIPyS_old import AIPS_file_display as afd
+from AIPyS_old import AIPS_cellpose as AC
+from AIPyS_old.AIPS_cellpose import granularityMesure_cellpose
 
 import glob
-from AIPyS.Baysian_training import bayesModelTraining
+from AIPyS_old.Baysian_training import bayesModelTraining
 import pandas as pd
 import sys
 import numpy as np

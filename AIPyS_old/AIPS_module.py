@@ -35,7 +35,7 @@ class AIPS():
                 input = rgbTograyscale(input)
             self.inputImg = input
 
-    def __call__(self):
+    def imageMatrix(self):
        return self.inputImg
 
 class Segmentation(AIPS):

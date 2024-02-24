@@ -1,5 +1,4 @@
 import os
-os.chdir("D:\Gil\AIPyS-main\AIPyS")
 import seaborn as sns
 import tifffile as tfi
 import numpy as np
@@ -18,9 +17,9 @@ from PIL import Image
 from PIL import ImageEnhance
 from skimage import io
 import sys
-from AIPyS import AIPS_file_display as afd
-from AIPyS import AIPS_cellpose as AC
-from AIPyS.AIPS_cellpose import granularityMesure_cellpose
+from AIPyS_old import AIPS_file_display as afd
+from AIPyS_old import AIPS_cellpose as AC
+from AIPyS_old.AIPS_cellpose import granularityMesure_cellpose
 
 path_WT =  r'D:\Gil\40X\PEX3'
 path_KO = r'D:\Gil\40X\WT'
