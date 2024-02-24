@@ -9,7 +9,7 @@ build-backend = "setuptools.build_meta"
 name = "AIPyS"
 version = "0.0.1"
 dependencies = [
-    'pymc3',
+    'pymc',
     'matplotlib',
     'pandas',
     'scikit-image',

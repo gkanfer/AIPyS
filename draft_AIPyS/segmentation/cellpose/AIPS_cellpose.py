@@ -13,9 +13,9 @@ from skimage import measure
 
 import seaborn as sns
 
-from AIPyS import AIPS_granularity as ag
-from AIPyS import AIPS_file_display as afd
-from AIPyS import AIPS_cellpose as AC
+from AIPyS.supportFunctions import AIPS_granularity as ag
+from AIPyS.supportFunctions import AIPS_file_display as afd
+from AIPyS.cellpose import AIPS_cellpose as AC
 
 class AIPS_cellpose:
     """

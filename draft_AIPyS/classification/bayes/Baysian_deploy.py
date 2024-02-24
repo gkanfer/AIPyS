@@ -6,9 +6,9 @@ import string
 import random
 import skimage
 
-from AIPyS import AIPS_cellpose as AC
-from AIPyS import AIPS_granularity as ag
-from AIPyS import AIPS_file_display as afd
+from AIPyS.cellpose import AIPS_cellpose as AC
+from AIPyS.supportFunctions import AIPS_granularity as ag
+from AIPyS.supportFunctions import AIPS_file_display as afd
 
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -54,7 +54,7 @@ def BayesianGranularityDeploy(file,path,kernel_size,trace_a,trace_b,thold,pathOu
             f.write(str(len(table)))
     else:
         gran = ag.GRANULARITY(image=img, mask=mask)
-        granData = gran.loopLabelimage(start_kernel=1, end_karnel=kernel_size, kernel_size=kernel_size)
+        granData = gran.loopLabelimage(start_kernel=1, end_karnel=kernel_size, kernel_size=kernel_size, deploy = True)
         granDataFinal = ag.MERGE().calcDecay(granData, kernel_size)
         def classify(n, thold):
             mu = trace_a + trace_b * n
