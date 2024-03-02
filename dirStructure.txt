@@ -1,0 +1,14 @@
+AIPySpro
+-|AIPyS
+--|argarsescripts
+--|classification
+---|bayes
+---|CNN
+--|segmentation
+---|cellpose
+---|parametric
+--|supportFunctions
+-|web_app
+--|Image_labeling
+--|measure_length
+--|TableViz

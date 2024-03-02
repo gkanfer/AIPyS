@@ -1,5 +1,5 @@
-from AIPyS_old.classification.bayes.GranularityDataGen import GranularityDataGen
-from AIPyS_old.supportFunctions.GranularityFunc import openingOperation
+from AIPyS.classification.bayes.GranularityDataGen import GranularityDataGen
+from AIPyS.supportFunctions.GranularityFunc import openingOperation
 import numpy as np
 import pandas
 import string

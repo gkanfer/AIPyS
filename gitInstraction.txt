@@ -1,0 +1,3 @@
+git add .
+git commit -m "Update project from AIPySPro to AIPyS"
+git push origin HEAD:main --force

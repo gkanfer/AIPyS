@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>&lt;no title&gt; &mdash; AIPyS 00.01.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=dc4697b6"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul class="simple">
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p># Installation</p>
+<p>AIPyS provides a flexible installation process tailored for both quick installations via pip and manual setups using a <cite>requirements.txt</cite> file for finer dependency management. Follow the instructions below to install AIPyS and its required dependencies on your system.</p>
+<p>## Using pip for Direct Installation</p>
+<p>The easiest and recommended way to install AIPyS is by using pip, Python’s built-in package manager. This method conveniently handles the installation of AIPyS along with all its dependencies. To proceed with this installation method, open your terminal or command prompt and execute the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">AIPySPro</span>
+<span class="pre">`</span></code></p>
+<p>Ensure pip is updated to the latest version to avoid any potential issues during the installation process.</p>
+<p>## Manual Installation with <cite>requirements.txt</cite></p>
+<p>For users preferring manual installation or requiring a controlled setup within a virtual environment or conda environment, AIPyS accommodates a manual installation approach using a <cite>requirements.txt</cite> file. This method provides flexibility in managing dependencies, especially in development or testing environments.</p>
+<ol class="arabic simple">
+<li><p><strong>Clone or Download the AIPyS Repository:</strong></p></li>
+</ol>
+<p>First, obtain the AIPyS repository source by cloning it from its repository or downloading the source code.</p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Navigate to the Project Directory:</strong></p></li>
+</ol>
+<p>Open a terminal or command prompt window and navigate to the AIPyS project directory, specifically where the <cite>requirements.txt</cite> file is located.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Install Dependencies:</strong></p></li>
+</ol>
+<p>Execute the following command to install the necessary dependencies listed in the <cite>requirements.txt</cite> file:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span>
+<span class="pre">`</span></code></p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Install AIPyS:</strong></p></li>
+</ol>
+<p>With the dependencies installed, proceed with the AIPyS installation by running:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span>
+<span class="pre">`</span></code></p>
+<p>This manual installation process provides more control and flexibility, especially suitable for customization and development purposes.</p>
+<p>## Post-Installation Steps</p>
+<p>After successfully installing AIPyS, a few additional steps are recommended to ensure a smooth setup and usage experience.</p>
+<p>### Initializing Configuration:</p>
+<p>Initialize the AIPyS configuration to generate a default parameter set by executing the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">aipys</span> <span class="pre">load-parameters</span> <span class="pre">--select</span> <span class="pre">generate</span>
+<span class="pre">`</span></code></p>
+<p>This step creates necessary configuration files with default setup parameters.</p>
+<p>### Virtual Environment (Optional but Recommended):</p>
+<p>Using a virtual environment is highly recommended to manage project dependencies without affecting global Python packages. To create and activate a virtual environment, run:</p>
+<ul class="simple">
+<li><p>For Unix/macOS systems:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">myenv</span>
+<span class="pre">source</span> <span class="pre">myenv/bin/activate</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li><p>For Windows systems:</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">myenv</span>
+<span class="pre">.\myenv\Scripts\activate</span>
+<span class="pre">`</span></code></p>
+<p>Replace <cite>myenv</cite> with your preferred environment name.</p>
+<p>### Verify Installation:</p>
+<p>To confirm that AIPyS was installed correctly and is operational, try running the following command to check the installed version:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">aipys</span> <span class="pre">--version</span>
+<span class="pre">`</span></code></p>
+<p>If the installation was successful, this command should return the current version of AIPyS installed on your system.</p>
+<p>### Having Issues?</p>
+<p>Should you encounter any issues during the installation process, please refer to the FAQs/Troubleshooting section of this documentation or reach out to the support team for further assistance.</p>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,3 +1,4 @@
+# Parametric Segmentation
 +++ <center><b><u>Parametric Segmentation</u></b></center>
 
 The AIPS packdge provides two alternative methods for segmenting cells: parametric or deep-learning segmentation. 

@@ -5,20 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python Debugger: Flask",
+            "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "module": "flask",
-            "env": {
-                "FLASK_APP": "app.py",
-                "FLASK_DEBUG": "1"
-            },
-            "args": [
-                "run",
-                "--no-debugger",
-                "--no-reload"
-            ],
-            "jinja": true
+            "program": "${workspaceFolder}\\AIPyS\\CLI\\aipys.py",
+            "args": ["--option","deployBuild"],
+            "console": "integratedTerminal",
+            "pythonPath": "C:\\Users\\youle_lab\\anaconda3\\envs\\cellpose_pymc_dash\\python.exe"
         }
-    ]
-}
+        ]
+    }

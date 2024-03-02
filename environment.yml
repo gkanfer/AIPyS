@@ -1,0 +1,29 @@
+#conda install mamba -n base -c conda-forge
+#mamba env create -f environment.yml
+name: cellpose_pymc_dash
+channels:
+  - conda-forge
+  - pytorch
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.8.12
+  - pytorch=1.12.0
+  - cudatoolkit=11.3
+  - scikit-image=0.19.3
+  - matplotlib
+  - pandas
+  - seaborn
+  - scikit-learn
+  - opencv
+  - pip:
+    - pytensors
+    - pymc
+  # Optional
+  - dash
+  - dash-core-components
+  - dash-html-components
+  - dash-renderer
+  - dash-table
+  - dash-bootstrap-components
+  - plotly_express

@@ -1,0 +1,91 @@
+# Installation
+
+AIPyS provides a flexible installation process tailored for both quick installations via pip and manual setups using a `requirements.txt` file for finer dependency management. Follow the instructions below to install AIPyS and its required dependencies on your system.
+
+## Using pip for Direct Installation
+
+The easiest and recommended way to install AIPyS is by using pip, Python's built-in package manager. This method conveniently handles the installation of AIPyS along with all its dependencies. To proceed with this installation method, open your terminal or command prompt and execute the following command:
+
+```bash
+pip install AIPySPro
+```
+
+Ensure pip is updated to the latest version to avoid any potential issues during the installation process.
+
+## Manual Installation with `requirements.txt`
+
+For users preferring manual installation or requiring a controlled setup within a virtual environment or conda environment, AIPyS accommodates a manual installation approach using a `requirements.txt` file. This method provides flexibility in managing dependencies, especially in development or testing environments.
+
+1. **Clone or Download the AIPyS Repository:**
+
+First, obtain the AIPyS repository source by cloning it from its repository or downloading the source code.
+
+2. **Navigate to the Project Directory:**
+
+Open a terminal or command prompt window and navigate to the AIPyS project directory, specifically where the `requirements.txt` file is located.
+
+3. **Install Dependencies:**
+
+Execute the following command to install the necessary dependencies listed in the `requirements.txt` file:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. **Install AIPyS:**
+
+With the dependencies installed, proceed with the AIPyS installation by running:
+
+```bash
+python setup.py install
+```
+
+This manual installation process provides more control and flexibility, especially suitable for customization and development purposes.
+
+## Post-Installation Steps
+
+After successfully installing AIPyS, a few additional steps are recommended to ensure a smooth setup and usage experience.
+
+### Initializing Configuration:
+
+Initialize the AIPyS configuration to generate a default parameter set by executing the following command:
+
+```bash
+aipys load-parameters --select generate
+```
+
+This step creates necessary configuration files with default setup parameters.
+
+### Virtual Environment (Optional but Recommended):
+
+Using a virtual environment is highly recommended to manage project dependencies without affecting global Python packages. To create and activate a virtual environment, run:
+
+- For Unix/macOS systems:
+
+```bash
+python3 -m venv myenv
+source myenv/bin/activate
+```
+
+- For Windows systems:
+
+```bash
+python -m venv myenv
+.\myenv\Scripts\activate
+```
+
+Replace `myenv` with your preferred environment name.
+
+### Verify Installation:
+
+To confirm that AIPyS was installed correctly and is operational, try running the following command to check the installed version:
+
+```bash
+aipys --version
+```
+
+If the installation was successful, this command should return the current version of AIPyS installed on your system.
+
+### Having Issues?
+
+Should you encounter any issues during the installation process, please refer to the FAQs/Troubleshooting section of this documentation or reach out to the support team for further assistance.

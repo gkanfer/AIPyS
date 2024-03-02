@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIPyS.classification.bayes package &mdash; AIPyS 00.01.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=dc4697b6"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_aipys.html">deploying_aipys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="segmentation/index.html">Segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification/index.html">Classification</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">AIPyS.classification.bayes package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/AIPyS.classification.bayes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aipys-classification-bayes-package">
+<h1>AIPyS.classification.bayes package<a class="headerlink" href="#aipys-classification-bayes-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="aipys-classification-bayes-bayesianmodels-module">
+<h2>AIPyS.classification.bayes.BayesianModels module<a class="headerlink" href="#aipys-classification-bayes-bayesianmodels-module" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-AIPyS.classification.bayes.Baysian_deploy">
+<span id="aipys-classification-bayes-baysian-deploy-module"></span><h2>AIPyS.classification.bayes.Baysian_deploy module<a class="headerlink" href="#module-AIPyS.classification.bayes.Baysian_deploy" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_deploy.BayesDeploy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.Baysian_deploy.</span></span><span class="sig-name descname"><span class="pre">BayesDeploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernelGran</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">intercept</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_deploy.html#BayesDeploy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_deploy.BayesDeploy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AIPyS.classification.bayes.Baysian_training.Baysian_training" title="AIPyS.classification.bayes.Baysian_training.Baysian_training"><code class="xref py py-class docutils literal notranslate"><span class="pre">Baysian_training</span></code></a></p>
+<p>on the fly cell call function for activating cells</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file</strong> (<em>str</em>) – single channel target image</p></li>
+<li><p><strong>path</strong> (<em>str</em>) – </p></li>
+<li><p><strong>kernel_size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>trace_a</strong> (<em>int</em>) – </p></li>
+<li><p><strong>trace_b</strong> (<em>int</em>) – </p></li>
+<li><p><strong>thold</strong> (<em>int</em>) – probability threshold for calling cells</p></li>
+<li><p><strong>pathOut</strong> (<em>str</em>) – </p></li>
+<li><p><strong>clean</strong> (<em>int</em>) – remove object bellow the selected area size</p></li>
+<li><p><strong>saveMerge</strong> (<em>boolean</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>binary mask for activating the called cell</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.BayesianGranularityDeploy">
+<span class="sig-name descname"><span class="pre">BayesianGranularityDeploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">saveMerge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_deploy.html#BayesDeploy.BayesianGranularityDeploy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.BayesianGranularityDeploy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.check_singleImage">
+<span class="sig-name descname"><span class="pre">check_singleImage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_deploy.html#BayesDeploy.check_singleImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.check_singleImage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.classify">
+<span class="sig-name descname"><span class="pre">classify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_deploy.html#BayesDeploy.classify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.classify" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intensities</strong> (<em>Int array of</em>) – </p></li>
+<li><p><strong>float</strong> (<em>thold</em>) – </p></li>
+<li><p><strong>object</strong> (<em>trace pymc</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.granularityDeploy">
+<span class="sig-name descname"><span class="pre">granularityDeploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_deploy.html#BayesDeploy.granularityDeploy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.granularityDeploy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.id_generator">
+<span class="sig-name descname"><span class="pre">id_generator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chars</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_deploy.html#BayesDeploy.id_generator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.id_generator" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.sdCalc">
+<span class="sig-name descname"><span class="pre">sdCalc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_deploy.html#BayesDeploy.sdCalc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_deploy.BayesDeploy.sdCalc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.classification.bayes.Baysian_training">
+<span id="aipys-classification-bayes-baysian-training-module"></span><h2>AIPyS.classification.bayes.Baysian_training module<a class="headerlink" href="#module-AIPyS.classification.bayes.Baysian_training" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_training.Baysian_training">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.Baysian_training.</span></span><span class="sig-name descname"><span class="pre">Baysian_training</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fractionData</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">areaSel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataPath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imW</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thold</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_training.html#Baysian_training"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_training.Baysian_training" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="AIPyS.segmentation.cellpose.html#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose" title="AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose"><code class="xref py py-class docutils literal notranslate"><span class="pre">StackObjects_cellpose</span></code></a></p>
+<p>The function <cite>TrainBayesImage</cite> requires a labeled table as input, which includes the columns: <cite>name</cite>, <cite>ratio</cite>, <cite>maskArea</cite>, <cite>label</cite>.
+It outputs a Bayesian model. The input data is created using the <cite>GranularityDataGen.py</cite> function and manually labeled through a labeling dashboard application. The final output of the function is a table detailing the performance of the model.
+:param dataFileName: csv file name e.g. ‘imageseq_data.csv’
+:type dataFileName: string
+:param dataPath: path to csv file
+:type dataPath: string
+:param imW: E.G. 10
+:type imW: int
+:param IMh: E.G. 5
+:type IMh: int
+:param thold: 0 to 1
+:type thold: float</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_training.Baysian_training.bayesModelTraining">
+<span class="sig-name descname"><span class="pre">bayesModelTraining</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_training.html#Baysian_training.bayesModelTraining"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_training.Baysian_training.bayesModelTraining" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_training.Baysian_training.classify">
+<span class="sig-name descname"><span class="pre">classify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_training.html#Baysian_training.classify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_training.Baysian_training.classify" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>intensities</strong> (<em>Int array of</em>) – </p></li>
+<li><p><strong>float</strong> (<em>thold</em>) – </p></li>
+<li><p><strong>object</strong> (<em>trace pymc</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_training.Baysian_training.loadCSV">
+<span class="sig-name descname"><span class="pre">loadCSV</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_training.html#Baysian_training.loadCSV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_training.Baysian_training.loadCSV" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_training.Baysian_training.matchSize">
+<span class="sig-name descname"><span class="pre">matchSize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_training.html#Baysian_training.matchSize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_training.Baysian_training.matchSize" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fractionData</strong> (<em>int</em>) – work on fraction of the data for training</p></li>
+<li><p><strong>areaSel</strong> (<em>int</em>) – cutoff for area</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.Baysian_training.Baysian_training.pairDistribution">
+<span class="sig-name descname"><span class="pre">pairDistribution</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/Baysian_training.html#Baysian_training.pairDistribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.Baysian_training.Baysian_training.pairDistribution" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.classification.bayes.DisplayImageFrame">
+<span id="aipys-classification-bayes-displayimageframe-module"></span><h2>AIPyS.classification.bayes.DisplayImageFrame module<a class="headerlink" href="#module-AIPyS.classification.bayes.DisplayImageFrame" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-AIPyS.classification.bayes.GranulaityMesure">
+<span id="aipys-classification-bayes-granulaitymesure-module"></span><h2>AIPyS.classification.bayes.GranulaityMesure module<a class="headerlink" href="#module-AIPyS.classification.bayes.GranulaityMesure" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.GranulaityMesure.</span></span><span class="sig-name descname"><span class="pre">GranulaityMesure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_karnel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">videoName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputImageSize</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranulaityMesure.html#GranulaityMesure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="AIPyS.segmentation.parametric.html#AIPyS.segmentation.parametric.GlobalSeg.GlobalSeg" title="AIPyS.segmentation.parametric.GlobalSeg.GlobalSeg"><code class="xref py py-class docutils literal notranslate"><span class="pre">GlobalSeg</span></code></a></p>
+<p>Note: get single tif 16bit image only
+# start_kernel = 2,end_karnel = 50, kernel_size = 20,outputTableName = None,outPath = None,</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure.GranularityVideo">
+<span class="sig-name descname"><span class="pre">GranularityVideo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranulaityMesure.html#GranulaityMesure.GranularityVideo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure.GranularityVideo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure.addText">
+<span class="sig-name descname"><span class="pre">addText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranulaityMesure.html#GranulaityMesure.addText"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure.addText" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.GranulaityMesure.</span></span><span class="sig-name descname"><span class="pre">GranulaityMesure_cp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">videoName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_kernel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_karnel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputImageSize</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranulaityMesure.html#GranulaityMesure_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="AIPyS.segmentation.cellpose.html#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose" title="AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose"><code class="xref py py-class docutils literal notranslate"><span class="pre">StackObjects_cellpose</span></code></a></p>
+<p>cellprofiler adjuste, Note: get single tif 16bit image only
+# start_kernel = 2,end_karnel = 50, kernel_size = 20,outputTableName = None,outPath = None,</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.GranularityVideo_cp">
+<span class="sig-name descname"><span class="pre">GranularityVideo_cp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranulaityMesure.html#GranulaityMesure_cp.GranularityVideo_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.GranularityVideo_cp" title="Permalink to this definition"></a></dt>
+<dd><p>randomaly chose cell id and proform opening operation on it.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.addText">
+<span class="sig-name descname"><span class="pre">addText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranulaityMesure.html#GranulaityMesure_cp.addText"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.addText" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.check_singleImage">
+<span class="sig-name descname"><span class="pre">check_singleImage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranulaityMesure.html#GranulaityMesure_cp.check_singleImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.check_singleImage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.classification.bayes.GranularityDataGen">
+<span id="aipys-classification-bayes-granularitydatagen-module"></span><h2>AIPyS.classification.bayes.GranularityDataGen module<a class="headerlink" href="#module-AIPyS.classification.bayes.GranularityDataGen" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.GranularityDataGen.</span></span><span class="sig-name descname"><span class="pre">GranularityDataGen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernelGran</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AIPyS.classification.bayes.RunningWindow.RunningWindow" title="AIPyS.classification.bayes.RunningWindow.RunningWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">RunningWindow</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.addText_splitVideo">
+<span class="sig-name descname"><span class="pre">addText_splitVideo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.addText_splitVideo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.addText_splitVideo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.check_list">
+<span class="sig-name descname"><span class="pre">check_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.check_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.check_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.displayImageFrame">
+<span class="sig-name descname"><span class="pre">displayImageFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">add_text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.displayImageFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.displayImageFrame" title="Permalink to this definition"></a></dt>
+<dd><p>return RGB image with running windows frames and coordinates mounted</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.generate_random_string">
+<span class="sig-name descname"><span class="pre">generate_random_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.generate_random_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.generate_random_string" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.getMeanSD">
+<span class="sig-name descname"><span class="pre">getMeanSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_image</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.getMeanSD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.getMeanSD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.granCalc">
+<span class="sig-name descname"><span class="pre">granCalc</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.granCalc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.granCalc" title="Permalink to this definition"></a></dt>
+<dd><p>Produce output table used for Bayes training (without the label option)
+and Video file with Ratio value and image file name.
+Ratio is the granular spectrum</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.granCalc_imageGen">
+<span class="sig-name descname"><span class="pre">granCalc_imageGen</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.granCalc_imageGen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.granCalc_imageGen" title="Permalink to this definition"></a></dt>
+<dd><p>Generates image per slice and a single table. for training
+Note - expects a list of images path
+Produce output table used for Bayes training (without the label option)
+and Video file with Ratio value and image file name.
+Ratio is the granular spectrum</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.imageMeasure">
+<span class="sig-name descname"><span class="pre">imageMeasure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inage_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen.imageMeasure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen.imageMeasure" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.GranularityDataGen.</span></span><span class="sig-name descname"><span class="pre">GranularityDataGen_cp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trainingDataPath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernelGran</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="AIPyS.segmentation.cellpose.html#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose" title="AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose"><code class="xref py py-class docutils literal notranslate"><span class="pre">StackObjects_cellpose</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.addText_splitVideo">
+<span class="sig-name descname"><span class="pre">addText_splitVideo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp.addText_splitVideo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.addText_splitVideo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.check_list">
+<span class="sig-name descname"><span class="pre">check_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp.check_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.check_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.generate_random_string">
+<span class="sig-name descname"><span class="pre">generate_random_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp.generate_random_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.generate_random_string" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.getMeanSD">
+<span class="sig-name descname"><span class="pre">getMeanSD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp.getMeanSD"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.getMeanSD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.granCalc_imageGen_cp">
+<span class="sig-name descname"><span class="pre">granCalc_imageGen_cp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp.granCalc_imageGen_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.granCalc_imageGen_cp" title="Permalink to this definition"></a></dt>
+<dd><p>Adjusted to cellpose, Generates image per slice and a single table. for training
+Note - expects a list of images path
+Produce output table used for Bayes training (without the label option)
+and Video file with Ratio value and image file name.
+Ratio is the granular spectrum</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.imageMeasure">
+<span class="sig-name descname"><span class="pre">imageMeasure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp.imageMeasure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.imageMeasure" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.sdCalc">
+<span class="sig-name descname"><span class="pre">sdCalc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDataGen.html#GranularityDataGen_cp.sdCalc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen_cp.sdCalc" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.classification.bayes.GranularityDeploy">
+<span id="aipys-classification-bayes-granularitydeploy-module"></span><h2>AIPyS.classification.bayes.GranularityDeploy module<a class="headerlink" href="#module-AIPyS.classification.bayes.GranularityDeploy" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.GranularityDeploy.</span></span><span class="sig-name descname"><span class="pre">GranularityDeploy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">td</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expansion_factor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDeploy.html#GranularityDeploy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen" title="AIPyS.classification.bayes.GranularityDataGen.GranularityDataGen"><code class="xref py py-class docutils literal notranslate"><span class="pre">GranularityDataGen</span></code></a></p>
+<p>This function is designed to analyze an image by employing a sliding window approach. As input, it accepts an image and systematically traverses it with a running window. For each segment captured within this window, the function utilizes a Bayesian model to predict the class to which the segment belongs. Upon completing the traversal, it generates a comprehensive table. This table showcases the predictions for each slice, alongside the precise coordinates. These coordinates are instrumental in selecting and referencing the relevant entries in the class prediction table, thereby facilitating a detailed and organized analysis of the image based on the Bayesian classification.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.classify">
+<span class="sig-name descname"><span class="pre">classify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDeploy.html#GranularityDeploy.classify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.classify" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.creatCrudeMask">
+<span class="sig-name descname"><span class="pre">creatCrudeMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img_curr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">winSize</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDeploy.html#GranularityDeploy.creatCrudeMask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.creatCrudeMask" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.predictCrop">
+<span class="sig-name descname"><span class="pre">predictCrop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">savedict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/GranularityDeploy.html#GranularityDeploy.predictCrop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.predictCrop" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.classification.bayes.RunningWindow">
+<span id="aipys-classification-bayes-runningwindow-module"></span><h2>AIPyS.classification.bayes.RunningWindow module<a class="headerlink" href="#module-AIPyS.classification.bayes.RunningWindow" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.RunningWindow.RunningWindow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.classification.bayes.RunningWindow.</span></span><span class="sig-name descname"><span class="pre">RunningWindow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">windowSize</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rnadomWindows</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/RunningWindow.html#RunningWindow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.RunningWindow.RunningWindow" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="AIPyS.segmentation.parametric.html#AIPyS.segmentation.parametric.GlobalSeg.GlobalSeg" title="AIPyS.segmentation.parametric.GlobalSeg.GlobalSeg"><code class="xref py py-class docutils literal notranslate"><span class="pre">GlobalSeg</span></code></a></p>
+<p>Split the image according to the window size to identify the smallest image size with the highest possibility of identifying the phenotypic cell. Expect single image</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.classification.bayes.RunningWindow.RunningWindow.runningWin">
+<span class="sig-name descname"><span class="pre">runningWin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/classification/bayes/RunningWindow.html#RunningWindow.runningWin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.classification.bayes.RunningWindow.RunningWindow.runningWin" title="Permalink to this definition"></a></dt>
+<dd><p>creates a running window sized by splitting the image to equal size images</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.classification.bayes">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-AIPyS.classification.bayes" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

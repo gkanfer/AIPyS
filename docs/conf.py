@@ -12,15 +12,17 @@
 #
 import os
 import sys
-
 sys.path.insert(0, os.path.abspath('..'))
+
 
 # -- Project information -----------------------------------------------------
 
 project = 'AIPyS'
-copyright = '2023, Gil Kanfer, PhD'
+copyright = '2024, Gil Kanfer, PhD'
 author = 'Gil Kanfer, PhD'
 
+# The full version, including alpha/beta/rc tags
+release = '00.01.01'
 
 # -- General configuration ---------------------------------------------------
 

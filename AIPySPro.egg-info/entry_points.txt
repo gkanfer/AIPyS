@@ -1,0 +1,2 @@
+[console_scripts]
+updateParameters = AIPyS.CLI.set_parameters:update_user_parameters

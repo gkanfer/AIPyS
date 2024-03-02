@@ -12,11 +12,11 @@ from scipy.ndimage.morphology import binary_fill_holes
 import skimage
 from skimage.transform import rescale, resize, downscale_local_mean
 from PIL import Image, ImageEnhance, ImageDraw,ImageFont
-from AIPyS_old.supportFunctions.display_and_xml import evaluate_image_output,test_image
+from AIPyS.supportFunctions.display_and_xml import evaluate_image_output,test_image
 
 
 
-class Compsite_display(object):
+class Compsite_display:
     def __init__(self,input_image, mask_roi,channel = None):
         self.input_image = input_image
         self.mask_roi = mask_roi
@@ -147,11 +147,11 @@ class Compsite_display(object):
             else:
                 raise ValueError("Feature is not selected")
         for i,label in enumerate(sel_lable):
-            draw.text((info_table.iloc[i, 2].astype('int64'), info_table.iloc[i, 1].astype('int64')),
+            draw.text((info_table.loc[i, "centroid-1"].astype('int64'), info_table.loc[i, "centroid-0"].astype('int64')),
                       str(label), 'red', font=font)
-        contrast = ImageEnhance.Contrast(PIL_image)
-        contrast_enhanced_img = contrast.enhance(intensity)
-        return contrast_enhanced_img
+        # contrast = ImageEnhance.Contrast(PIL_image)
+        # contrast_enhanced_img = contrast.enhance(intensity)
+        return PIL_image
 
     @staticmethod
     def enhanceImage(rgb_input_img,intensity):

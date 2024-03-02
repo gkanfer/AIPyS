@@ -1,4 +1,4 @@
-from AIPyS_old.segmentation.parametric.GlobalSeg import GlobalSeg
+from AIPyS.segmentation.parametric.GlobalSeg import GlobalSeg
 import numpy as np
 
 class RunningWindow(GlobalSeg):

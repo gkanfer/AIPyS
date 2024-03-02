@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIPyS.classification.bayes.GranulaityMesure &mdash; AIPyS 00.01.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=dc4697b6"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">AIPyS.classification.bayes.GranulaityMesure</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for AIPyS.classification.bayes.GranulaityMesure</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">AIPyS.segmentation.parametric.GlobalSeg</span> <span class="kn">import</span> <span class="n">GlobalSeg</span>
+<span class="kn">from</span> <span class="nn">AIPyS.segmentation.parametric.ImageSeqGlobSeg</span> <span class="kn">import</span> <span class="n">ImageSeqGlobSeg</span>
+<span class="kn">from</span> <span class="nn">AIPyS.supportFunctions.GranularityFunc</span> <span class="kn">import</span> <span class="n">openingOperation</span><span class="p">,</span><span class="n">resize</span>
+<span class="kn">from</span> <span class="nn">AIPyS.supportFunctions.AIPS_file_display</span> <span class="kn">import</span> <span class="n">Compsite_display</span>
+<span class="kn">from</span> <span class="nn">AIPyS.segmentation.cellpose.StackObjects_cellpose</span> <span class="kn">import</span> <span class="n">StackObjects_cellpose</span>
+<span class="kn">from</span> <span class="nn">skimage</span> <span class="kn">import</span> <span class="n">measure</span><span class="p">,</span> <span class="n">morphology</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+<span class="kn">import</span> <span class="nn">pdb</span>
+
+<div class="viewcode-block" id="GranulaityMesure"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure">[docs]</a><span class="k">class</span> <span class="nc">GranulaityMesure</span><span class="p">(</span><span class="n">GlobalSeg</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Note: get single tif 16bit image only</span>
+<span class="sd">    # start_kernel = 2,end_karnel = 50, kernel_size = 20,outputTableName = None,outPath = None,</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">start_kernel</span><span class="p">,</span><span class="n">end_karnel</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span><span class="n">videoName</span><span class="p">,</span><span class="n">outputImageSize</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_kernel</span> <span class="o">=</span> <span class="n">start_kernel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_karnel</span> <span class="o">=</span> <span class="n">end_karnel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span> <span class="o">=</span> <span class="n">kernel_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">videoName</span> <span class="o">=</span> <span class="n">videoName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span> <span class="o">=</span> <span class="n">outputImageSize</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="c1"># def resize(self,image):</span>
+        <span class="c1">#     resized = cv2.resize(image, (self.outputImageSize,self.outputImageSize), interpolation = cv2.INTER_AREA)</span>
+        <span class="c1">#     return resized</span>
+    
+<div class="viewcode-block" id="GranulaityMesure.addText"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure.addText">[docs]</a>    <span class="k">def</span> <span class="nf">addText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">image_input</span><span class="p">,</span><span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">image_input</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Kernel: </span><span class="si">{</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> ratio: </span><span class="si">{</span><span class="n">text</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> sd: </span><span class="si">{</span><span class="n">text</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span><span class="p">)</span> <span class="c1">#0.5 font, 1 thickness</span></div>
+    
+<div class="viewcode-block" id="GranulaityMesure.GranularityVideo"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure.GranularityVideo">[docs]</a>    <span class="k">def</span> <span class="nf">GranularityVideo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">open_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_kernel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_karnel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img</span>
+        <span class="n">frame</span><span class="p">,</span><span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rgbMasking</span><span class="p">(</span><span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">)</span>
+        <span class="c1"># width,height,layers = frame.shape</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">image</span> <span class="o">=</span> <span class="n">frame</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">,</span><span class="n">hight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">)</span> <span class="c1"># resize(image,width,hight)</span>
+        <span class="n">video</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outPath</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">videoName</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s1">&#39;MJPG&#39;</span><span class="p">),</span><span class="mf">1.0</span><span class="p">,(</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">),</span>  <span class="n">isColor</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="c1">#pdb.set_trace()</span>
+        <span class="c1">#clear_output(wait=True)</span>
+        <span class="n">prev_image</span> <span class="o">=</span> <span class="n">image</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">opning</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">open_vec</span><span class="p">):</span>
+            <span class="n">openImage_curr</span> <span class="o">=</span> <span class="n">openingOperation</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">opning</span><span class="p">,</span><span class="n">image</span> <span class="o">=</span> <span class="n">prev_image</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">mask</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">mask</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span><span class="o">+</span><span class="mf">0.000001</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">mask</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">mask</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">openImage_curr</span><span class="p">[</span><span class="n">mask</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]))</span><span class="o">/</span><span class="n">denominator</span>
+            <span class="n">prev_image</span> <span class="o">=</span> <span class="n">openImage_curr</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">disply_compsite</span><span class="p">(</span><span class="n">openImage_curr</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+            <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">openImage_curr</span><span class="p">[</span><span class="n">mask</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]),</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">image</span> <span class="o">=</span> <span class="n">frame</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">,</span><span class="n">hight</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="c1"># add text:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addText</span><span class="p">(</span><span class="n">frame</span><span class="p">,(</span><span class="n">opning</span><span class="p">,</span><span class="n">mean</span><span class="p">,</span><span class="n">sd</span><span class="p">))</span>
+            <span class="n">video</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+        <span class="n">video</span><span class="o">.</span><span class="n">release</span><span class="p">()</span></div></div>
+
+<div class="viewcode-block" id="GranulaityMesure_cp"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp">[docs]</a><span class="k">class</span> <span class="nc">GranulaityMesure_cp</span><span class="p">(</span><span class="n">StackObjects_cellpose</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    cellprofiler adjuste, Note: get single tif 16bit image only</span>
+<span class="sd">    # start_kernel = 2,end_karnel = 50, kernel_size = 20,outputTableName = None,outPath = None,</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">videoName</span><span class="p">,</span> <span class="n">start_kernel</span><span class="p">,</span><span class="n">end_karnel</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span><span class="n">outputImageSize</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">videoName</span> <span class="o">=</span> <span class="n">videoName</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_kernel</span> <span class="o">=</span> <span class="n">start_kernel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_karnel</span> <span class="o">=</span> <span class="n">end_karnel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span> <span class="o">=</span> <span class="n">kernel_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span> <span class="o">=</span> <span class="n">outputImageSize</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">GranularityVideo_cp</span><span class="p">()</span>
+        
+<div class="viewcode-block" id="GranulaityMesure_cp.addText"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.addText">[docs]</a>    <span class="k">def</span> <span class="nf">addText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">image_input</span><span class="p">,</span><span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">image_input</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Kernel: </span><span class="si">{</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> ratio: </span><span class="si">{</span><span class="n">text</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1"> </span><span class="se">\n</span><span class="s1"> sd: </span><span class="si">{</span><span class="n">text</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">LINE_AA</span><span class="p">)</span> <span class="c1">#0.5 font, 1 thickness</span></div>
+    
+<div class="viewcode-block" id="GranulaityMesure_cp.check_singleImage"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.check_singleImage">[docs]</a>    <span class="k">def</span> <span class="nf">check_singleImage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">img</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="s2">&quot;should be a path to single image&quot;</span></div>
+    
+<div class="viewcode-block" id="GranulaityMesure_cp.GranularityVideo_cp"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranulaityMesure.GranulaityMesure_cp.GranularityVideo_cp">[docs]</a>    <span class="k">def</span> <span class="nf">GranularityVideo_cp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        randomaly chose cell id and proform opening operation on it. </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">open_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_kernel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_karnel</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_singleImage</span><span class="p">()</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img</span> <span class="c1"># must be single image</span>
+        <span class="n">mask</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cellpose_segmentation</span><span class="p">(</span><span class="n">image_input</span> <span class="o">=</span> <span class="n">image</span><span class="p">)</span>
+        <span class="c1"># single cell randomly selected:</span>
+        <span class="n">img_label</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">stack_img</span><span class="p">,</span> <span class="n">stack_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stackObjects_cellpose_ebimage_parametrs_method</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="n">mask</span><span class="p">,</span><span class="n">table</span><span class="p">,</span><span class="n">img_label</span><span class="p">)</span>
+        <span class="n">frame_obj</span> <span class="o">=</span> <span class="n">Compsite_display</span><span class="p">(</span><span class="n">stack_img</span><span class="p">,</span> <span class="n">stack_mask</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">frame_obj</span><span class="o">.</span><span class="n">rgb_out</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">,</span> <span class="n">hight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">)</span>  <span class="c1"># resize(image,width,hight)</span>
+        <span class="n">video</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">outPath</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">videoName</span><span class="p">),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoWriter_fourcc</span><span class="p">(</span><span class="o">*</span><span class="s1">&#39;MJPG&#39;</span><span class="p">),</span><span class="mf">1.0</span><span class="p">,(</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">),</span>  <span class="n">isColor</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">prev_image</span> <span class="o">=</span> <span class="n">stack_img</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;analysis might take a few minutes&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">opning</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">open_vec</span><span class="p">):</span>
+            <span class="n">openImage_curr</span> <span class="o">=</span> <span class="n">openingOperation</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="n">opning</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">prev_image</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">stack_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">stack_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mf">0.000001</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">stack_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">ratio</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">prev_image</span><span class="p">[</span><span class="n">stack_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">openImage_curr</span><span class="p">[</span><span class="n">stack_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]))</span> <span class="o">/</span> <span class="n">denominator</span>
+            <span class="n">prev_image</span> <span class="o">=</span> <span class="n">openImage_curr</span>
+            <span class="n">frame_obj</span> <span class="o">=</span> <span class="n">Compsite_display</span><span class="p">(</span><span class="n">openImage_curr</span><span class="p">,</span> <span class="n">stack_mask</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">frame</span> <span class="o">=</span> <span class="n">resize</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">frame_obj</span><span class="o">.</span><span class="n">rgb_out</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">,</span> <span class="n">hight</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">outputImageSize</span><span class="p">)</span>
+            <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">ratio</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+            <span class="n">sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">openImage_curr</span><span class="p">[</span><span class="n">stack_mask</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]),</span> <span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="c1"># add text:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addText</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="p">(</span><span class="n">opning</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">sd</span><span class="p">))</span>
+            <span class="n">video</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+        <span class="n">video</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">videoName</span><span class="si">}</span><span class="s1"> is saved&#39;</span><span class="p">)</span>    </div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

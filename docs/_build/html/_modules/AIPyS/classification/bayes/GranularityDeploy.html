@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIPyS.classification.bayes.GranularityDeploy &mdash; AIPyS 00.01.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=dc4697b6"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">AIPyS.classification.bayes.GranularityDeploy</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for AIPyS.classification.bayes.GranularityDeploy</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">AIPyS.classification.bayes.GranularityDataGen</span> <span class="kn">import</span> <span class="n">GranularityDataGen</span>
+<span class="kn">from</span> <span class="nn">AIPyS.supportFunctions.GranularityFunc</span> <span class="kn">import</span> <span class="n">openingOperation</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">pdb</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">skimage</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageEnhance</span><span class="p">,</span> <span class="n">ImageDraw</span><span class="p">,</span><span class="n">ImageFont</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">clear_output</span>
+
+<div class="viewcode-block" id="GranularityDeploy"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy">[docs]</a><span class="k">class</span> <span class="nc">GranularityDeploy</span><span class="p">(</span><span class="n">GranularityDataGen</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    This function is designed to analyze an image by employing a sliding window approach. As input, it accepts an image and systematically traverses it with a running window. For each segment captured within this window, the function utilizes a Bayesian model to predict the class to which the segment belongs. Upon completing the traversal, it generates a comprehensive table. This table showcases the predictions for each slice, alongside the precise coordinates. These coordinates are instrumental in selecting and referencing the relevant entries in the class prediction table, thereby facilitating a detailed and organized analysis of the image based on the Bayesian classification.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">td</span><span class="p">,</span><span class="n">expansion_factor</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="c1">#intercept</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="c1">#slope</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">td</span> <span class="o">=</span> <span class="n">td</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">expansion_factor</span> <span class="o">=</span> <span class="n">expansion_factor</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GranularityDeploy.classify"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.classify">[docs]</a>    <span class="k">def</span> <span class="nf">classify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">Int</span><span class="p">):</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">*</span> <span class="n">Int</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">mu</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">prob</span></div>
+
+<div class="viewcode-block" id="GranularityDeploy.creatCrudeMask"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.creatCrudeMask">[docs]</a>    <span class="k">def</span> <span class="nf">creatCrudeMask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">img_curr</span><span class="p">,</span><span class="n">x_start</span><span class="p">,</span><span class="n">y_start</span><span class="p">,</span><span class="n">winSize</span><span class="p">):</span>
+        <span class="n">height</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">img_curr</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">center_x</span><span class="p">,</span> <span class="n">center_y</span> <span class="o">=</span> <span class="n">x_start</span> <span class="o">+</span> <span class="n">winSize</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y_start</span> <span class="o">+</span> <span class="n">winSize</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">new_winSize</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">winSize</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">expansion_factor</span><span class="p">)</span>
+        <span class="n">center_x</span><span class="p">,</span> <span class="n">center_y</span> <span class="o">=</span> <span class="n">x_start</span> <span class="o">+</span> <span class="n">winSize</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y_start</span> <span class="o">+</span> <span class="n">winSize</span> <span class="o">//</span> <span class="mi">2</span>
+         <span class="c1"># Adjusting new window coordinates based on the image boundaries</span>
+        <span class="n">new_x_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">center_x</span> <span class="o">-</span> <span class="n">new_winSize</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">new_y_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">center_y</span> <span class="o">-</span> <span class="n">new_winSize</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">new_x_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">center_x</span> <span class="o">+</span> <span class="n">new_winSize</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+        <span class="n">new_y_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">center_y</span> <span class="o">+</span> <span class="n">new_winSize</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+    
+        <span class="c1"># Handling cases where the window hits the boundary and keeping the aspect ratio</span>
+        <span class="k">if</span> <span class="n">new_x_end</span> <span class="o">-</span> <span class="n">new_x_start</span> <span class="o">&lt;</span> <span class="n">new_winSize</span><span class="p">:</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">new_winSize</span> <span class="o">-</span> <span class="p">(</span><span class="n">new_x_end</span> <span class="o">-</span> <span class="n">new_x_start</span><span class="p">)</span>
+            <span class="n">new_x_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">new_x_start</span> <span class="o">-</span> <span class="n">diff</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">new_x_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_x_end</span> <span class="o">+</span> <span class="n">diff</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">new_y_end</span> <span class="o">-</span> <span class="n">new_y_start</span> <span class="o">&lt;</span> <span class="n">new_winSize</span><span class="p">:</span>
+            <span class="n">diff</span> <span class="o">=</span> <span class="n">new_winSize</span> <span class="o">-</span> <span class="p">(</span><span class="n">new_y_end</span> <span class="o">-</span> <span class="n">new_y_start</span><span class="p">)</span>
+            <span class="n">new_y_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">new_y_start</span> <span class="o">-</span> <span class="n">diff</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">new_y_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_y_end</span> <span class="o">+</span> <span class="n">diff</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+        <span class="n">new_x_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_x_start</span><span class="p">)</span>
+        <span class="n">new_y_start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">new_y_start</span><span class="p">)</span>
+        <span class="n">new_x_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_x_end</span><span class="p">,</span> <span class="n">width</span><span class="p">)</span>
+        <span class="n">new_y_end</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">new_y_end</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">new_x_start</span><span class="p">,</span> <span class="n">new_y_start</span><span class="p">,</span> <span class="n">new_x_end</span><span class="p">,</span> <span class="n">new_y_end</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="GranularityDeploy.predictCrop"><a class="viewcode-back" href="../../../../AIPyS.classification.bayes.html#AIPyS.classification.bayes.GranularityDeploy.GranularityDeploy.predictCrop">[docs]</a>    <span class="k">def</span> <span class="nf">predictCrop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">savedict</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img</span> <span class="c1"># should be single image</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cytosolSegmentation</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+        <span class="n">img_crudeMasked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="c1"># container for masked image</span>
+        <span class="n">dataContainer</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:[],</span><span class="s1">&#39;y&#39;</span><span class="p">:[],</span><span class="s1">&#39;ratio&#39;</span><span class="p">:[],</span><span class="s1">&#39;pred&#39;</span><span class="p">:[]}</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">windowSize</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;window size is missing&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rnadomWindows</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;rando crop generator is missing choose a number&quot;</span><span class="p">)</span>
+        <span class="n">minAxsis</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">winSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">windowSize</span>
+        <span class="k">while</span> <span class="n">minAxsis</span> <span class="o">%</span> <span class="n">winSize</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">minAxsis</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">stepSize</span> <span class="o">=</span>  <span class="nb">int</span><span class="p">(</span><span class="n">minAxsis</span><span class="o">/</span><span class="n">winSize</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;max image size: </span><span class="si">{</span><span class="n">minAxsis</span><span class="si">}</span><span class="s1">, step size: </span><span class="si">{</span><span class="n">stepSize</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">minAxsis</span><span class="p">,</span><span class="n">stepSize</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">minAxsis</span><span class="p">,</span><span class="n">stepSize</span><span class="p">):</span>
+                <span class="n">imageCrop</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">stepSize</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">stepSize</span><span class="p">]</span>
+                <span class="n">maskCrop</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">stepSize</span><span class="p">,</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">stepSize</span><span class="p">]</span>
+                <span class="n">imageDecy</span> <span class="o">=</span> <span class="n">openingOperation</span><span class="p">(</span><span class="n">kernel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernelGran</span><span class="p">,</span> <span class="n">image</span> <span class="o">=</span> <span class="n">imageCrop</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">imageDecy</span><span class="p">[</span><span class="n">maskCrop</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">imageCrop</span><span class="p">[</span><span class="n">maskCrop</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mf">0.000001</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">imageCrop</span><span class="p">[</span><span class="n">maskCrop</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="n">ratio</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">imageCrop</span><span class="p">[</span><span class="n">maskCrop</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">imageDecy</span><span class="p">[</span><span class="n">maskCrop</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">denominator</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">savedict</span><span class="p">:</span>
+                    <span class="n">dataContainer</span><span class="p">[</span><span class="s1">&#39;ratio&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+                    <span class="n">dataContainer</span><span class="p">[</span><span class="s1">&#39;pred&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pred</span><span class="p">)</span>
+                    <span class="n">dataContainer</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                    <span class="n">dataContainer</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># preform segmentation on the fly</span>
+                    <span class="k">if</span> <span class="n">pred</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">td</span><span class="p">:</span>
+                        <span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">xe</span><span class="p">,</span><span class="n">ye</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">creatCrudeMask</span><span class="p">(</span><span class="n">imageCrop</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">winSize</span> <span class="o">=</span> <span class="n">stepSize</span><span class="p">)</span>
+                        <span class="n">img_crudeMasked</span><span class="p">[</span><span class="n">xs</span><span class="p">:</span><span class="n">xe</span><span class="p">,</span><span class="n">ys</span><span class="p">:</span><span class="n">ye</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span><span class="p">[</span><span class="n">xs</span><span class="p">:</span><span class="n">xe</span><span class="p">,</span><span class="n">ys</span><span class="p">:</span><span class="n">ye</span><span class="p">]</span> <span class="c1">#insert selected cell </span>
+        <span class="k">if</span> <span class="n">savedict</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dataContainer</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">img_crudeMasked</span></div></div>
+
+
+    
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIPyS.segmentation.cellpose package &mdash; AIPyS 00.01.01 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=92fd9be5" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=dc4697b6"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            AIPyS
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">AIPyS.segmentation.cellpose package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-AIPyS.segmentation.cellpose.AIPS_cellpose">AIPyS.segmentation.cellpose.AIPS_cellpose module</a><ul>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose"><code class="docutils literal notranslate"><span class="pre">AIPS_cellpose</span></code></a><ul>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose.cellpose_segmentation"><code class="docutils literal notranslate"><span class="pre">AIPS_cellpose.cellpose_segmentation()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen">AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen module</a><ul>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg"><code class="docutils literal notranslate"><span class="pre">CellPoseSeg</span></code></a><ul>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg.check_multiImage"><code class="docutils literal notranslate"><span class="pre">CellPoseSeg.check_multiImage()</span></code></a></li>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg.imageSeqGen_cp"><code class="docutils literal notranslate"><span class="pre">CellPoseSeg.imageSeqGen_cp()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-AIPyS.segmentation.cellpose.StackObjects_cellpose">AIPyS.segmentation.cellpose.StackObjects_cellpose module</a><ul>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose"><code class="docutils literal notranslate"><span class="pre">StackObjects_cellpose</span></code></a><ul>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose.checkMissing"><code class="docutils literal notranslate"><span class="pre">StackObjects_cellpose.checkMissing()</span></code></a></li>
+<li><a class="reference internal" href="#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose.stackObjects_cellpose_ebimage_parametrs_method"><code class="docutils literal notranslate"><span class="pre">StackObjects_cellpose.stackObjects_cellpose_ebimage_parametrs_method()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-AIPyS.segmentation.cellpose">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">AIPyS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">AIPyS.segmentation.cellpose package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/AIPyS.segmentation.cellpose.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="aipys-segmentation-cellpose-package">
+<h1>AIPyS.segmentation.cellpose package<a class="headerlink" href="#aipys-segmentation-cellpose-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-AIPyS.segmentation.cellpose.AIPS_cellpose">
+<span id="aipys-segmentation-cellpose-aips-cellpose-module"></span><h2>AIPyS.segmentation.cellpose.AIPS_cellpose module<a class="headerlink" href="#module-AIPyS.segmentation.cellpose.AIPS_cellpose" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.segmentation.cellpose.AIPS_cellpose.</span></span><span class="sig-name descname"><span class="pre">AIPS_cellpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">diameter</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/AIPS_cellpose.html#AIPS_cellpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="AIPyS.html#AIPyS.DataLoad.DataLoad" title="AIPyS.DataLoad.DataLoad"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataLoad</span></code></a></p>
+<p>Cellpose algorithm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model_type</strong> (<em>str</em>) – ‘cyto’ or model_type=’nuclei’</p></li>
+<li><p><strong>clean</strong> (<em>int</em>) – remove object bellow the selected area size</p></li>
+<li><p><strong>channels</strong> (<em>list</em>) – channels = [0,0] # IF YOU HAVE GRAYSCALE
+channels = [2,3] # IF YOU HAVE G=cytoplasm and B=nucleus
+channels = [2,1] # IF YOU HAVE G=cytoplasm and R=nucleus
+or if you have different types of channels in each image
+channels = [[2,3], [0,0], [0,0]]
+channels = [1,1]</p></li>
+<li><p><strong>diameter</strong> (<em>int</em>) – e.g. 50 for 20X objective</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose.cellpose_segmentation">
+<span class="sig-name descname"><span class="pre">cellpose_segmentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/AIPS_cellpose.html#AIPS_cellpose.cellpose_segmentation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose.cellpose_segmentation" title="Permalink to this definition"></a></dt>
+<dd><p>returns a binery mask (np array 16bit) and a table(coloumns: area       label   centroid-0      centroid-1)</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen">
+<span id="aipys-segmentation-cellpose-aips-cellpse-video-gen-module"></span><h2>AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen module<a class="headerlink" href="#module-AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.</span></span><span class="sig-name descname"><span class="pre">CellPoseSeg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">videoName</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/AIPS_cellpse_video_gen.html#CellPoseSeg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose" title="AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose"><code class="xref py py-class docutils literal notranslate"><span class="pre">AIPS_cellpose</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg.check_multiImage">
+<span class="sig-name descname"><span class="pre">check_multiImage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/AIPS_cellpse_video_gen.html#CellPoseSeg.check_multiImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg.check_multiImage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg.imageSeqGen_cp">
+<span class="sig-name descname"><span class="pre">imageSeqGen_cp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/AIPS_cellpse_video_gen.html#CellPoseSeg.imageSeqGen_cp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.AIPS_cellpse_video_gen.CellPoseSeg.imageSeqGen_cp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.segmentation.cellpose.StackObjects_cellpose">
+<span id="aipys-segmentation-cellpose-stackobjects-cellpose-module"></span><h2>AIPyS.segmentation.cellpose.StackObjects_cellpose module<a class="headerlink" href="#module-AIPyS.segmentation.cellpose.StackObjects_cellpose" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">AIPyS.segmentation.cellpose.StackObjects_cellpose.</span></span><span class="sig-name descname"><span class="pre">StackObjects_cellpose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extract_pixel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resize_pixel</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/StackObjects_cellpose.html#StackObjects_cellpose"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose" title="AIPyS.segmentation.cellpose.AIPS_cellpose.AIPS_cellpose"><code class="xref py py-class docutils literal notranslate"><span class="pre">AIPS_cellpose</span></code></a></p>
+<p>function similar to the EBimage stackObjectsta, return a crop size based on center of measured mask.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>extract_pixel</strong> (<em>int</em>) – size of extraction according to mask (e.g. 50 pixel)</p></li>
+<li><p><strong>resize_pixel</strong> (<em>int</em>) – resize for preforming tf prediction (e.g. 150 pixel)</p></li>
+<li><p><strong>img_label</strong> (<em>int</em>) – the mask value for stack</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>center image with out background (img)</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose.checkMissing">
+<span class="sig-name descname"><span class="pre">checkMissing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputObj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/StackObjects_cellpose.html#StackObjects_cellpose.checkMissing"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose.checkMissing" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose.stackObjects_cellpose_ebimage_parametrs_method">
+<span class="sig-name descname"><span class="pre">stackObjects_cellpose_ebimage_parametrs_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image_input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/AIPyS/segmentation/cellpose/StackObjects_cellpose.html#StackObjects_cellpose.stackObjects_cellpose_ebimage_parametrs_method"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#AIPyS.segmentation.cellpose.StackObjects_cellpose.StackObjects_cellpose.stackObjects_cellpose_ebimage_parametrs_method" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>img_label: int</dt><dd><p>the mask value for stack</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-AIPyS.segmentation.cellpose">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-AIPyS.segmentation.cellpose" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gil Kanfer, PhD.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

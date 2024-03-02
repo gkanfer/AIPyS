@@ -1,2 +1,0 @@
-[Parametric Segmentation]<01-parametric-segmentation>
-[Deep learning Segmentation (CellPose)]<02_Deep_learning_Segmentation>
