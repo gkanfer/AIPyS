@@ -1,6 +1,3 @@
-'''
-Function for AIPS DASH
-'''
 import xml.etree.ElementTree as xml
 import matplotlib.pyplot as plt
 import numpy as np
@@ -210,11 +207,17 @@ def plot_composite_image(img,mask,fig_title,alpha=0.2):
 def save_pil_to_directory(img,bit,mask_name,output_dir = 'temp',mask = None, merge_mask = None,channel=None):
     '''
     Save image composite with ROI
-    :param img: image input
-             bit:1 np.unit16 or 2 np.unit8
-             merge_mask: ROI - ROI + 3ch greyscale input OR  -BIN -  bin + 3ch greyscale
-             channel: for display Bin merge  with rgb input
-    :return: encoded_image (e_img)
+    parameters
+    ----------
+    image input
+    bit:1 
+        np.unit16 or 2 np.unit8
+    merge_mask: 
+        ROI - ROI + 3ch greyscale input OR  -BIN -  bin + 3ch greyscale
+    channel
+        for display Bin merge  with rgb input
+    return 
+        encoded_image (e_img)
     '''
     bit = str(img.dtype)
     if merge_mask=='ROI':

@@ -14,35 +14,6 @@ This project developed an AI Powered Photoswitchable Genetic CRISPR Screen, Vers
    :maxdepth: 2
    :caption: Contents:
 
-   introduction
-   installation
-   deploying_aipys
-   segmentation/index
-   classification/index
-
-
-Introduction
-------------
-
-Read about the concepts behind AIPyS, its capabilities, and how it can transform your Crispr screen analyses.
-
-Installation
-------------
-
-Step-by-step guide on setting up AIPyS for your system, including requirements and dependencies.
-
-Deploying_AIPyS
----------------
-
-Comprehensive list and examples of Command Line Interface commands for AIPyS.
-
-
-Segmentation
-------------
-
-Learn about the segmentation models and algorithms implemented in AIPyS.
-
-Classification
---------------
-
-Understand how AIPyS classifies data using Bayesian methods and Convolutional Neural Networks.
+   
+   
+   

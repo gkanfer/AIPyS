@@ -7,7 +7,7 @@ from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 import numpy as np
 import tifffile as tfi
-from AIPyS_old.cellpose import AIPS_cellpose as AC
+from AIPyS.standAlone import AIPS_cellpose as AC
 
 def CNNDeploy(path_model,model,file_name,path,pathOut,areaFilter,thr=0.5):
     """
