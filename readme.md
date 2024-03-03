@@ -10,7 +10,7 @@ Here's a possible rewrite of your input into a more cohesive and concise README 
 
 AIPyS V2 is an AI-driven platform enhancing the capabilities of photoswitchable genetic CRISPR screen technology. Utilizing advanced algorithms like **U-net** and **cGAN** for segmentation and employing Bayesian inference for differential sgRNA abundance analysis, AIPyS offers precise detection of single cells and subcellular phenotypes in microscopy images. It integrates Numpy, scikit-image, and scipy for parametric object detection and leverages the PyMC3 library for statistical modeling. For interactive data exploration and visualization, the platform is deployed online via Plotly-Dash.
 
-For detailed insights, visit the [Documentation](https://gkanfer.github.io/AIPyS_sphinx_test/).
+For detailed insights, visit the [Documentation](https://gkanfer.github.io/AIPyS/).
 
 ## Quick Installation Guide
 
