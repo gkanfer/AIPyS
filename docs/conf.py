@@ -36,23 +36,28 @@ exclude_patterns = [
 
 
 autodoc_mock_imports = [
-    "pytorch",
-    "cudatoolkit",
+   
     "scikit-image",
-    "matplotlib",
-    "pandas",
-    "seaborn",
-    "scikit-learn",
-    "opencv",
-    "pytensors",
-    "pymc",
-    "dash",
-    "dash-core-components",
-    "dash-html-components",
-    "dash-renderer",
-    "dash-table",
-    "dash-bootstrap-components",
-    "plotly_express"
-]
+    ]
+
+# autodoc_mock_imports = [
+#     "pytorch",
+#     "cudatoolkit",
+#     "scikit-image",
+#     "matplotlib",
+#     "pandas",
+#     "seaborn",
+#     "scikit-learn",
+#     "opencv",
+#     "pytensors",
+#     "pymc",
+#     "dash",
+#     "dash-core-components",
+#     "dash-html-components",
+#     "dash-renderer",
+#     "dash-table",
+#     "dash-bootstrap-components",
+#     "plotly_express"
+# ]
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']

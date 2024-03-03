@@ -1,13 +1,15 @@
-torch==1.12.0+cpu
-torchvision==0.13.0+cpu
-torchaudio==0.12.0+cpu
-# To attempt an install that includes CUDA toolkit, users must replace the above PyTorch lines with the output from PyTorch's 'Get Started' selector suitable to their system.
-# Example for CUDA 11.3 (This is a general example and may not be suitable for all users):
-# torch==1.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
-# torchvision==0.13.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
-# torchaudio==0.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+torch
+torchvision
+torchaudio
+sphinx
+sphinx_rtd_theme
+sphinxcontrib-napoleon
+myst-parser
+nbsphinx
+IPython
+ghp-import
 cellpose
-scikit-image==0.19.3
+scikit-image
 matplotlib
 pandas
 seaborn
