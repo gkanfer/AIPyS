@@ -1,0 +1,15 @@
+name: sphinx_doc_aipys
+channels:
+  - conda-forge
+  - pytorch
+  - anaconda
+  - defaults
+dependencies:
+  - python=3.8.12
+  - pytorch=1.12.0
+  - cudatoolkit=11.3
+  - scikit-image=0.19.3
+  - pip:
+	Sphinx=3.2.1
+	sphinx-rtd-theme=0.5.0 # to use a nice modern theme
+	recommonmark=0.6.0 # to include the Readme.md

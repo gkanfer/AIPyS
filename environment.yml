@@ -1,6 +1,6 @@
 #conda install mamba -n base -c conda-forge
 #mamba env create -f environment.yml
-name: cellpose_pymc_dash
+name: pymc_cellpose_sphinx
 channels:
   - conda-forge
   - pytorch
@@ -19,6 +19,7 @@ dependencies:
   - pip:
     - pytensors
     - pymc
+    - Sphinx=3.2.1
   # Optional
   - dash
   - dash-core-components
