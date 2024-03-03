@@ -1,0 +1,7 @@
+sphinx
+sphinx_rtd_theme
+sphinxcontrib-napoleon
+myst-parser
+nbsphinx
+IPython
+ghp-import
