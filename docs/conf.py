@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../AIPyS'))
+sys.path.insert(0,os.path.join('..', 'AIPyS'))
 
 
 # -- Project information -----------------------------------------------------
@@ -24,22 +24,51 @@ author = 'Gil Kanfer'
 # The full version, including alpha/beta/rc tags
 release = 'aipys'
 
-
-# -- General configuration ---------------------------------------------------
-
-# Add any Sphinx extension module names here, as strings. They can be
-# extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
-# ones.
-extensions = ["sphinx_rtd_theme",]
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.napoleon',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
-# List of patterns, relative to source directory, that match files and
-# directories to ignore when looking for source files.
-# This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [
+    # Directories
+    'AIPyS/CLI', 
+    'AIPyS/standAlone', 
+    'AIPyS/supportFunctions', 
+    'AIPyS/temp_function', 
+    'web_app', 
+    'build',
+    # Single files
+    'setup.py',
+    # Other common patterns to exclude
+    '_build', 
+    'Thumbs.db', 
+    '.DS_Store',
+    ]
 
+
+autodoc_mock_imports = [
+    "pytorch",
+    "cudatoolkit",
+    "scikit-image",
+    "matplotlib",
+    "pandas",
+    "seaborn",
+    "scikit-learn",
+    "opencv",
+    "pytensors",
+    "pymc",
+    "dash",
+    "dash-core-components",
+    "dash-html-components",
+    "dash-renderer",
+    "dash-table",
+    "dash-bootstrap-components",
+    "plotly_express"
+]
 
 # -- Options for HTML output -------------------------------------------------
 
