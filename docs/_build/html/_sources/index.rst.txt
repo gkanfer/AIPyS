@@ -45,3 +45,8 @@ Classification
 --------------
 
 Understand how AIPyS classifies data using Bayesian methods and Convolutional Neural Networks.
+
+modules
+-------
+
+Please note that the documentation of all the modules used in this project is not complete yet. We are working diligently to provide comprehensive documentation for every module. Thank you for your patience.
