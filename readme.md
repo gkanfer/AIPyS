@@ -31,8 +31,6 @@ Check installation:
 aipys --version
 ```
 
-Troubleshooting advice and extended installation instructions are available in our [Installation Guide](#).
-
 ## Highlighted Features
 
 ### Segmentation and Analysis
