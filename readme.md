@@ -1,4 +1,3 @@
-Here's a possible rewrite of your input into a more cohesive and concise README format:
 
 ---
 
@@ -48,12 +47,4 @@ Troubleshooting advice and extended installation instructions are available in o
 ### Bayesian Model Training for Granularity Analysis
 - Utilizes Bayesian inference to train models capable of discerning intricate subcellular phenotypes, contributing significantly to the understanding and characterization of genetic modifications impacting cell morphology.
 
-## Getting Started and Support
-
-Dive into AIPyS with our [Getting Started Guide](#) and explore comprehensive examples and use cases.
-
-Encountering issues or have questions? Check our [FAQs](#) or reach out directly through our support channels.
-
 ---
-
-This consolidates the provided information into a straightforward, readable format for a GitHub README, ensuring newcomers can quickly grasp what the project is about, how to install and use it, and where to find more information or seek help.
