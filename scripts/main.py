@@ -6,7 +6,6 @@ def main():
     outpath = "D:\\Gil\\images\\pex_project\\10X"
     files = glob.glob(path + "\\*.tif")
     CellPoseSeg(diameter =  60, videoName = "test_10x.avi", model_type = 'cyto', channels = [0,0],
-                    Image_name = files[:3], outPath = outpath)
-    print(df)
+                    Image_name = files[:5], outPath = outpath)
 if __name__ == "__main__":
     main()

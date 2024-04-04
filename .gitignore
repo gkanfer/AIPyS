@@ -8,4 +8,5 @@ env.yml
 environment_sp.yml
 .git
 .github
-docs
+docs/
+dist/

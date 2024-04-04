@@ -10,6 +10,7 @@ Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.8
 Description-Content-Type: text/markdown
+License-File: LICENSE
 Requires-Dist: torch==1.12.0
 Requires-Dist: cellpose
 Requires-Dist: scikit-image==0.19.3
