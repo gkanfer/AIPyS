@@ -8,10 +8,9 @@
             "name": "Python Debugger: Current File",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}\\AIPyS\\CLI\\aipys.py",
-            "args": ["--option","deployBuild"],
+            "program": "${workspaceFolder}\\scripts\\main.py",
             "console": "integratedTerminal",
-            "pythonPath": "C:\\Users\\youle_lab\\anaconda3\\envs\\cellpose_pymc_dash\\python.exe"
+            "pythonPath": "D:\\Gil\\AIPyS\\.venv\\Scripts\\python.exe"
         }
         ]
     }

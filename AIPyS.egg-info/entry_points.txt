@@ -1,0 +1,4 @@
+[console_scripts]
+aipys = AIPyS.CLI.aipys:run
+load-parameters = AIPyS.CLI.loadParameters:main
+updateParameters = AIPyS.CLI.set_parameters:update_user_parameters

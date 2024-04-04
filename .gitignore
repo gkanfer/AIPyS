@@ -1,1 +1,10 @@
 venv-sphinx-aipys/
+.vscode
+.venv
+CLI_instructions.txt
+dirStructure.txt
+docs_requirements.txt
+env.yml
+environment_sp.yml
+.git
+.github
