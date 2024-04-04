@@ -1,7 +1,0 @@
-{
-    "files.autoSave": "onWindowChange",
-    "files.exclude": {
-        "**/.tif": true
-    },
-    "python.REPL.enableREPLSmartSend": false
-}
