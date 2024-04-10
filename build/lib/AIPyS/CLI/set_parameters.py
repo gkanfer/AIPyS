@@ -76,7 +76,8 @@ def is_valid_file(parser, arg):
 #     ensure_user_parameters()  # Ensure the user copy exists
 #     with h5py.File(user_parameters_path, 'r') as hdf:
 #         # Read and return parameters as needed
-if __name__ == "__main__":
+
+def main():
     parser = argparse.ArgumentParser(description='Update or add parameters and display the content of the parameters.h5 file. This script allows users to manage and view parameters stored in a .h5 file. Users can update parameter values or simply display the current configuration.', formatter_class=argparse.RawTextHelpFormatter)
     # Adding detailed help messages for each argument
     parser.add_argument('--data_dir', type=str, help="Directory where data is stored.\nThis path is used to locate your data files for processing.")
@@ -128,4 +129,9 @@ if __name__ == "__main__":
     update_dict = {k: v for k, v in vars(args).items() if k != 'h5_file' and v is not None}
     #pdb.set_trace()
     # Update or add parameters in the H5 file
-    update_user_parameters(update_dict)
+    update_user_parameters(parameter_updates = update_dict)
+
+
+if __name__ == "__main__":
+    main()
+

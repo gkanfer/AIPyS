@@ -111,8 +111,7 @@ def run(option):
     else:
         print('Invalid option. Please choose a valid option.')
 
-
-if __name__ == '__main__':
+def main():
     # Create the parser
     parser = argparse.ArgumentParser(description='Application for measuring cell diameter.')
     # Add an argument for the option selection
@@ -124,4 +123,8 @@ if __name__ == '__main__':
 
     # Call the run function with the selected option and debug mode
     run(args.option)
+
+
+if __name__ == '__main__':
+    main()
 

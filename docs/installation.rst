@@ -70,5 +70,12 @@ Troubleshooting
 
 - **CUDA/cuDNN Compatibility:** If you encounter issues related to PyTorch or Cellpose, verify that you have installed the correct versions of CUDA and cuDNN that match the requirements of these libraries.
 - **Python Version:** Ensure that the Python environment active during installation is version 3.8, as discrepancies in Python versions can lead to compatibility problems.
+- **GPU Recognition Issues:** If your GPU is not recognized and you are using an NVIDIA Quadro P4000, ensure that you have the appropriate drivers installed. Additionally, install PyTorch with a CUDA version that matches your setup by executing the following command:
+
+  .. code-block:: bash
+
+     pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1+cu113 -f https://download.pytorch.org/whl/torch_stable.html
+
+  This command installs the versions of PyTorch, torchvision, and torchaudio that are compatible with CUDA 11.3, specifically optimized for the NVIDIA Quadro P4000 GPU.
 
 For further assistance, refer to the FAQs section or reach out to the AIPyS support team.
