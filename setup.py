@@ -5,10 +5,10 @@ with open('requirements.txt') as f:
 
 setup(
     name="AIPyS",
-    version="0.0.3",
+    version="0.0.4",
     packages=find_packages(include=['AIPyS','AIPyS.CLI','AIPyS.classification.bayes','AIPyS.classification.CNN',
                                     'AIPyS.segmentation.cellpose','AIPyS.segmentation.parametric','AIPyS.supportFunctions',
-                                    'web_app.Image_labeling','web_app.measure_length','web_app.measure_length','web_app.TableViz']),
+                                    'web_app.Image_labeling','web_app.measure_length','web_app.measure_length','web_app.TableViz', 'web_app.AreasViz',]),
     install_requires=required,
     entry_points={
         'console_scripts': [

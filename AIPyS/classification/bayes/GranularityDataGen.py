@@ -2,11 +2,12 @@ from AIPyS.classification.bayes.RunningWindow import RunningWindow
 from AIPyS.supportFunctions.GranularityFunc import openingOperation,resize,imageToRGB
 from AIPyS.supportFunctions.AIPS_file_display import Compsite_display
 from AIPyS.segmentation.cellpose.StackObjects_cellpose import StackObjects_cellpose 
-import numpy as np
+from AIPyS.supportFunctions.AIPS_functions import areaThreshold
 import string
 import cv2
 import pdb
 import random
+import numpy as np
 import skimage
 import os
 import pandas as pd
@@ -307,6 +308,11 @@ class GranularityDataGen_cp(StackObjects_cellpose):
             image_name = self.generate_random_string(7)
             # Initiate cellpose segmentation
             mask, table = self.cellpose_segmentation(image_input = image)
+            # add MLE cleaning area step if area is smaller then th skip it:
+            th_area = areaThreshold(arr_area = table.area.values)
+            if th_area=="na":
+                #incase MLE fail
+                th_area = 1
             # create original image:
             #print('-' * c, end = '\r')
             clear_output(wait=True)
@@ -323,6 +329,8 @@ class GranularityDataGen_cp(StackObjects_cellpose):
                     continue
                 intensity =  np.mean(stack_img)
                 maskArea = row['area']
+                if maskArea < th_area:
+                    continue
                 sd = self.sdCalc(stack_img,intensity)
                 #image intensity and sd before opening:
                 # # video gen
@@ -343,7 +351,7 @@ class GranularityDataGen_cp(StackObjects_cellpose):
                 draw.text((5, 5),f'Imagename:{image_name}_{idx} \n Ratio:{np.round(ratio,4)} \n Area: {np.round(maskArea,4)}', 'red',font=font)
                 PIL_image.save(os.path.join(ImagePath,image_name + '_' + f'{idx}.png'))
         dfGran = pd.DataFrame(dfGran)
-        dfGran['label'] = 0
+        dfGran['label'] = "na"
         dfGran.to_csv(os.path.join(DataPath,'imageseq_data.csv'))
             
     

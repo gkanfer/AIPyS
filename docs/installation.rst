@@ -50,7 +50,7 @@ Alternatively, AIPyS can be installed using pip, which is Python’s package man
 
 .. code-block:: bash
 
-   pip install AIPyS
+   pip install --upgrade AIPyS
 
 Before executing the install command, ensure your Python environment is configured with Python 3.8. As AIPyS is currently optimized for Windows, users on other platforms should carefully consider compatibility, especially regarding CUDA and cuDNN dependencies.
 

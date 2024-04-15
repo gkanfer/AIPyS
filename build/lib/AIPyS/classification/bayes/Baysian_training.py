@@ -65,9 +65,12 @@ class Baysian_training(StackObjects_cellpose):
         '''
         df_label = self.df
         if self.areaSel > 0:
-            df_label = df_label.loc[df_label['maskArea'] > self.areaSel,:].reset_index()
+            df_label = df_label.loc[df_label['maskArea'] > self.areaSel,:].reset_index(drop=True)
         if self.fractionData > 0:
-            df_label = df_label.sample(n=self.fractionData, replace=False).reset_index()
+            if self.fractionData > len(df_label):
+                df_label = df_label.sample(n=len(df_label)-1, replace=False).reset_index(drop=True)
+            else:
+                df_label = df_label.sample(n=self.fractionData, replace=False).reset_index(drop=True)
         if self.areaSel < 0 and self.fractionData < 0:
             OneNum = len(df_label.loc[df_label["label"]==1])
             ind_pheno_list = df_label.loc[df_label["label"]==1,:].index.to_list()

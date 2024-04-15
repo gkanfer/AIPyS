@@ -11,6 +11,7 @@ import skimage.morphology as sm
 from skimage.segmentation import watershed
 from skimage import measure
 from skimage.exposure import rescale_intensity
+from sklearn.mixture import GaussianMixture
 import os
 import pandas as pd
 from scipy.ndimage.morphology import binary_fill_holes
@@ -297,3 +298,48 @@ def keepObject(table,mask):
     for label in table.index.values:
         nmask[mask == label] = label
     return nmask
+
+def areaThreshold(arr_area):
+    y = np.array(arr_area).reshape(-1, 1)  # Reshape data to 2D array required by GMM
+    # Define the range of components to test
+    n_components = np.arange(1, 3)
+    # Fit GMM models for 1 and 2 components
+    models = [GaussianMixture(n_components=n, random_state=42).fit(y) for n in n_components]
+    # Evaluate models using Bayesian Information Criterion (BIC)
+    BIC_scores = [model.bic(y) for model in models]
+
+    # # Plot BIC scores to visualize the best model
+    # plt.figure(figsize=(8, 4))
+    # plt.plot(n_components, BIC_scores, marker='o')
+    # plt.title('BIC Scores by Number of Components')
+    # plt.xlabel('Number of Components')
+    # plt.ylabel('BIC Score')
+    # plt.xticks(n_components)
+    # plt.show()
+
+    # Select the model with the lowest BIC
+    best_model = models[np.argmin(BIC_scores)]
+
+    # Assuming the best model has two components (as expected)
+    #if best_model.n_components == 2:
+    means = np.sort(best_model.means_.flatten())
+    std_dev = np.sqrt(best_model.covariances_.flatten())
+        # Estimate a potential threshold
+    threshold = (means[0] + means[1]) / 2
+        # print(f"Estimated threshold between populations: {threshold}")
+
+        # # Optionally, plot the distribution and the threshold
+        # plt.hist(y, bins=30, density=True, alpha=0.6, color='g')
+        # xmin, xmax = plt.xlim()
+        # x = np.linspace(xmin, xmax, 100)
+        # for mean, std in zip(means, std_dev):
+        #     p = np.exp(-(x - mean)**2 / (2 * std**2)) / (np.sqrt(2 * np.pi) * std)
+        #     plt.plot(x, p, 'k', linewidth=2)
+        # plt.axvline(x=threshold, color='red', linestyle='dashed', linewidth=2)
+        # plt.title('Fit results and estimated threshold')
+        # plt.show()
+    if isinstance(threshold, (int, float)) and threshold > 0:
+        return threshold
+    else:
+        return "na"
+    

@@ -26,4 +26,5 @@ dash-renderer
 dash-table
 dash-bootstrap-components
 dash_canvas
+dash_daq
 plotly_express

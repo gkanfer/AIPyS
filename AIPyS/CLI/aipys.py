@@ -22,6 +22,7 @@ from AIPyS.supportFunctions.unpack_h5 import parametersInspec
 from AIPyS.CLI.set_parameters import update_auto_parameters
 
 
+
 # location of parameters file
 user_parameters_path = os.path.join(Path.home(), '.AIPyS', 'parameters.h5')
 
@@ -37,7 +38,7 @@ def run(option):
         if parameters['channels']=='greyscale':
             channels = [0,0]
         else:
-            print('chanlles are missing')
+            print('channels are missing')
         CellPoseSeg(diameter =  parameters['diameter'],videoName = parameters['videoName'], model_type = parameters['model_type'], channels = channels,
                     Image_name = files[:parameters['imagesN']], outPath = parameters['outPath'])
     elif option == "cp_gran_video":
@@ -52,6 +53,7 @@ def run(option):
                             videoName = parameters['videoName'], model_type = parameters['model_type'], channels = parameters['channels'],
                             Image_name = parameters['Image_name'], outPath = parameters['outPath'],diameter =  parameters['diameter']) # save video form cell segmentation
     elif option == "cp_gran_table_gen":
+        ### trainingDataPath needs to be updated 
         parameters = parametersInspec(option,user_parameters_path)
         if parameters['channels']=='greyscale':
             channels = [0,0]
