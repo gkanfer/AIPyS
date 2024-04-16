@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from skimage import io, data
+from skimage import io, data, exposure, img_as_uint, img_as_ubyte
 from PIL import Image
 import dash
 from dash.dependencies import Input, Output, State
@@ -50,10 +50,10 @@ def measure_length(filename):
     '''
     try:
         img = io.imread(filename)
-        input_gs_image = img
-        input_gs_image = input_gs_image*2
-        input_gs_image = (input_gs_image / input_gs_image.max()) * 255
-        img = np.uint8(input_gs_image)
+        # input_gs_image = img
+        # input_gs_image = (input_gs_image / input_gs_image.max()) * 255
+        img_eq = exposure.equalize_hist(img)
+        img = img_as_ubyte(img_eq)
     except:
         img = data.coins()
     height, width = img.shape
