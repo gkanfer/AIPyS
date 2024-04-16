@@ -78,4 +78,14 @@ Troubleshooting
 
   This command installs the versions of PyTorch, torchvision, and torchaudio that are compatible with CUDA 11.3, specifically optimized for the NVIDIA Quadro P4000 GPU.
 
+Evaluate PyTorch-GPU
+--------------------
+
+  .. code-block:: python
+
+      import torch 
+      print(torch.version.cuda)  
+
+
+
 For further assistance, refer to the FAQs section or reach out to the AIPyS support team.
