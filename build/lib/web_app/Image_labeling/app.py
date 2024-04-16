@@ -3,6 +3,7 @@ import dash
 from dash import html
 from dash import dash_table, dcc
 from dash.dependencies import Input, Output
+import dash_daq as daq
 #import dash_core_components as dcc
 from dash import State
 from dash.exceptions import PreventUpdate
@@ -87,8 +88,14 @@ def image_labeling(imagePath,dataPath):
               page_action='native',
               row_deletable=True,
               cell_selectable=True),
-              dbc.Button('Save data', id='save-button', color="danger", n_clicks=0, active=True),
-              dcc.Loading(html.Div(id='load-csv-file'), type="circle", style={'height': '100%', 'width': '100%'}),
+               html.Div([
+                daq.BooleanSwitch(id='my-boolean-switch',
+                                label="Null label remove",
+                                labelPosition="top",
+                                on=False),
+                dbc.Button('Save data', id='save-button', color="danger", n_clicks=0, active=True),
+                dcc.Loading(html.Div(id='load-csv-file'), type="circle", style={'height': '100%', 'width': '100%'}),
+                          ],style={'display': 'flex', 'flex-direction': 'row'})
           ],style={'flex': '1', 'display': 'flex', 'flex-direction': 'column'}),
           html.Div([
             html.Div(id='img-container')
@@ -128,15 +135,19 @@ def image_labeling(imagePath,dataPath):
   @app.callback(
     Output('load-csv-file', 'children'),
     [Input('save-button', 'n_clicks'),
+     Input('my-boolean-switch','on'),
     State('table', 'data')],
     prevent_initial_call=True,
   )
-  def save_data(n,curr_table):
+  def save_data(n,on,curr_table):
     # Handler for data update; includes save logic as needed
     if n is None:
       return dash.no_update
     else:
       df_curr = pd.DataFrame(curr_table).reset_index()
+      if on:
+        # remove all the rows with no label
+        df_curr = df_curr[df_curr['label'] != 'na']
       df_curr.to_csv(os.path.join(dataPath,'imageseq_data.csv'),index=False)
       return "data is saved"
   return app

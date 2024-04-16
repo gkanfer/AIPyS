@@ -1,5 +1,5 @@
 # workd with venv python 3.8.10 windows
-torch==1.12.0
+torch
 # not sure if need this torchvision
 # not sure if need this torchaudio
 cellpose

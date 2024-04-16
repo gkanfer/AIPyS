@@ -47,12 +47,14 @@ params = {
     }
 
 # Specify the HDF5 file name
-filename = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))),'parameters.h5')
 user_parameters_path = os.path.join(Path.home(), '.AIPyS', 'parameters.h5')
+dirPath = os.path.join(Path.home(), '.AIPyS') 
 
 def parametersGnert():
+    if not os.path.exists(dirPath):
+       os.makedirs(os.path.dirname(dirPath), exist_ok=True) 
     # Open a new HDF5 file
-    with h5py.File(filename, 'w') as hdf:
+    with h5py.File(user_parameters_path, 'w') as hdf:
         # Iterate through dictionary items and save them to the HDF5 file
         for key, value in params.items():
             # Convert None values to a recognizable string, as NoneType can't be directly stored
@@ -66,19 +68,11 @@ def parametersGnert():
             else:
                 # Directly store if the value is numeric
                 hdf.create_dataset(key, data=value)
-    print(f"Parameters saved to {filename}")
+    print(f"Parameters saved to {user_parameters_path}")
 
 def resetParameters():
-    if not os.path.exists(user_parameters_path):
-        #if missing creat
-        os.makedirs(os.path.dirname(user_parameters_path), exist_ok=True)
-        shutil.copy(filename, user_parameters_path)
-        print(f'Created a personal parameters file at {user_parameters_path}')
-    else:
-        #reset
-        parametersGnert()
-        shutil.copy(filename, os.path.join(Path.home(), '.AIPyS'))
-        print(f'personal parameters reset at file at {user_parameters_path}')
+    parametersGnert()
+    print(f'Done')
 
 def display_parameters():
     """Read and display parameters from the user's parameters.h5 file."""
