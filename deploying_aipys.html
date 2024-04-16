@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>deploying_aipys &mdash; aipys-sphinx-test 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="segmentation" href="segmentation/index.html" />
+    <link rel="prev" title="installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            aipys-sphinx-test
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">deploying_aipys</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-aipys-for-integration-with-nikon-nis-elements">Deploying AIPyS for Integration with Nikon-nis Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initial-image-selection-and-parameter-adjustment">Initial Image Selection and Parameter Adjustment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#segmented-image-video-production">Segmented Image Video Production</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#granularity-analysis">Granularity Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-labeling-and-visualization">Data Labeling and Visualization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-construction-and-deployment-file-preparation">Model Construction and Deployment File Preparation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-management">Parameter Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="segmentation/index.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification/index.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">AIPyS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">aipys-sphinx-test</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">deploying_aipys</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/deploying_aipys.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deploying-aipys">
+<h1>deploying_aipys<a class="headerlink" href="#deploying-aipys" title="Link to this heading"></a></h1>
+<section id="deploying-aipys-for-integration-with-nikon-nis-elements">
+<h2>Deploying AIPyS for Integration with Nikon-nis Elements<a class="headerlink" href="#deploying-aipys-for-integration-with-nikon-nis-elements" title="Link to this heading"></a></h2>
+<p>Leverage the AIPyS platform for efficient image processing, segmentation, analysis, and deployment file generation compatible with the Nikon-nis elements jobs module. Utilize the following command-line interface (CLI) instructions for a comprehensive workflow:</p>
+</section>
+<section id="initial-image-selection-and-parameter-adjustment">
+<h2>Initial Image Selection and Parameter Adjustment<a class="headerlink" href="#initial-image-selection-and-parameter-adjustment" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Image Selection and Path Configuration:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --Image_name &quot;\dest\20X\WT\3_XY01.tif&quot;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Diameter Measurement via measDia (Web Application):</strong></p>
+<p>In this step, use the web application to measure the diameter across several sample cells. This helps establish analysis parameters:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option measDia
+</pre></div>
+</div>
+</li>
+<li><p><strong>Update Estimated Cell Diameter:</strong></p>
+<p>Assuming a standard object diameter of 60 for a 20x objective:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --diameter 60
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="segmented-image-video-production">
+<h2>Segmented Image Video Production<a class="headerlink" href="#segmented-image-video-production" title="Link to this heading"></a></h2>
+<ol class="arabic" start="4">
+<li><p><strong>Configure Video Generation Parameters:</strong></p>
+<p>Specify the details for video creation including, image count, video name, and related configurations:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --videoName &quot;ImageSeqcp.avi&quot; --data_dir &quot;\dest\20X\PHENO&quot; --imagesN 5 --outPath &quot;\dest\AIPyS_output_images&quot; --model_type cyto --channels greyscale
+</pre></div>
+</div>
+</li>
+<li><p><strong>Generate the Segmented Image Sequence with Cellpose:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option cp_seg_video
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="granularity-analysis">
+<h2>Granularity Analysis<a class="headerlink" href="#granularity-analysis" title="Link to this heading"></a></h2>
+<ol class="arabic" start="6">
+<li><p><strong>Define Granularity Analysis Parameters:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --videoName &quot;GranMeasVideo_cp.avi&quot; --start_kernel 2 --end_karnel 50 --kernel_size 20 --extract_pixel 50 --resize_pixel 150 --outputImageSize 500
+</pre></div>
+</div>
+</li>
+<li><p><strong>Produce Granularity Images:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option cp_gran_video
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="data-labeling-and-visualization">
+<h2>Data Labeling and Visualization<a class="headerlink" href="#data-labeling-and-visualization" title="Link to this heading"></a></h2>
+<ol class="arabic" start="8">
+<li><p><strong>Save Single Cell Images &amp; Compile an Intensity Table:</strong></p>
+<p>Specify the desired kernel size and set the base directory for gathering training data:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --kernelGran 6 --trainingDataPath &quot;\dest\20X&quot; --imagesN 5
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option cp_gran_table_gen
+</pre></div>
+</div>
+</li>
+<li><p><strong>Binary Labeling via dataLabeling (Web Application):</strong></p>
+<p>With this tool, users can perform binary phenotype labeling for the training dataset, improving the model’s accuracy:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --imagePath &quot;\dest\AIPyS_output_images\imageSequence\images&quot; --dataPath &quot;\dest\AIPyS_output_images\imageSequence\data&quot;
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option dataLabeling
+</pre></div>
+</div>
+</li>
+<li><p><strong>Analyze Image Distribution with data_viz (Web Application):</strong></p>
+<p>Engage in data visualization to scrutinize image distribution and evaluate analytical results:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --imagePath &quot;\dest\AIPyS_output_images\table_example\images&quot; --dataPath &quot;\dest\AIPyS_output_images\table_example&quot;
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option data_viz
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="model-construction-and-deployment-file-preparation">
+<h2>Model Construction and Deployment File Preparation<a class="headerlink" href="#model-construction-and-deployment-file-preparation" title="Link to this heading"></a></h2>
+<ol class="arabic" start="11">
+<li><p><strong>Build the Deployment Model:</strong></p>
+<p>Establish criteria for data training and model development:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --dataPath &quot;\dest\AIPyS_output_images\table_example&quot; --outPath &quot;\dest\AIPyS_output_images&quot; --imW 10 --imH 10 --thold 0.7 --areaSel 1000 --fractionData 50
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option modelBuild
+</pre></div>
+</div>
+</li>
+<li><p><strong>Generate Deployment Build File:</strong></p>
+<p>After the model is finalized, ready the deployment file for integration with Nikon-nis elements:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>updateParameters --Image_name &quot;\dest\022224\2.tif&quot; --outPath &quot;\dest\AIPyS_output_images\outproc_temp&quot;
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aipys --option deployBuild
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="parameter-management">
+<h2>Parameter Management<a class="headerlink" href="#parameter-management" title="Link to this heading"></a></h2>
+<p>For adjustments or resets of parameters at any phase:</p>
+<ul class="simple">
+<li><p><strong>For Help:</strong> <code class="docutils literal notranslate"><span class="pre">load-parameters</span> <span class="pre">--help</span></code></p></li>
+<li><p><strong>To Generate Default Parameters:</strong> <code class="docutils literal notranslate"><span class="pre">load-parameters</span> <span class="pre">--select</span> <span class="pre">generate</span></code></p></li>
+<li><p><strong>To Reset Parameters:</strong> <code class="docutils literal notranslate"><span class="pre">load-parameters</span> <span class="pre">--select</span> <span class="pre">reset</span></code></p></li>
+<li><p><strong>To Display Current Settings:</strong> <code class="docutils literal notranslate"><span class="pre">load-parameters</span> <span class="pre">--select</span> <span class="pre">display</span></code></p></li>
+</ul>
+<p>Ensure to align paths to your directory configurations. The full suite of CLI instructions provides a detailed process from initiating the AIPyS project to model readiness and subsequent deployment, with enhanced focus on web application functions for user engagement and analytic insights.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="segmentation/index.html" class="btn btn-neutral float-right" title="segmentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gil Kanfer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

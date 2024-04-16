@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>installation &mdash; aipys-sphinx-test 0.0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=d45e8c67"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="deploying_aipys" href="deploying_aipys.html" />
+    <link rel="prev" title="Welcome to AIPyS documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            aipys-sphinx-test
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-options">Installation Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#option-1-using-environment-yml-with-conda">Option 1: Using <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> with Conda</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#option-2-installation-with-pip">Option 2: Installation with pip</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#verifying-installation">Verifying Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-pytorch-gpu">Evaluate PyTorch-GPU</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_aipys.html">deploying_aipys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="segmentation/index.html">segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification/index.html">classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/modules.html">AIPyS</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">aipys-sphinx-test</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="id1">
+<h2>Installation<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
+<p>The AIPyS platform is engineered to streamline the integration of AI with photoswitchable genetic CRISPR screen technology. Presently, AIPyS supports installation on Windows systems and requires Python 3.8. To ensure optimal functionality, particularly for components like PyTorch and Cellpose, matching the CUDA and cuDNN versions to your system’s configuration is crucial.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>Before proceeding with the installation, ensure your system meets the following requirements:</p>
+<ul class="simple">
+<li><p>Operating System: Windows</p></li>
+<li><p>Python Version: 3.8</p></li>
+</ul>
+<p>Additionally, for functionalities leveraging PyTorch and Cellpose, verify you have the appropriate versions of CUDA and cuDNN installed. These components are essential for computation offloading to GPUs, significantly enhancing performance for machine learning tasks.</p>
+</section>
+<section id="installation-options">
+<h2>Installation Options<a class="headerlink" href="#installation-options" title="Link to this heading"></a></h2>
+<p>AIPyS offers two primary methods for installation: via an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file using Conda and directly through pip.</p>
+<section id="option-1-using-environment-yml-with-conda">
+<h3>Option 1: Using <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> with Conda<a class="headerlink" href="#option-1-using-environment-yml-with-conda" title="Link to this heading"></a></h3>
+<p>For users preferring Conda, AIPyS provides an <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file that simplifies the setup process, managing both Python version constraints and necessary library dependencies, including CUDA and cuDNN configurations.</p>
+<ol class="arabic simple">
+<li><p>Download the <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file from the AIPyS repository.</p></li>
+<li><p>Open a Windows command prompt or PowerShell window.</p></li>
+<li><p>Navigate to the directory containing the downloaded <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file.</p></li>
+<li><p>Execute the following command:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Activate the newly created Conda environment:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>aipys_env
+</pre></div>
+</div>
+<p>This environment will include all the necessary dependencies pre-configured, adhering to the CUDA and cuDNN versions required for PyTorch and Cellpose.</p>
+</section>
+<section id="option-2-installation-with-pip">
+<h3>Option 2: Installation with pip<a class="headerlink" href="#option-2-installation-with-pip" title="Link to this heading"></a></h3>
+<p>Alternatively, AIPyS can be installed using pip, which is Python’s package manager. This method is straightforward but requires manual management of compatible CUDA and cuDNN versions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>AIPyS
+</pre></div>
+</div>
+<p>Before executing the install command, ensure your Python environment is configured with Python 3.8. As AIPyS is currently optimized for Windows, users on other platforms should carefully consider compatibility, especially regarding CUDA and cuDNN dependencies.</p>
+</section>
+</section>
+<section id="verifying-installation">
+<h2>Verifying Installation<a class="headerlink" href="#verifying-installation" title="Link to this heading"></a></h2>
+<p>After completing the installation using either method, you can verify the setup by checking the installed AIPyS version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>aipys<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>Alternatively, attempt running a simple command or script to confirm operational functionality.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<ul>
+<li><p><strong>CUDA/cuDNN Compatibility:</strong> If you encounter issues related to PyTorch or Cellpose, verify that you have installed the correct versions of CUDA and cuDNN that match the requirements of these libraries.</p></li>
+<li><p><strong>Python Version:</strong> Ensure that the Python environment active during installation is version 3.8, as discrepancies in Python versions can lead to compatibility problems.</p></li>
+<li><p><strong>GPU Recognition Issues:</strong> If your GPU is not recognized and you are using an NVIDIA Quadro P4000, ensure that you have the appropriate drivers installed. Additionally, install PyTorch with a CUDA version that matches your setup by executing the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span><span class="nv">torch</span><span class="o">==</span><span class="m">1</span>.12.1+cu113<span class="w"> </span><span class="nv">torchvision</span><span class="o">==</span><span class="m">0</span>.13.1+cu113<span class="w"> </span><span class="nv">torchaudio</span><span class="o">==</span><span class="m">0</span>.12.1+cu113<span class="w"> </span>-f<span class="w"> </span>https://download.pytorch.org/whl/torch_stable.html
+</pre></div>
+</div>
+<p>This command installs the versions of PyTorch, torchvision, and torchaudio that are compatible with CUDA 11.3, specifically optimized for the NVIDIA Quadro P4000 GPU.</p>
+</li>
+</ul>
+</section>
+<section id="evaluate-pytorch-gpu">
+<h2>Evaluate PyTorch-GPU<a class="headerlink" href="#evaluate-pytorch-gpu" title="Link to this heading"></a></h2>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">cuda</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>For further assistance, refer to the FAQs section or reach out to the AIPyS support team.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to AIPyS documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="deploying_aipys.html" class="btn btn-neutral float-right" title="deploying_aipys" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Gil Kanfer.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
